@@ -1,0 +1,34 @@
+@mixin placehold-img{
+    position: relative;
+    & > span{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: $z-index-img;
+        background-repeat: no-repeat;
+        -webkit-background-size: cover;
+    }
+}
+
+@mixin img{
+    position: relative;
+    & > span{
+        display: block;
+        width: 100%;
+        height: 100%;
+        z-index: $z-index-img;
+        background-repeat: no-repeat;
+        -webkit-background-size: cover;
+    }
+}
+@mixin user-select($val){
+    -webkit-user-select: $val;
+    -moz-user-select: $val;
+    -ms-user-select: $val;
+    -o-user-select: $val;
+    user-select: $val;
+}
+//@include user-select(none);
+

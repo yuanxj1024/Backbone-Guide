@@ -1,0 +1,494 @@
+
+
+// ui input
+.gx-texttitle {
+  font-size: 14px;
+  color: #666;
+  width: 110px;
+  text-align: right;
+  display: inline-block;
+}
+
+.gx-textbox{
+  border: 1px solid #dadada;
+  font-size: $font-size-base;
+  border-radius: $border-radius-base;
+  padding: 7px 10px;
+  line-height: $line-height-base;
+  outline: 0;
+  background-color: $color-white;
+  width: 182px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+  -moz-transition: background-color ease-in-out .15s, border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  -o-transition: background-color ease-in-out .15s, border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  -webkit-transition: background-color ease-in-out .15s, border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  transition: background-color ease-in-out .15s, border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+.gx-textbox:focus {
+  border-color: #66afe9;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(102, 175, 233, 0.6);
+}
+
+.gx-textbox[disabled],
+.gx-textbox[readonly],
+[disabled] .gx-textbox {
+  box-shadow: none !important;
+  background-color: #ededed;
+}
+
+textarea.gx-textbox {
+  width: 576px;
+  height: 120px;
+}
+
+.gx-textbox[rows],
+.gx-textbox[multiple],
+.gx-textbox[size] {
+  height: auto;
+}
+
+.gx-textbox-small {
+  padding: 2px 5px;
+  border-radius: 3px;
+  font-size: 12px;
+  line-height: 1.5;
+  height: 24px;
+  width: 144px;
+}
+
+.gx-textbox-large {
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 18px;
+  line-height: 1.3333333;
+  height: 46px;
+  width: 576px;
+}
+
+.gx-textbox-block {
+  display: block;
+  width: 100%;
+}
+
+// ui button
+.gx-button{
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  border-radius: $border-radius-base;
+  display: inline-block;
+  text-align: center;
+  white-space: nowrap;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  outline: 0;
+  text-decoration: none;
+  padding: 7px 14px;
+  color: #212121;
+  background: #eee;
+  border: 1px solid #eee;
+  font-size: $font-size-base;
+  cursor: pointer;
+  position: relative;
+  font-weight: normal;
+  line-height: $line-height-base;
+  vertical-align: middle;
+  -moz-transition: background-color .3s ease-out, border-color .3s ease-out;
+  -o-transition: background-color .3s ease-out, border-color .3s ease-out;
+  -webkit-transition: background-color .3s ease-out, border-color .3s ease-out;
+  transition: background-color .3s ease-out, border-color .3s ease-out;
+}
+.gx-button:hover,
+.gx-button:focus {
+  background-color: #e6e6e6;
+  text-decoration: none;
+}
+.gx-button:active,
+.gx-button-actived {
+  background-color: #cfcfcf;
+  border-color: #cfcfcf;
+  box-shadow: inset 0 1px 10px rgba(0, 0, 0, 0.15);
+}
+.gx-button[disabled],
+.gx-button-disabled {
+  pointer-events: none;
+  cursor: not-allowed;
+  border-color: transparent;
+  opacity: 0.5;
+  filter: alpha(opacity=50);
+  box-shadow: none;
+}
+.gx-button-info {
+  color: $color-white;
+  background-color: #049cdb;
+  border-color: #049cdb;
+}
+.gx-button-info:hover,
+.gx-button-info:focus {
+  background-color: #048CC5;
+}
+.gx-button-success {
+  color: $color-white;
+  background-color: #5eb95e;
+  border-color: #5eb95e;
+}
+.gx-button-success:hover,
+.gx-button-success:focus {
+  background-color: #429842;
+}
+.gx-button-warning {
+  color: $color-white;
+  background-color: #e9985e;
+  border-color: #e9985e;
+}
+.gx-button-warning:hover,
+.gx-button-warning:focus {
+  background-color: #e27628;
+}
+.gx-button-error {
+  color: $color-white;
+  background-color: #dd514c;
+  border-color: #dd514c;
+}
+.gx-button-error:hover,
+.gx-button-error:focus {
+  background-color: #c62b26;
+}
+.gx-button-transparent {
+  background-color: transparent;
+}
+.gx-button-small {
+  padding: 0 7px;
+  font-size: 12px;
+}
+.gx-button-bordered {
+  border-color: #ccc;
+}
+.gx-button-block {
+  width: 100%;
+  display: block;
+}
+
+.form-group{
+  margin-bottom: 10px;
+  position: relative;
+
+  .error{
+
+  }
+}
+.icon-form{
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  display: block;
+  overflow: hidden;
+  background: #000;
+  left: 10px;
+  top: 8px;
+}
+.gx-textbox-pl{
+  padding-left: 40px;
+}
+
+
+// ui select
+.gx-select{
+  position: relative;
+  border: 1px solid #dadada;
+
+  border-radius: $border-radius-base;
+
+}
+.gx-select select{
+  -webkit-appearance: none;
+  border: 0;
+  background: none;
+  width: 100%;
+  color: #434343;
+  line-height: $line-height-base;
+  font-size: $font-size-base;
+  padding: 7px 14px 7px 10px;
+  outline: none;
+}
+.gx-select:after {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  margin-top: -4px;
+  width: 0;
+  height: 0;
+  border-top: 6px solid;
+  border-right: 5px solid rgba(0, 0, 0, 0);
+  border-left: 5px solid rgba(0, 0, 0, 0);
+  color: #a6a6a6;
+  content: "";
+  pointer-events: none;
+}
+.gx-select-group{
+  margin-left: 95px;
+  overflow: hidden;
+  .gx-select{
+    float: left;
+  }
+}
+
+.inner-hd{
+  background:$header-bg;
+}
+
+// user register
+.user-box{
+  width: 1000px;
+  margin: 30px auto;
+  min-height: 350px;
+  background: $color-white;
+  border-radius: 10px;
+  box-shadow: 0 0 7px rgba(0,0,0,.3);
+}
+.register-content{}
+.user-hd{
+  background: #f6f6f6;
+  color: #434343;
+  text-align: center;
+  padding: 8px 0;
+  border-radius: 10px 10px 0 0;
+}
+.user-bd{
+  padding: 20px 0 40px;
+
+  .gx-textbox{
+    width: 100%;
+  }
+  .code-textbox{
+    width: 60%;
+  }
+  .send-code{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 38%;
+    font-size: 14px;
+    padding: 9px 14px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #049cdb;
+    border: none;
+    border-radius: $border-radius-base;
+    text-align: center;
+    outline: none;
+  }
+  .send-code:hover{
+    color: $color-white;
+  }
+  .clicked{
+    background: #999;
+    border-color: #999;
+  }
+  .code-image{
+    position: absolute;
+    top: 0;
+    right: 20px;
+    height: 37px;
+    width: 30%;
+    cursor: pointer;
+  }
+  .form-group-btn{
+    margin-top: 30px;
+  }
+}
+
+.form-box{
+  margin: 0 auto;
+  width: 350px;
+}
+.form-tips{
+
+  color: $txt-warning;
+  margin-top: 5px;
+  p{
+    color: #b2b2b2;
+  }
+}
+.halving-line{
+  background: #f6f6f6;
+  height: 10px;
+  width: 100%;
+  margin: 20px 0;
+}
+.icon-user{
+  background: url(../../img/account-man.png) no-repeat center;
+}
+.icon-tele{
+  background: url(../../img/iphone.png) no-repeat center;
+
+}
+.icon-lock{
+  background: url(../../img/lock.png) no-repeat center;
+}
+.form-group-other{
+  text-align: right;
+  color: #b2b2b2;
+  font-size: $font-size-base;
+  .gx-button-login{
+    display: inline-block;
+    background: #b3b3b3;
+    color: $color-white;
+    border-radius: $border-radius-base;
+    padding: 2px 12px;
+  }
+}
+
+
+// user login
+.LoginView{
+  background: $default-bg-i url("../../img/bg_bule.jpg") no-repeat left bottom;
+  min-height: 600px;
+  height: 100%;
+  width: 100%;
+  -webkit-background-size: 80%;
+  background-size: 80%;
+  height: 100vh;
+}
+.login-box{
+  width: 325px;
+  margin: 0 auto;
+  padding: 50px 0 150px;
+
+  .yun-logo{
+    width: 88px;
+    height: 88px;
+    margin: 0 auto;
+  }
+  h4{
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    color: #333;
+  }
+  .gx-textbox{
+    width: 100%;
+    border-color: #ccc;
+  }
+  .gx-textbox:focus{
+    border-color: #66afe9;
+  }
+  .form-group-btn{
+    a,a:hover,a:focus{
+      color: #666;
+    }
+  }
+  .forget-pwd{
+    position: absolute;
+    top: 0;
+    right: 0;
+    a,a:hover{
+      color: #3f99d8;
+    }
+  }
+  .form-tips{
+    margin-top: 0;
+    padding-bottom: 10px;
+  }
+}
+
+// forget password
+.phone-tips{
+  position: absolute;
+  right:0;
+  bottom:0;
+  a,a:hover{
+    color: #3f99d8;
+    text-decoration: underline;
+  }
+}
+.form-h18{
+  height: 18px;
+}
+.setting-title{
+  padding-top: 20px;
+  color: #666;
+  text-align: center;
+  font-size: $font-size-base;
+}
+.resetPwd-success{
+  width: 350px;
+  margin: 0 auto;
+}
+.success-icon{
+  background: url(../../img/password-succed.png) no-repeat center;
+  height: 103px;
+  width: 103px;
+  -webkit-background-size: 100% auto;
+  background-size: 100% auto;
+  margin: 0 auto 20px;
+  span{
+    display: block;
+    text-align: center;
+    padding-top: 80px;
+    color: #666;
+  }
+}
+.gx-btnBar{
+  a,a:hover,a:focus{
+    color: $color-white;
+  }
+}
+
+// ui checkbox
+.ui-checkbox{
+  display: inline-block;
+}
+.ui-checkbox input{
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  position: relative;
+  overflow: visible;
+  border: 0;
+  background: none;
+  -webkit-appearance: none;
+  outline: none;
+  vertical-align: middle;
+}
+.ui-checkbox input:before{
+  content: '';
+  position: absolute;
+  height: 12px;
+  width: 12px;
+  border: 1px solid #ccc;
+  top: 0;
+  left: 0;
+}
+.ui-checkbox input:after{
+  content: '';
+  position: absolute;
+  height: 16px;
+  width: 16px;
+  top: -3px;
+  left: 0;
+}
+.ui-checkbox input.cked:after,
+.ui-checkbox input:checked:after{
+  background: url("../../img/pic-selected.png") no-repeat center;
+  -webkit-background-size: contain;
+  background-size: contain;
+}
+.ui-checkbox-s{
+  @extend .ui-checkbox;
+}
+.ui-checkbox-s input:before{
+  content: "";
+}
+.ui-checkbox-s input:checked:before{
+  content: "";
+}
+
+
+
+
+

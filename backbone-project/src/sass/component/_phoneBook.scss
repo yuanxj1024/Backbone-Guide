@@ -1,0 +1,50 @@
+.contact-form {
+  .form-group{
+  }
+
+  .fix-error-pos {
+    position: relative;
+    height: 37px;
+    margin-bottom: 20px;
+    label.error {
+      position: absolute;
+      left: 0;
+      bottom: -20px;
+      font-size: 12px;
+    }
+  }
+}
+.detail-content {
+  .record-list{
+    .contact-list-data{
+      //max-height: 500px;
+      overflow: hidden;
+      overflow-y: auto;
+      padding-bottom: 55px;
+    }
+    .group-letter-name{
+      li{
+        &:hover{
+          background-color: #CACACA;
+        }
+      }
+    }
+    .page-wrap{
+      background-color: #fff;
+      position: fixed;
+      bottom:0;
+      width: 100%;
+    }
+  }
+}
+.group-letter-name li span {
+  background-position: 0 10px;
+  font-size: 16px;
+}
+.new-contact-footer{
+  background-color: #e3e3e3;
+  color:#38a7e2;
+  .contact-button{
+
+  }
+}

@@ -1,0 +1,170 @@
+.IndexView{
+  background: $default-bg-i url("../../img/bg_bule.jpg") no-repeat left bottom;
+  height: 100%;
+  width: 100%;
+  -webkit-background-size: 80%;
+  background-size: 80%;
+  height: 100vh;
+}
+.hd{
+  width: 100%;
+  height: 36px;
+  background: $header-bg-i;
+  box-shadow: 0 0 3px rgba(0,0,0,.3);
+  .logo{
+    float: left;
+    display: inline;
+    margin: 12px 0 0 30px;
+    a{
+      display: block;
+      width: 86px;
+      height: 12px;
+      text-indent: 9999px;
+      background: url(../img/logo.png) no-repeat center;
+      -webkit-background-size: 100% auto;
+      background-size: 100% auto;
+    }
+  }
+  .hd-infor{
+    float: right;
+    display: inline;
+    margin-right: 30px;
+    li{
+      float: left;
+      display: inline;
+      line-height: 36px;
+      margin-left: 20px;
+    }
+  }
+}
+
+.client-num{
+  span{
+
+  }
+}
+.yun-user,
+.more-language{
+  position: relative;
+  padding-right: 15px;
+}
+.more-language{
+  position: relative;
+}
+.yun-user{
+  position: relative;
+
+  .user-avatar{
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    margin-top: -2px;
+    margin-right: 5px;
+  }
+}
+.yun-user:after,
+.more-language:after{
+  position: absolute;
+  top: 50%;
+  right: 0;
+  margin-top: -2px;
+  width: 0;
+  height: 0;
+  border-top: 6px solid;
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+  color: #10668e;
+  content: "";
+  pointer-events: none;
+}
+.yun-space{
+
+  span{
+    display: inline-block;
+  }
+  .space-progress{
+    height: 10px;
+    width: 60px;
+    margin-right: 5px;
+    background: $default-bg;
+    position: relative;
+    i{
+      position: absolute;
+      left: 0;
+      top: 0;
+      display: inline-block;
+      background: #10668e;
+      height: 10px;
+      width: 0%;
+    }
+  }
+}
+.gx-border-1{
+  font-family: "Arial", "sans-serif";
+  font-size: 12px;
+  font-weight: normal;
+}
+.home-content{
+  width: 720px;
+  margin: 0 auto;
+  padding: 20% 0 200px;
+}
+.man-nav{
+  overflow: hidden;
+  
+  li{
+    float: left;
+    display: inline;
+    margin: 0 20px;
+    width: 80px;
+    text-align: center;
+    a{
+      display: block;
+      padding-bottom: 62px;
+      border-radius: 30px 30px 0 0;
+      -moz-transition: background .3s ease-out, color .3s ease-out;
+      -o-transition: background .3s ease-out, color .3s ease-out;
+      -webkit-transition: background .3s ease-out, color .3s ease-out;
+      transition: background .3s ease-out, color .3s ease-out;
+    }
+    a:hover{
+      background: url(../../img/nav_hover.png) repeat-x left bottom;
+    }
+    span{
+      display: block;
+      margin-top: 10px;
+    }
+  }
+  .nav-icon{
+    width: 80px;
+    height: 80px;
+  }
+
+}
+
+.ft{
+  width: 100%;
+  text-align: center;
+  padding: 10px 0 20px;
+  font-size: $font-size-default;
+  p{
+    line-height: 20px;
+  }
+  a,
+  .text-color{
+    color: $txt-color;
+  }
+}
+.ft-absolute{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+
+
+
+
+
+
+

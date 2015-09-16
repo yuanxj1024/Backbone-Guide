@@ -1,0 +1,28 @@
+
+.login-container {
+  margin: 15% 0;
+  .login-wrap {
+    width: 400px;
+    margin: 0 auto;
+    text-align: center;
+    .login-form {
+      .input-wrap {
+        margin: 10px;
+        input {
+          padding: 0 15px;
+          border: 1px solid gray;
+          border-radius: 5px;
+          width: 200px;
+          height: 26px;
+          color: black;
+        }
+      }
+    }
+  }
+}
+.login-content{
+  .error{
+    color: #fc2b07;
+  }
+}
+

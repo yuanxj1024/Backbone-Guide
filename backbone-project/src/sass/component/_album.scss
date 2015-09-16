@@ -1,0 +1,116 @@
+.album-box{
+  padding-right: 20px;
+  color: #717171;
+}
+.album-box-hd{
+  line-height: 30px;
+  padding: 0 20px 0 15px;
+  border-bottom: 1px solid #e3e3e3;
+  background: #FFF;
+}
+.album-setting{
+  button,a{
+    display: inline-block;
+    margin-left: 16px;
+  }
+  .album-all,
+  .album-undo{
+    outline: none;
+    background: none;
+    border: none;
+  }
+}
+.album-time{
+  padding: 1% 2%;
+}
+.album-item{
+  ul{
+    overflow: hidden;
+    padding: 0 1%;
+  }
+  li{
+    width: 14.667%;
+    float: left;
+    position: relative;
+    margin: 0 1% 2% 1%;
+  }
+  .ui-checkbox{
+    position: absolute;
+    right: 5%;
+    bottom: 3%;
+  }
+}
+.album-btn{
+  height: 40px;
+  line-height: 40px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  padding-left: 280px;
+  background: #e3e3e3;
+  a{
+    text-align: center;
+    width: 25%;
+    margin-right: 20%;
+    display: inline-block;
+    color: #38a7e2;
+  }
+  a:hover{
+    color: #38a7e2;
+    
+  }
+}
+
+.album-other{
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 32px;
+  line-height: 32px;
+  background: #333;
+  text-align: center;
+  a,
+  span{
+    display: inline-block;
+    color: #FFF;
+    padding-left: 20px;
+    margin-right: 20px;
+    cursor: pointer;
+    font-size: 12px;
+    
+    > i{
+      display: inline-block;
+      height: 13px;
+      width: 13px;
+      margin-right: 2px;
+      margin-bottom: -2px;
+    }
+  }
+  .album-download{
+    i{
+      background: url("../../img/download.png") no-repeat left center;
+      -webkit-background-size: contain;
+      background-size: contain;
+    }
+  }
+  .album-intro{
+    i{
+      background: url("../../img/meg-info.png") no-repeat left center;
+      -webkit-background-size: contain;
+      background-size: contain;
+    }
+  }
+  .album-del{
+    i{
+      background: url("../../img/delete-icon.png") no-repeat left center;
+      -webkit-background-size: contain;
+      background-size: contain;
+    }
+  }
+}
+.album-box-bd{
+  overflow: hidden;
+  overflow-y: auto;
+}

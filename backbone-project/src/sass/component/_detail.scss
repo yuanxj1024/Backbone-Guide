@@ -1,0 +1,658 @@
+.cloud-container{
+  min-width: 1000px;
+  min-height: 640px;
+  background: #cacaca;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+/*头部*/
+.site-map{
+  margin-left: 164px;
+  line-height: 35px;
+  height: 35px;
+
+  a {
+    display: inline-block;
+    font-size: 12px;
+    color: #333;
+    margin-right: 11px;
+  }
+  .curr{
+    border-bottom: 1px solid #3ab6ea;
+    color:#3ab6ea
+  }
+}
+/*侧边栏*/
+.sidebar{
+  width: 280px;
+  min-height: 640px;
+  background: #cacaca;
+  position: absolute;
+  z-index: 999;
+  left: 0;
+  top: 0;
+  bottom: 0;
+}
+.sidebar-header-nav{
+  background: #d5d5d5;
+  height: 80px;
+  padding: 16px 0 0 40px;
+  position: relative;
+}
+/*图标*/
+.header-nav-mailList,.header-nav-mailRecode,.header-nav-message,.header-nav-album,.header-nav-textIcon,.header-nav-soundRecord{
+  display: block;
+  width: 40px;
+  height: 40px;
+}
+.header-nav-mailList{
+  background: url(../img/mail-list.png) no-repeat left;
+  background-size: 100%;
+}
+.header-nav-mailRecode{
+  background: url(../img/mail-recode.png) no-repeat left;
+  background-size: 100%;
+}
+.header-nav-message{
+  background: url(../img/message.png) no-repeat left;
+  background-size: 100%;
+}
+.header-nav-album{
+  background: url(../img/album.png) no-repeat left;
+  background-size: 100%;
+}
+.header-nav-textIcon{
+  background: url(../img/text.png) no-repeat left;
+  background-size: 100%;
+}
+.header-nav-soundRecord{
+  background: url(../img/sound-record.png) no-repeat left;
+  background-size: 100%;
+}
+.header-nav-word{
+  font-size: 16px;
+  background: url(../img/triangle.png) no-repeat 86px 17px;
+  background-size: 12%;
+  padding: 10px 50px 0 15px;
+  cursor: pointer;
+  b{
+    width: 65px;
+    display: block;
+  }
+}
+/*弹窗*/
+.sidebar-pop{
+  //display: none;
+  width: 140px;
+  z-index: 888;
+  position: absolute;
+  top: 60px;
+  left: 65px;
+  background: url(../img/sidebar-angle.png) no-repeat;
+  background-size: 100%;
+  padding: 32px 0 19px 42px;
+}
+.sidebar-pop a{
+  display: block;
+  padding-top: 10px;
+}
+.sidebar-pop a.hover{
+  background: url(../img/blue-angleleft.png) no-repeat 82px 28px;
+  background-size: 15%;
+}
+.pop-group{
+  width: 50px;
+  text-align: center;
+}
+.sidebar-pop span{
+  display: block;
+  font-size: 12px;
+  color: #666;
+  padding-top: 5px;
+}
+.sidebar-header-center dl{
+  background: #d5d5d5;
+}
+.mail-list-left{
+  width: 280px;
+  font-size: 14px;
+  height: 40px;
+  line-height: 40px;
+  padding-left: 30px;
+  background: #d5d5d5;
+  cursor: pointer;
+}
+.mail-list-left.hover{
+  background: #b5b5b5;
+}
+#recycle{
+  position: fixed;
+  bottom: 0;
+}
+.mail-list-name{
+  position: relative;
+}
+.group-foot{
+  height: 40px;
+  background: #d5d5d5;
+  border-top: 1px solid #cacaca;
+  padding: 0 30px;
+}
+.group-set,
+.group-foot-add{
+  position: relative;
+}
+.set-up{
+  width: 22px;
+  height: 22px;
+  background: url(../img/set-up.png) no-repeat;
+  background-size: 100%;
+  margin-top: 9px;
+  cursor: pointer;
+}
+.group-set .set-up-back{
+  position: absolute;
+  bottom: 30px;
+  left: -18px;
+  width: 150px;
+  box-shadow: 1px 1px 10px #333;
+}
+.group-foot-add .group-add-back{
+  position: absolute;
+  bottom: -1px;
+  left: 180px;
+  width: 150px;
+  box-shadow: 1px 1px 10px #333;
+  border-radius: 5px;
+}
+.set-up-list{
+  width: 150px;
+  border-radius: 5px;
+  overflow: hidden;
+  background: #fff;
+}
+.set-up-list li{
+  height: 30px;
+  line-height: 30px;
+  border-bottom: 1px solid #f2f2f2;
+  font-size: 14px;
+}
+.set-up-list li.hover{
+  background: #f2f2f2;
+}
+.set-up-list li span{
+  padding-left: 20px;
+  cursor: pointer;
+}
+.set-up-list li:last-child{
+  border-bottom: none;
+}
+.set-up-angle{
+  position: absolute;
+  bottom: -16px;
+  left: 20px;
+  border-width: 8px;
+  border-style: solid;
+  border-color: #fff transparent transparent transparent;
+}
+.group-add{
+  width: 22px;
+  height: 22px;
+  background: url(../img/add-man.png) no-repeat;
+  background-size: 90%;
+  margin-top: 10px;
+  cursor: pointer;
+}
+/*右侧*/
+.mainbar{
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+}
+.detail-content{
+  background: #fff;
+  position: relative;
+  min-width: 680px;
+  min-height: 640px;
+  height: 100%;
+  margin-left: 280px;
+}
+.right-detail{
+  background: #f3f3f3;
+  width: 30%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+}
+.search-back{
+  width: 100%;
+  background: #f3f3f3;
+  padding: 30px 0;
+  border-bottom: 1px solid #dbd9d9;
+}
+.search{
+  border: 1px solid #dbd9d9;
+  border-radius: 10px;
+  background: #fff;
+  width: 90%;
+  height: 30px;
+  margin-left: 5%;
+  overflow: hidden;
+  position: relative;
+  padding-right: 30px;
+}
+.search-text{
+  width: 100%;
+  height: 30px;
+  border: none;
+  outline: none;
+  padding-left: 15px;
+}
+.search-btn{
+  position: absolute;
+  top: 3px;
+  right: 5px;
+  cursor: pointer;
+}
+.record-list{
+  position: relative;
+  background: #f3f3f3;
+  min-height: 649px;
+}
+.group-letter{
+  height: 40px;
+  line-height: 40px;
+  background: #f3f3f3;
+}
+.group-letter span{
+  font-size: 16px;
+  color: #999;
+  padding-left: 20px;
+}
+.group-letter-name li{
+  height: 40px;
+  line-height: 40px;
+  background: #e3e3e3;
+  border-bottom: 1px solid #f3f3f3;
+  font-size: 16px;
+  color: #666;
+  padding-left: 40px;
+  cursor: pointer;
+}
+.group-letter-name li span{
+  background: url(../img/head-portrait.png) no-repeat 0 6px;
+  background-size: 25px;
+  padding: 10px 0 10px 40px;
+}
+.letter-list{
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 12px;
+  width: 12px;
+  text-align: center;
+  line-height: 16px;
+  font-weight: bold;
+  color: #3ab6ea;
+}
+.letter-list li{
+  cursor: pointer;
+}
+/*右侧内容*/
+.right-sidebar{
+  width: 70%;
+  height: 100%;
+  min-width: 450px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+/*新增联系人*/
+.new-contact{
+  width: 50%;
+  margin: 0 auto;
+  div{
+    cursor: pointer;
+  }
+}
+.set-head{
+  padding-top: 40px;
+}
+.set-head-pic{
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+}
+.set-head-pic img{
+  width:100%;
+}
+.set-head-word{
+  font-size: 14px;
+  color: #10668e;
+  text-align: center;
+  padding-top: 10px;
+}
+.contact-list{
+  padding-top: 10px;
+}
+.contact-list{
+  .gx-textbox{
+    width: 100%;
+  }
+}
+.add-icon{
+  position: absolute;
+  right: -25px;
+  top: 11px;
+  width: 15px;
+  height: 15px;
+  background: url(../img/plus.png) no-repeat;
+  background-size: 100%;
+  cursor: pointer;
+}
+.item-del{
+  position: absolute;
+  right: -25px;
+  top: 11px;
+  width: 15px;
+  height: 15px;
+  background: url(../img/item-del.png) no-repeat;
+  background-size: 100%;
+  cursor: pointer;
+}
+.contact-textBox{
+  padding-left: 80px;
+}
+.group-contact-text{
+  position: relative;
+  .contact-select{
+    position: absolute;
+    span{
+      color: #999;
+      font-size: 14px;
+      display: block;
+      float: left;
+      width: 65px;
+      text-align: center;
+    }
+    .contact-select-icon{
+      float: left;
+      display: inline-block;
+      margin-top: 7px;
+      width: 14px;
+      height: 14px;
+      background: url(../img/angle-down.png) no-repeat;
+      background-size: 100%;
+    }
+    .contact-select-pop{
+      position: absolute;
+      top: 30px;
+      width: 100px;
+      box-shadow: 1px -1px 10px #333;
+      -moz-box-shadow: 1px -1px 10px #333;
+      -webkit-box-shadow: 1px -1px 10px #333;
+      border-radius: 5px;
+      background: #fff;
+      z-index: 999;
+      .contact-select-list{
+        li{
+          height: 30px;
+          line-height: 30px;
+          padding-left: 20px;
+          color: #666;
+        }
+        .contact-select-angle{
+          position: absolute;
+          top: -16px;
+          left: 20px;
+          border-width: 8px;
+          border-style: solid;
+          border-color: transparent transparent #fff transparent;
+        }
+      }
+    }
+  }
+  .select-text{
+    width: 100%;
+    padding-left: 90px;
+    border: none;
+    outline: none;
+  }
+}
+.group-btn-contact{
+  font-size: 14px;
+  color: #666;
+  padding-top: 30px;
+}
+.mainbar-bottom{
+  height: 40px;
+  line-height: 40px;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  font-size: 14px;
+  color: #38a7e2;
+  padding: 0 30px;
+  background: #e3e3e3;
+}
+.contact-details-container-none{
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+  div{
+    position: absolute;
+    margin-top: -80px;
+    top: 50%;
+    left: 50%;
+    font-size: 36px;
+    color: #999999;
+  }
+}
+/*通讯记录*/
+.call-record-list{
+  li{
+    height: 40px;
+    line-height: 40px;
+    background: #e3e3e3;
+    border-top: 1px solid #f3f3f3;
+    div{
+      float: left;
+      width: 33.3%;
+      text-align: left;
+      color: #717171;
+      span{
+        padding-left: 5px;
+        display: block;
+        float: left;
+      }
+      .record-list-man{
+        display: block;
+        float: left;
+        margin: 10px 5px 0 0;
+        width: 20px;
+        height: 20px;
+        background: url(../img/heder-man.png) no-repeat;
+        background-size: 100%;
+      }
+      .record-list-incoming,
+      .record-list-exhale{
+        display: block;
+        float: left;
+        margin: 13px 0 0 15px;
+        width: 14px;
+        height: 12px;
+      }
+      .record-list-incoming{
+        background: url(../img/incoming.png) no-repeat;
+        background-size: 100%;
+      }
+      .record-list-exhale{
+        background: url(../img/exhale.png) no-repeat;
+        background-size: 100%;
+      }
+    }
+    .record-list-first{
+      padding-left: 20px;
+      strong{
+        color: #666666;
+        display: block;
+        float: left;
+        font-weight: normal;
+      }
+    }
+  }
+}
+/*录音*/
+.call-record-sound{
+  li{
+    height: 40px;
+    line-height: 40px;
+    background: #e3e3e3;
+    border-top: 1px solid #f3f3f3;
+    div {
+      float: left;
+      text-align: left;
+      color: #717171;
+      span {
+        padding-left: 5px;
+        display: block;
+        float: left;
+      }
+    }
+    .call-record-sound-first{
+      width: 60%;
+      padding-left: 20px;
+      .call-record-sound-icon{
+        display: block;
+        float: left;
+        width: 20px;
+        height: 20px;
+        background: url(../img/recore-icon.png) no-repeat;
+        background-size: 100%;
+        margin-top: 10px;
+      }
+    }
+    .call-record-sound-two{
+      width: 40%;
+    }
+  }
+}
+/*便签*/
+.note-list-add{
+  font-size: 14px;
+  color: #666;
+  text-align: right;
+  padding-top: 30px;
+  span{
+    padding-right: 40px;
+    cursor: pointer;
+  }
+}
+.note-list-col{
+  float: left;
+  width: 15%;
+  min-width: 130px;
+  margin:20px 0 0 1%;
+  border: 1px solid #d2d2d2;
+  border-radius: 5px;
+  overflow: hidden;
+  min-height: 150px;
+  .note-col-title{
+    height: 30px;
+    line-height: 30px;
+    background: #3f99d8;
+    &:hover{
+      background: #10668e;
+    }
+    span{
+      color: #e3e3e3;
+      font-size: 14px;
+      display: block;
+      float: left;
+      padding-left: 5px;
+    }
+    .note-col-title-icon{
+      display: block;
+      float: right;
+      width: 15px;
+      height: 18px;
+      background: url(../img/delete-icon.png) no-repeat;
+      background-size: 100%;
+      margin: 6px 5px 0 0;
+      cursor: pointer;
+    }
+  }
+  .note-col-word{
+      padding: 20px 10px;
+  }
+}
+/*弹窗*/
+.note-list-detail{
+  position: relative;
+  width: 500px;
+  height: 400px;
+  background: #fff;
+  .note-list-detail-title{
+    height: 40px;
+    line-height: 40px;
+    background: #3f99d8;
+    padding-left: 10px;
+    span{
+      font-size: 14px;
+      color: #e3e3e3;
+      padding-left: 5px;
+    }
+  }
+  .note-list-detail-word{
+    padding: 20px 10px;
+    color: #666;
+    height: 330px;
+    overflow-y: scroll;
+    p{
+      line-height: 18px;
+      text-indent: 2em;
+    }
+  }
+  .note-list-detail-bottom{
+    position: absolute;
+    bottom: 0;
+    height: 30px;
+    background: #000;
+    color: #fff;
+    width: 100%;
+    span{
+      display: block;
+      float: left;
+      font-size: 12px;
+      line-height: 30px;
+      cursor: pointer;
+    }
+    .note-bottom-pic{
+      float: left;
+      padding-left: 150px;
+    }
+    .note-bottom-del{
+      float: left;
+      padding-left: 80px;
+    }
+    .note-bottom-pic-icon,
+    .note-bottom-del-icon{
+      display: block;
+      float: left;
+      width: 15px;
+      height: 18px;
+      margin: 6px 5px 0 0;
+    }
+    .note-bottom-pic-icon{
+      background: url(../img/pic-icon.png) no-repeat;
+      background-size: 100%;
+    }
+    .note-bottom-del-icon{
+      background: url(../img/delete-icon.png) no-repeat;
+      background-size: 100%;
+    }
+  }
+}
