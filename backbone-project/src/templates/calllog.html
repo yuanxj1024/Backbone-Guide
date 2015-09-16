@@ -1,0 +1,139 @@
+<div class="hd inner-hd clearfix">
+    <h2 class="logo"><a href="#index">logo</a></h2>
+    <div class="site-map gx-left">
+        <a href="#">铂钰官网</a>
+        <a href="#" class="curr">云服务</a>
+    </div>
+    <ul class="hd-infor">
+        <li class="yun-user">
+            <!--<a href="#user/login">登录</a>-->
+            <!--<a href="#user/register">注册</a>-->
+            <span><img class="user-avatar" src="../img/use-header.png" alt=""/>1223344@qq.com</span>
+            <div class="drop-list gx-hide">
+                <a href="">下拉列表</a>
+            </div>
+        </li>
+    </ul>
+</div>
+<div class="cloud-container clearfix">
+    <!--侧边栏-->
+    <div class="sidebar">
+        <div class="sidebar-header-nav">
+            <div class="header-nav-mailRecode gx-left"></div>
+            <div class="header-nav-word gx-left menu-hover">
+                <b>通讯记录</b>
+            </div>
+            <!--弹窗-->
+            <div class="sidebar-pop gx-hide float-menu menu-layer">
+                <a href="#phoneBook">
+                    <div class="pop-group">
+                        <i class="header-nav-mailList"></i>
+                        <span>通讯录</span>
+                    </div>
+                </a>
+                <a href="#calllog" class="hover">
+                    <div class="pop-group">
+                        <i class="header-nav-mailRecode"></i>
+                        <span>通话记录</span>
+                    </div>
+                </a>
+                <a href="#message">
+                    <div class="pop-group">
+                        <i class="header-nav-message"></i>
+                        <span>短信</span>
+                    </div>
+                </a>
+                <a href="#album">
+                    <div class="pop-group">
+                        <i class="header-nav-album"></i>
+                        <span>云相册</span>
+                    </div>
+                </a>
+                <a href="#note">
+                    <div class="pop-group">
+                        <i class="header-nav-textIcon"></i>
+                        <span>便签</span>
+                    </div>
+                </a>
+                <a href="#record">
+                    <div class="pop-group">
+                        <i class="header-nav-soundRecord"></i>
+                        <span>录音</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="sidebar-header-center">
+            <div class="mail-list-name">
+                <div data-index="0" class="group-item mail-list-left hover">全部通话记录（234）</div>
+                <div data-index="1" class="group-item mail-list-left">未接来电（123）</div>
+                <div data-index="2" class="group-item mail-list-left">已接来电（1）</div>
+                <div data-index="3" class="group-item mail-list-left">已拨电话（2）</div>
+            </div>
+        </div>
+    </div>
+    <!--右侧-->
+    <div class="mainbar">
+        <div class="detail-content">
+            <div class="call-record-list">
+                <ul id="record-data-container">
+                    <!--<li>-->
+                        <!--<div class="record-list-first">-->
+                            <!--<i class="record-list-man"></i>-->
+                            <!--<strong>陌生号码</strong>-->
+                            <!--<span>18911569812</span>-->
+                            <!--<i class="record-list-incoming"></i>-->
+                        <!--</div>-->
+                        <!--<div class="record-list-two">-->
+                            <!--<span>2015-07-20</span>-->
+                            <!--<span>01:12:12</span>-->
+                        <!--</div>-->
+                        <!--<div class="record-list-three">-->
+                            <!--<span>00:12:00 </span>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                    <li>
+                        <p class="no-data">
+                            暂无数据
+                        </p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/x-dot-template" id="record-item-tpl" >
+{%
+    var item = null;
+    for(var i = 0, j = $data.length; i < j; i++){
+    item = $data[i];
+%}
+    <li>
+        <div class="record-list-first">
+            <i class="record-list-man"></i>
+            <strong>陌生号码</strong>
+            <span>18911569812</span>
+            <i class="record-list-exhale"></i>
+        </div>
+        <div class="record-list-two">
+            <span>2015-07-20</span>
+            <span>01:12:12</span>
+        </div>
+        <div class="record-list-three">
+            <span>00:12:00 </span>
+        </div>
+    </li>
+{%
+    }
+    if(!$data || $data.length <= 0) {
+%}
+    <li>
+        <p class="no-data">
+            暂无数据
+        </p>
+    </li>
+{%
+    }
+%}
+</script>

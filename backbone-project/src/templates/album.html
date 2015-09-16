@@ -1,0 +1,319 @@
+<link rel="stylesheet" href="../css/ui/colorbox.css"/>
+<div class="hd inner-hd clearfix">
+</div>
+
+<div class="cloud-container clearfix">
+    <!--侧边栏-->
+    <div class="sidebar">
+        <div class="sidebar-header-nav">
+            <div class="header-nav-album gx-left"></div>
+            <div class="header-nav-word gx-left menu-hover">
+                <b>云相册</b>
+            </div>
+            <!--弹窗-->
+            <div class="sidebar-pop gx-hide menu-layer">
+                <a href="#phoneBook">
+                    <div class="pop-group">
+                        <i class="header-nav-mailList"></i>
+                        <span>通讯录</span>
+                    </div>
+                </a>
+                <a href="#calllog">
+                    <div class="pop-group">
+                        <i class="header-nav-mailRecode"></i>
+                        <span>通话记录</span>
+                    </div>
+                </a>
+                <a href="#message">
+                    <div class="pop-group">
+                        <i class="header-nav-message"></i>
+                        <span>短信</span>
+                    </div>
+                </a>
+                <a href="#album" class="hover">
+                    <div class="pop-group">
+                        <i class="header-nav-album"></i>
+                        <span>云相册</span>
+                    </div>
+                </a>
+                <a href="#note">
+                    <div class="pop-group">
+                        <i class="header-nav-textIcon"></i>
+                        <span>便签</span>
+                    </div>
+                </a>
+                <a href="#record">
+                    <div class="pop-group">
+                        <i class="header-nav-soundRecord"></i>
+                        <span>录音</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="message-menu">
+            <ul>
+                <li class="curr img-menu" data-type="1">
+                    <a href="javascript:;">云相册<span></span></a>
+                </li>
+                <li class="video-menu" data-type="2">
+                    <a href="javascript:;">视屏<span></span></a>
+                </li>
+            </ul>
+        </div>
+        <script id="num-tmpl" type="text/x-dot-template">
+            {%!$data.data %}
+        </script>
+    </div>
+    <!--右侧-->
+    <div class="mainbar">
+        <div class="detail-content">
+            <div class="album-box">
+                <div class="album-box-hd clearfix">
+                    <span class="gx-left">选择1张照片</span>
+                    <div class="album-setting gx-right">
+                        <button class="album-all">全选</button>
+                        <button class="album-undo">取消</button>
+                    </div>
+                </div>
+                <div class="album-box-bd">
+                    <div id="img-view"></div>
+                    <script id="img-tmpl" type="text/x-dot-template">
+
+                        {%if($data.code == 0){%}
+                        {%
+                            var newArr = [];
+                            var repetitionArr = [];
+                            for (var i = 0, l = $data.data.length; i < l; i++) {
+                                if(newArr.indexOf($data.data[i].ctime) == -1){
+                                    newArr.push($data.data[i].ctime);
+                                }
+                                else if(repetitionArr.indexOf($data.data[i].ctime) == -1){
+                                    repetitionArr.push($data.data[i].ctime);
+                                }
+                            }
+                            newArr.sort(function(a,b){return b-a});
+                        %}
+
+                        {%
+                            var myDate;
+                            for (var t = 0, l = newArr.length; t < l; t++) {
+                            myDate = new Date(newArr[t]).format('yyyy-MM-dd');
+                        %}
+                        <div class="album-time clearfix">
+                            <span class="gx-left">{%! myDate %}</span>
+                            <label class="ui-checkbox gx-right">
+                                <input type="checkbox" data-out="out"/>
+                            </label>
+                        </div>
+                        <div class="album-item">
+                            <ul>
+
+                                {%
+                                    var itemDate;
+                                    for (var j = 0, _l = $data.data.length; j < _l; j++) {
+                                    itemDate = new Date($data.data[j].ctime).format('yyyy-MM-dd');
+                                %}
+                                {%if(myDate == itemDate){%}
+                                <li>
+                                    <a class="colorbox1" href="{%! $data.data[j].path %}">
+                                        <img src="{%! $data.data[j].path %}" alt=""/>
+                                    </a>
+                                    <label class="ui-checkbox">
+                                        <input type="checkbox" data-inner="inner"/>
+                                    </label>
+                                </li>
+                                {% } %}
+                                {% } %}
+                            </ul>
+                        </div>
+                        {% } %}
+                        {% }else{ %}
+                        <p>暂无数据</p>
+                        {%}%}
+                    </script>
+
+                    <div id="video-view">
+                    </div>
+                    <script id="video-tmpl" type="text/x-dot-template">
+
+                        {%if($data.code == 0){%}
+                        {%
+                        var newArr = [];
+                        var repetitionArr = [];
+                        for (var i = 0, l = $data.data.length; i < l; i++) {
+                        if(newArr.indexOf($data.data[i].ctime) == -1){
+                        newArr.push($data.data[i].ctime);
+                        }
+                        else if(repetitionArr.indexOf($data.data[i].ctime) == -1){
+                        repetitionArr.push($data.data[i].ctime);
+                        }
+                        }
+                        newArr.sort(function(a,b){return b-a});
+                        %}
+
+                        {%
+                        var myDate;
+                        for (var t = 0, l = newArr.length; t < l; t++) {
+                        myDate = new Date(newArr[t]).format('yyyy-MM-dd');
+                        %}
+                        <div class="album-time clearfix">
+                            <span class="gx-left">{%! myDate %}</span>
+                            <label class="ui-checkbox gx-right">
+                                <input type="checkbox" data-out="out"/>
+                            </label>
+                        </div>
+                        <div class="album-item">
+                            <ul>
+
+                                {%
+                                var itemDate;
+                                for (var j = 0, _l = $data.data.length; j < _l; j++) {
+                                itemDate = new Date($data.data[j].ctime).format('yyyy-MM-dd');
+                                %}
+                                {%if(myDate == itemDate){%}
+                                <li>
+                                    <a class="videobox1 cboxElement" href="#video_{%=j+1%}">
+                                        <img src="{%! $data.data[j].path %}" alt=""/>
+                                    </a>
+                                    <label class="ui-checkbox">
+                                        <input type="checkbox" data-inner="inner"/>
+                                    </label>
+                                    <div style="display: none;">
+                                        <p>aaaa</p>
+                                    <video id="video_{%=j+1%}" class="video-js vjs-default-skin" controls preload="none" width="640" height="264"
+                                           poster="http://video-js.zencoder.com/oceans-clip.png"
+                                           data-setup="{}">
+                                        <source src="http://video-js.zencoder.com/oceans-clip.mp4" type='video/mp4' />
+                                        <source src="http://video-js.zencoder.com/oceans-clip.webm" type='video/webm' />
+                                        <source src="http://video-js.zencoder.com/oceans-clip.ogv" type='video/ogg' />
+                                        <track kind="captions" src="demo.captions.vtt" srclang="en" label="English"></track><!-- Tracks need an ending tag thanks to IE9 -->
+                                        <track kind="subtitles" src="demo.captions.vtt" srclang="en" label="English"></track><!-- Tracks need an ending tag thanks to IE9 -->
+                                        <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+                                    </video>
+                                    </div>
+                                </li>
+                                {% } %}
+                                {% } %}
+                            </ul>
+                        </div>
+                        {% } %}
+                        {% }else{ %}
+                        <p>暂无视屏</p>
+                        {%}%}
+                    </script>
+                    <!--<div class="album-time clearfix">-->
+                        <!--<span class="gx-left">2015-2-22</span>-->
+                        <!--<label class="ui-checkbox gx-right">-->
+                            <!--<input type="checkbox" data-out="out"/>-->
+                        <!--</label>-->
+                    <!--</div>-->
+                    <!--<div class="album-item">-->
+                        <!--<ul>-->
+                            <!--<li>-->
+                                <!--<a class="colorbox1" href="../img/300x300.png">-->
+                                    <!--<img src="../img/300x300.png" alt=""/>-->
+                                <!--</a>-->
+                                <!--<label class="ui-checkbox">-->
+                                    <!--<input type="checkbox" data-inner="inner"/>-->
+                                <!--</label>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<a class="colorbox1" href="../img/300x300.png">-->
+                                    <!--<img src="../img/300x300.png" alt=""/>-->
+                                <!--</a>-->
+                                <!--<label class="ui-checkbox">-->
+                                    <!--<input type="checkbox" data-inner="inner"/>-->
+                                <!--</label>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<a class="colorbox1" href="../img/300x300.png">-->
+                                    <!--<img src="../img/300x300.png" alt=""/>-->
+                                <!--</a>-->
+                                <!--<label class="ui-checkbox">-->
+                                    <!--<input type="checkbox" data-inner="inner"/>-->
+                                <!--</label>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<a class="colorbox1" href="../img/300x300.png">-->
+                                    <!--<img src="../img/300x300.png" alt=""/>-->
+                                <!--</a>-->
+                                <!--<label class="ui-checkbox">-->
+                                    <!--<input type="checkbox" data-inner="inner"/>-->
+                                <!--</label>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<a class="colorbox1" href="../img/300x300.png">-->
+                                    <!--<img src="../img/300x300.png" alt=""/>-->
+                                <!--</a>-->
+                                <!--<label class="ui-checkbox">-->
+                                    <!--<input type="checkbox" data-inner="inner"/>-->
+                                <!--</label>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<a class="colorbox1" href="../img/300x300.png">-->
+                                    <!--<img src="../img/300x300.png" alt=""/>-->
+                                <!--</a>-->
+                                <!--<label class="ui-checkbox">-->
+                                    <!--<input type="checkbox" data-inner="inner"/>-->
+                                <!--</label>-->
+                            <!--</li>-->
+                        <!--</ul>-->
+                    <!--</div>-->
+                    <!--<div class="album-time clearfix">-->
+                        <!--<span class="gx-left">2015-2-22</span>-->
+                        <!--<label class="ui-checkbox gx-right">-->
+                            <!--<input type="checkbox" data-out="out"/>-->
+                        <!--</label>-->
+                    <!--</div>-->
+                    <!--<div class="album-item">-->
+                        <!--<ul>-->
+                            <!--<li>-->
+                                <!--<img src="../img/300x300.png" alt=""/>-->
+                                <!--<label class="ui-checkbox">-->
+                                    <!--<input type="checkbox" data-inner="inner"/>-->
+                                <!--</label>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<img src="../img/300x300.png" alt=""/>-->
+                                <!--<label class="ui-checkbox">-->
+                                    <!--<input type="checkbox" data-inner="inner"/>-->
+                                <!--</label>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<img src="../img/300x300.png" alt=""/>-->
+                                <!--<label class="ui-checkbox">-->
+                                    <!--<input type="checkbox" data-inner="inner"/>-->
+                                <!--</label>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<img src="../img/300x300.png" alt=""/>-->
+                                <!--<label class="ui-checkbox">-->
+                                    <!--<input type="checkbox" data-inner="inner"/>-->
+                                <!--</label>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<img src="../img/300x300.png" alt=""/>-->
+                                <!--<label class="ui-checkbox">-->
+                                    <!--<input type="checkbox" data-inner="inner"/>-->
+                                <!--</label>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<img src="../img/300x300.png" alt=""/>-->
+                                <!--<label class="ui-checkbox">-->
+                                    <!--<input type="checkbox" data-inner="inner"/>-->
+                                <!--</label>-->
+                            <!--</li>-->
+                        <!--</ul>-->
+                    <!--</div>-->
+                </div>
+            </div>
+            <div class="album-btn">
+                <a href="">下载</a>
+                <a href="">删除</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    videojs.options.flash.swf = "video-js.swf";
+</script>

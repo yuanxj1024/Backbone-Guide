@@ -1,0 +1,309 @@
+<div class="hd inner-hd clearfix">
+</div>
+<div class="cloud-container clearfix">
+    <!--侧边栏-->
+    <div class="sidebar">
+        <div class="sidebar-header-nav">
+            <div class="header-nav-mailList gx-left"></div>
+            <div class="header-nav-word  gx-left menu-hover">
+                <b>通讯录</b>
+            </div>
+            <!--弹窗-->
+            <div class="sidebar-pop gx-hide menu-layer float-menu">
+                <a href="#phoneBook" class="hover">
+                    <div class="pop-group">
+                        <i class="header-nav-mailList"></i>
+                        <span>通讯录</span>
+                    </div>
+                </a>
+                <a href="#calllog">
+                    <div class="pop-group">
+                        <i class="header-nav-mailRecode"></i>
+                        <span>通话记录</span>
+                    </div>
+                </a>
+                <a href="#message">
+                    <div class="pop-group">
+                        <i class="header-nav-message"></i>
+                        <span>短信</span>
+                    </div>
+                </a>
+                <a href="#album">
+                    <div class="pop-group">
+                        <i class="header-nav-album"></i>
+                        <span>云相册</span>
+                    </div>
+                </a>
+                <a href="#note">
+                    <div class="pop-group">
+                        <i class="header-nav-textIcon"></i>
+                        <span>便签</span>
+                    </div>
+                </a>
+                <a href="#record">
+                    <div class="pop-group">
+                        <i class="header-nav-soundRecord"></i>
+                        <span>录音</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="sidebar-header-center">
+            <div class="mail-list-name">
+                <div class="mail-list-left hover">所有联系人(<span id="all-total"></span>)</div>
+                <!--<div class="mail-list-left">未分组</div>-->
+                <div class="group-bottom" id="recycle">
+                    <div class="mail-list-left">回收站</div>
+                    <div class="group-foot">
+                        <div class="group-set gx-left">
+                            <div class="set-up hover-menu-area"></div>
+                            <!--设置弹窗-->
+                            <div class="set-up-back hide float-menu hover-menu-item">
+                                <ul class="set-up-list">
+                                    <li class="hover">
+                                        <span>删除群组</span>
+                                    </li>
+                                    <li>
+                                        <span>导入联系人</span>
+                                    </li>
+                                    <li>
+                                        <span>导出联系人</span>
+                                    </li>
+                                    <li>
+                                        <span>合并重复联系人</span>
+                                    </li>
+                                </ul>
+                                <div class="set-up-angle"></div>
+                            </div>
+                        </div>
+                        <div class="group-foot-add">
+                            <div class="group-add gx-right hover-menu-area"></div>
+                            <!--添加弹窗-->
+                            <div class="group-add-back hide float-menu hover-menu-item">
+                                <ul class="set-up-list">
+                                    <li class="hover add-contact">
+                                        <span>新增联系人</span>
+                                    </li>
+                                    <!--<li>-->
+                                        <!--<span>新增群组</span>-->
+                                    <!--</li>-->
+                                </ul>
+                                <div class="set-up-angle"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--右侧-->
+    <div class="mainbar">
+        <div class="detail-content">
+            <!--通讯录-->
+            <div class="right-detail">
+                <div class="search-back">
+                    <dl class="search">
+                        <dt>
+                            <input type="text" id="input-contact-sarch" placeholder="搜索联系人" class="search-text"/>
+                        </dt>
+                        <dd class="search-btn">
+                            <a id="btn-search" href="javascipt:;"><img src="../img/search.png"/></a>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="record-list">
+                    <div class="group-record-list contact-list-data">
+                        <!-- 联系人列表-->
+                    </div>
+                    <!--<div class="group-record-list">-->
+                        <!--<div class="group-letter">-->
+                            <!--<span>B</span>-->
+                        <!--</div>-->
+                        <!--<ul class="group-letter-name">-->
+                            <!--<li>-->
+                                <!--<span>阿狸</span>-->
+                            <!--</li>-->
+                            <!--<li>-->
+                                <!--<span>阿狸</span>-->
+                            <!--</li>-->
+                        <!--</ul>-->
+                    <!--</div>-->
+                    <!--字母表-->
+                    <ul class="letter-list">
+                        <li>#</li>
+                        <li>A</li>
+                        <li>B</li>
+                        <li>C</li>
+                        <li>D</li>
+                        <li>E</li>
+                        <li>F</li>
+                        <li>G</li>
+                        <li>H</li>
+                        <li>I</li>
+                        <li>J</li>
+                        <li>K</li>
+                        <li>L</li>
+                        <li>M</li>
+                        <li>N</li>
+                        <li>O</li>
+                        <li>P</li>
+                        <li>Q</li>
+                        <li>R</li>
+                        <li>S</li>
+                        <li>T</li>
+                        <li>U</li>
+                        <li>V</li>
+                        <li>W</li>
+                        <li>X</li>
+                        <li>Y</li>
+                        <li>Z</li>
+                    </ul>
+                    <div class="page-wrap tcdPageCode">
+
+                    </div>
+                </div>
+            </div>
+            <!--右侧内容-->
+            <div class="right-sidebar">
+                <div class="contact-form-wrap hide">
+                <!--新增联系人-->
+                <div class="new-contact ">
+                    <form class="contact-form">
+                        <div class="set-head">
+                            <div class="set-head-pic"><img src="../img/use-header.png"/></div>
+                            <div class="set-head-word">设置头像</div>
+                        </div>
+                        <div class="contact-list">
+                            <div class="form-group">
+                                <input type="text" id="contact-name" class="gx-textbox" placeholder="请输入姓名" name="name"/>
+                            </div>
+                            <!--<div class="form-group">-->
+                                <!--<input type="text" id="contact-name-en" class="gx-textbox" placeholder="请输入姓名拼音" name="pingyin"/>-->
+                            <!--</div>-->
+                            <div class="form-group">
+                                <input type="text" id="contact-nickname" class="gx-textbox" placeholder="请输入昵称" name="appellation"/>
+                            </div>
+                            <div class="group-contact">
+                                <!--删除状态-->
+                                <!--<div class="group-contact-text form-group gx-textbox">-->
+                                <!--<div class="contact-select">-->
+                                <!--<span>固定电话</span>-->
+                                <!--<i class="contact-select-icon"></i>-->
+                                <!--<div class="contact-select-pop">-->
+                                <!--<div class="contact-select-list">-->
+                                <!--<ul>-->
+                                <!--<li>手机</li>-->
+                                <!--<li>固定电话</li>-->
+                                <!--<li>家庭电话</li>-->
+                                <!--</ul>-->
+                                <!--<div class="contact-select-angle"></div>-->
+                                <!--</div>-->
+                                <!--</div>-->
+                                <!--</div>-->
+                                <!--<input type="text" class="select-text" placeholder="请输入电话号码" name=""/>-->
+                                <!--<div class="item-del"></div>-->
+                                <!--</div>-->
+                                <div class="group-contact-text form-group gx-textbox  fix-error-pos">
+                                    <div class="contact-select">
+                                        <span class="replace-item drop-list-area">手机</span>
+                                        <i class="contact-select-icon drop-list-area"></i>
+                                        <div class="contact-select-pop hide drop-list">
+                                            <div class="contact-select-list">
+                                                <ul>
+                                                    <li tag="input-phone" for="input-mobile1" >手机</li>
+                                                    <li tag="input-phone" for="input-unitMobile" >单位电话</li>
+                                                    <li tag="input-phone" for="input-homeMobile" >家庭电话</li>
+                                                </ul>
+                                                <div class="contact-select-angle"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="text" class="select-text input-phone input-mobile1" placeholder="请输入手机号码" name="phone"/>
+                                    <input type="text" class="select-text hide input-phone input-unitMobile" placeholder="请输入固定电话" name="unitMobile"/>
+                                    <input type="text" class="select-text hide input-phone input-homeMobile" placeholder="请输入家庭电话" name="homeMobile"/>
+                                    <!--<div class="add-icon"></div>-->
+                                </div>
+                                <div class="group-contact-text form-group gx-textbox fix-error-pos">
+                                    <div class="contact-select">
+                                        <span class="replace-item drop-list-area">个人邮箱</span>
+                                        <i class="contact-select-icon drop-list-area"></i>
+                                        <div class="contact-select-pop hide drop-list">
+                                            <div class="contact-select-list">
+                                                <ul>
+                                                    <li tag="input-email" for="input-homeEmail">个人</li>
+                                                    <span class="replace-item drop-list-area">个人邮箱</span>
+                                                    <i class="contact-select-icon drop-list-area"></i>
+                                                    <li tag="input-email" for="input-unitEmail">公司</li>
+                                                    <span class="replace-item drop-list-area">个人邮箱</span>
+                                                    <i class="contact-select-icon drop-list-area"></i>
+                                                </ul>
+                                                <div class="contact-select-angle"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="text" class="select-text input-email input-homeEmail" placeholder="请输入个人电子邮箱" name="homeEmail"/>
+                                    <input type="text" class="select-text hide input-email input-unitEmail" placeholder="请输入公司电子邮箱" name="unitEmail"/>
+                                    <!--<div class="add-icon"></div>-->
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="gx-textbox" placeholder="请输入公司" name="company"/>
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="gx-textbox" placeholder="请输入职务" name="position"/>
+                                </div>
+                                <div class="form-group">
+                                    <input id="edit-contact-id" type="hidden" name="id" value=""/>
+                                    <input type="hidden" id="creatorId" name="creatorId"/>
+                                    <span class="gx-button btn-save gx-button-success ">保存</span>
+                                    <!--<input type="reset" class="gx-button gx-button-info" value="清空"/>-->
+                                    <input type="reset" class="gx-button btn-cancel" value="取消"/>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="group-btn-contact hide">加入群组</div>
+                </div>
+
+                <div class="mainbar-bottom">
+                    <div class="new-contact">
+                        <!--<div class="edit-contact-ok gx-left">下载</div>-->
+                        <div class="edit-contact-del gx-right btn-contact-delete">删除</div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <!--回收站为空-->
+        <div class="contact-details-container-none" style="display: none;">
+            <div>回收站为空</div>
+        </div>
+    </div>
+</div>
+
+<script type="text/x-dot-template" id="contact-list-tpl">
+    <!--<div class="group-letter">-->
+    <!--<span>A</span>-->
+    <!--</div>-->
+    <ul class="group-letter-name ">
+    {%
+        var item ={};
+        for(var i = 0, j = $data.length; i < j; i++){
+        item = $data[i];
+    %}
+        <li class="contact-item-detail" data-id="{%=item.id%}">
+            <span class="contact-item-detail" data-id="{%=item.id%}">{%=item.name%}</span>
+        </li>
+    {%
+    }
+    %}
+    </ul>
+    {%
+        if(!$data || $data.length <= 0){
+    %}
+    <div class="no-data">
+        暂无数据.
+    </div>
+    {%
+     }
+    %}
+</script>
