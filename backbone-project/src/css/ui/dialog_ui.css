@@ -1,0 +1,302 @@
+.gxdialog {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    overflow: hidden;
+    width: 90%;
+    min-width: 240px;
+    /*max-width: 90%;*/
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 5px;
+    background: #fff;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.6);
+    color: #333;
+    z-index: 10002;
+}
+
+
+
+.cxdialog_title{
+    background:#ddd;
+    color:#333;
+    font-weight:bold;
+    font-size:14px;
+    line-height:30px;
+    text-indent:10px;
+}
+.gxdialog > a[rev="close"] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    height: 30px;
+    color: #e9573f;
+    font:bold 18px/30px Tahoma;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    *font-size:12px;
+}
+
+.gxdialog > a[rev="close"]:before {
+    content: "×";
+}
+
+.gxdialog > a[rev="close"]:hover {
+    color: #fc6e51;
+}
+
+.gxdialog_title {
+    background:#ddd;
+    color:#333;
+    font-weight:normal;
+    font-size:14px;
+    line-height:30px;
+    text-indent:10px;
+}
+
+.gxdialog_info {
+    overflow: hidden;
+    min-height: 40px;
+    padding: 20px 10px;
+    font-size: 14px;
+    line-height: 1.6;
+    text-align: center;
+}
+
+.gxdialog_btns {
+    overflow: hidden;
+    padding: 5px 10px 20px;
+    /*border-top: 1px solid #eee;*/
+    text-align: center;
+}
+
+.gxdialog_btns a {
+    display: inline-block;
+    position: relative;
+    padding: 0 3em;
+    border: none;
+    color: #fff;
+    box-shadow: 0 5px 0 0 #009dcc;
+    border-radius: 5px;
+    background: #00b7ee;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 40px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.gxdialog_btns a:hover {
+    background: #07C2FA;
+}
+
+.gxdialog_btns a + a {
+    margin-left: 10px;
+}
+
+.gxdialog_overlay {
+    display: none;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10001;
+    filter: alpha(opacity=40);
+    opacity: 0.4;
+    _position: absolute;
+}
+
+.gxdialog_lock {
+    overflow: hidden !important;
+    width: auto;
+}
+/* iOS Theme */
+
+.gxdialog.ios {
+    min-width: 270px;
+    min-height: inherit;
+    border-radius: 6px;
+    background: #e9e9e9;
+    box-shadow: none;
+}
+
+.gxdialog.ios > a[rev="close"] {
+    display: none;
+}
+
+.gxdialog.ios .gxdialog_title {
+    padding: 16px 10px 0 10px;
+    border: none;
+    background: none;
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: center;
+    text-indent: 0;
+    color: #fe7c88;
+}
+
+.gxdialog.ios .gxdialog_info {
+    min-height: inherit;
+    padding: 4px 10px 14px 10px;
+    border: none;
+    background: none;
+    font-size: 14px;
+    text-align: center;
+}
+
+.gxdialog.ios .gxdialog_title + .gxdialog_info {
+    margin-top: 2px;
+    padding-top: 0;
+}
+
+.gxdialog.ios .gxdialog_btns {
+    overflow: hidden;
+    padding: 0;
+    border-top: 1px solid #d4d4d4;
+    text-align: center;
+}
+
+.gxdialog.ios .gxdialog_btns a {
+    clear: both;
+    display: block;
+    margin: 0;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background: none;
+    color: #00b7ee;
+    font-weight: bold;
+    font-size: 17px;
+    line-height: 44px;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.gxdialog.ios .gxdialog_btns a:hover {
+    background: #d9d9d9;
+}
+
+.gxdialog.ios .gxdialog_btns a.btn_ok,
+.gxdialog.ios .gxdialog_btns a.btn_no {
+    clear: none;
+    float: left;
+    width: 50%;
+    border: none;
+}
+
+.gxdialog.ios .gxdialog_btns a.btn_ok {
+    float: right;
+}
+
+.gxdialog.ios .gxdialog_btns a.btn_ok:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 100%;
+    background: #d4d4d4;
+}
+
+.gxdialog.ios .gxdialog_btns a.btn_ok:only-child,
+.gxdialog.ios .gxdialog_btns a.btn_no:only-child {
+    float: none;
+    width: 100%;
+}
+
+.gxdialog.ios .gxdialog_btns a + a {
+    border-top: 1px solid #d4d4d4;
+}
+/* Black Theme */
+
+.gxdialog.black {
+    padding: 0;
+    border: none;
+    background: #333;
+    color: #fff;
+}
+
+.gxdialog.black > a[rev="close"] {
+    color: #666;
+}
+
+.gxdialog.black > a[rev="close"]:hover {
+    color: #333;
+}
+
+.gxdialog.black .gxdialog_title {
+    position: relative;
+    border-bottom: 1px solid #000;
+    color: #333;
+    background: rgba(194, 194, 194, 1);
+    background: -moz-linear-gradient(top, rgba(194, 194, 194, 1) 0%, rgba(150, 150, 150, 1) 100%);
+    background: -webkit-linear-gradient(top, rgba(194, 194, 194, 1) 0%, rgba(150, 150, 150, 1) 100%);
+    background: -o-linear-gradient(top, rgba(194, 194, 194, 1) 0%, rgba(150, 150, 150, 1) 100%);
+    background: -ms-linear-gradient(top, rgba(194, 194, 194, 1) 0%, rgba(150, 150, 150, 1) 100%);
+    background: linear-gradient(to bottom, rgba(194, 194, 194, 1) 0%, rgba(150, 150, 150, 1) 100%);
+}
+
+.gxdialog.black .gxdialog_title:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #fff;
+}
+
+.gxdialog.black .gxdialog_title:after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #555;
+}
+
+.gxdialog.black .gxdialog_info {
+    border: none;
+    background: none;
+    font-size: 12px;
+    text-align: left;
+}
+
+.gxdialog.black .gxdialog_btns {
+    position: relative;
+    border-top: 1px solid #000;
+    text-align: left;
+}
+
+.gxdialog.black .gxdialog_btns:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #555;
+}
+
+.gxdialog.black .gxdialog_btns a {
+    border: 1px solid #000;
+    box-shadow: 0 1px 0 #888;
+    color: #333;
+    line-height: 28px;
+    background: rgba(194, 194, 194, 1);
+    background: -moz-linear-gradient(top, rgba(194, 194, 194, 1) 0%, rgba(150, 150, 150, 1) 100%);
+    background: -webkit-linear-gradient(top, rgba(194, 194, 194, 1) 0%, rgba(150, 150, 150, 1) 100%);
+    background: -o-linear-gradient(top, rgba(194, 194, 194, 1) 0%, rgba(150, 150, 150, 1) 100%);
+    background: -ms-linear-gradient(top, rgba(194, 194, 194, 1) 0%, rgba(150, 150, 150, 1) 100%);
+    background: linear-gradient(to bottom, rgba(194, 194, 194, 1) 0%, rgba(150, 150, 150, 1) 100%);
+}
+
+.gxdialog.black .gxdialog_btns a:hover {
+    background: #c2c2c2;
+}
