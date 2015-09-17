@@ -18,9 +18,10 @@
   .record-list{
     .contact-list-data{
       //max-height: 500px;
-      overflow: hidden;
-      overflow-y: auto;
+      //overflow: hidden;
+      overflow-y: scroll;
       padding-bottom: 55px;
+      //height:655px ;
     }
     .group-letter-name{
       li{
@@ -48,3 +49,4 @@
 
   }
 }
+

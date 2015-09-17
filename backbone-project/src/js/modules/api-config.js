@@ -68,9 +68,20 @@ define(function (require, exports, module) {
             detail: window.App.host + '/'
         },
         album: {
-            num: "/data/num.json",
-            imgList: "/data/album.json",
-            videoList: "/data/album.json"
+            num: window.App.host + "/Files/getFilesCount",
+            findFiles: window.App.host + "/Files/findFiles",
+            dele: window.App.host + "/Files/batchDelFiles",
+            download: window.App.host + "/Files/passport"
+
+            //num: "/data/num.json",
+            //imgList: "/data/album.json",
+            //videoList: "/data/album.json"
+        },
+        record: {
+            num: window.App.host + "/Files/getFilesCount",
+            findFiles: window.App.host + "/Files/findFiles",
+            dele: window.App.host + "/Files/batchDelFiles",
+            download: window.App.host + "/Files/passport"
         }
 
 

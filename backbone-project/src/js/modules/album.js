@@ -22,6 +22,9 @@ define(function (require, exports, module) {
 
     var AlbumView = Backbone.View.extend({
         el: $('.AlbumView'),
+        iType: 1,
+        vType: 2,
+        pNum: 12,
         events: {
             'mouseover .menu-hover': function() {
                 $('.menu-layer').show();
@@ -34,6 +37,10 @@ define(function (require, exports, module) {
             'click input[data-out=out]': 'selectItem',
             'click .img-menu': 'showImg',
             'click .video-menu': 'showVideo',
+            'click .imgMore a': 'imgMore',
+            'click .videoMore a': 'videoMore',
+            'click .download-btn': 'download',
+            'click .del-btn': 'dele',
             'click input[type=checkbox]': function(e){
                 var _self = $(e.target);
                 if (_self.hasClass('cked')) {
@@ -52,14 +59,14 @@ define(function (require, exports, module) {
                 _this.$el.html(html);
                 _this.$el.show();
                 header.render();
+                _this.loadData(_this.iType,1,_this.pNum);
+                _this.loadVideo(_this.vType, 1, _this.pNum);
                 _this.scrollBox();
-                _this.loadData();
-                _this.loadNum(1,'aaa',$('.img-menu'));
 
             });
             return _this;
         },
-        loadNum: function(type,id,el){
+        loadNum: function(type, el){
             var numUrl = AppApi.album.num;
 
             $.ajax({
@@ -69,10 +76,10 @@ define(function (require, exports, module) {
                 dataType: window.DEBUG_TEST_DATA ? 'json':'jsonp',
                 timeout: 8000,
                 data: {
-                    type:type,
-                    passportId:id
+                    type:type
                 },
                 success: function(res) {
+
                     if(res.code == 0 ){
                         console.log(res.msg);
                         var tpl = $('#num-tmpl').html();
@@ -90,8 +97,11 @@ define(function (require, exports, module) {
                 }
             });
         },
-        loadData:function(){
-            var imgListUrl = AppApi.album.imgList;
+        loadData:function(type, currPage, pageNum){
+            var _this = this;
+                listUrl = AppApi.album.findFiles;
+            _this.loadNum(_this.iType, $('.img-menu'));
+
             var photoBox = function (){
                 $('.colorbox1').colorbox({
                     rel: 'group2',
@@ -112,24 +122,28 @@ define(function (require, exports, module) {
                     }
                 });
             };
+
             $.ajax({
-                url: imgListUrl,
+                url: listUrl,
                 //type: 'POST',
                 cache: false,
                 dataType: window.DEBUG_TEST_DATA ? 'json':'jsonp',
                 timeout: 8000,
-                data: {},
+                data: {
+                    type: type,
+                    currentPage: currPage,
+                    pageSize: pageNum
+                },
                 success: function(res) {
-                    if(res.code == 0 ){
-                        console.log(res.msg);
+                    //if(res.code == 0 ){
                         var tpl = $('#img-tmpl').html();
                         var tplFun = doT.template(tpl);
-                        $('#img-view').html(tplFun(res));
+                        $('.img-list').append(tplFun(res));
                         photoBox();
 
-                    }else if(res.code != 0){
-                        console.log("失败");
-                    }
+                    //}else if(res.code != 0){
+                    //    console.log("失败");
+                    //}
                 },
                 error: function(err) {
                     console.log("error");
@@ -139,20 +153,16 @@ define(function (require, exports, module) {
         selectAll:function(e){
             var _this = this;
             _this.$('input[type=checkbox]').attr("checked", true).addClass('cked');
-            console.log(_this.$('input[type=checkbox]'));
 
         },
         undoAll:function(){
             var _this = this;
             _this.$('input[type=checkbox]').attr("checked", false).removeClass('cked');
-            console.log(_this.$('input[type=checkbox]'));
         },
         selectItem: function(e){
             var _this = this,
                 _self = $(e.target),
                 _item = _self.parents('.album-time').next('.album-item');
-
-            console.log(_self.hasClass('cked'));
 
             if (_self.hasClass('cked')) {
                 _item.find('input[data-inner=inner]').attr("checked", false).removeClass('cked');
@@ -162,8 +172,6 @@ define(function (require, exports, module) {
         },
         showImg: function(){
             var _this = this;
-
-            _this.loadNum(1,'aaa',$('.img-menu'));
             _this.$('#img-view').show();
             _this.$('#video-view').hide();
 
@@ -172,14 +180,10 @@ define(function (require, exports, module) {
             }else{
                 _this.$('.video-menu').removeClass('curr');
                 _this.$('.img-menu').addClass('curr');
-
             }
         },
         showVideo: function(){
-            var _this = this,
-                imgListUrl = AppApi.album.imgList;
-
-            _this.loadNum(2,'aaa',$('.video-menu'));
+            var _this = this;
             _this.$('#img-view').hide();
             _this.$('#video-view').show();
 
@@ -188,62 +192,249 @@ define(function (require, exports, module) {
             }else{
                 _this.$('.img-menu').removeClass('curr');
                 _this.$('.video-menu').addClass('curr');
-                var videoBox = function (){
-                    $('.videobox1').colorbox({
-                        inline:true,
-                        height: "400",
-                        transition:"fade",
-                        onLoad: function(){
-                            var _html = '<div class="album-other">' +
-                                '<a href="" class="album-download"><i></i>下载</a>' +
-                                '<span class="album-intro"><i></i>信息</span>' +
-                                '<span class="album-del"><i></i>删除</span>' +
-                                '</div>';
-                            $('#cboxContent').append(_html);
-                        },
-                        onComplete: function(){
-                            $('.album-del').on('click', function(){
-                                alert("aa")
-                            });
-                        }
-                    });
-                };
+            }
+        },
+        loadVideo: function(type, currPage, pageNum){
+            var _this = this,
+                listUrl = AppApi.album.findFiles;
 
-
-                $.ajax({
-                    url: imgListUrl,
-                    //type: 'POST',
-                    cache: false,
-                    dataType: window.DEBUG_TEST_DATA ? 'json':'jsonp',
-                    timeout: 8000,
-                    data: {},
-                    success: function(res) {
-                        if(res.code == 0 ){
-                            console.log(res.msg);
-                            var tpl = $('#video-tmpl').html();
-                            var tplFun = doT.template(tpl);
-                            $('#video-view').html(tplFun(res));
-                            videoBox();
-
-                        }else if(res.code != 0){
-                            console.log("失败");
-                        }
+            _this.loadNum(_this.vType, $('.video-menu'));
+            var videoBox = function (){
+                $('.videobox1').colorbox({
+                    inline:true,
+                    height: "400",
+                    transition:"fade",
+                    opacity: '0.6',
+                    onLoad: function(){
+                        var _html = '<div class="album-other">' +
+                            '<a href="" class="album-download"><i></i>下载</a>' +
+                            '<span class="album-intro"><i></i>信息</span>' +
+                            '<span class="album-del"><i></i>删除</span>' +
+                            '</div>';
+                        $('#cboxContent').append(_html);
                     },
-                    error: function(err) {
-                        console.log("error");
+                    onComplete: function(){
+                        $('.album-del').on('click', function(){
+                            alert("aa")
+                        });
                     }
                 });
-            }
+            };
+
+            $.ajax({
+                url: listUrl,
+                //type: 'POST',
+                cache: false,
+                dataType: window.DEBUG_TEST_DATA ? 'json':'jsonp',
+                timeout: 8000,
+                data: {
+                    type: type,
+                    currentPage: currPage,
+                    pageSize: pageNum
+                },
+                success: function(res) {
+                    //if(res.code == 0 ){
+
+                        var tpl = $('#video-tmpl').html();
+                        var tplFun = doT.template(tpl);
+                        $('.video-list').append(tplFun(res));
+                        videoBox();
+
+                    //}else if(res.code != 0){
+                    //    console.log("失败");
+                    //}
+                },
+                error: function(err) {
+                    console.log("error");
+                }
+            });
+
         },
         scrollBox: function(){
             var _this = this,
                 wrapH = $(window).height(),
                 scrollH = wrapH - (36+36+40);
             _this.$('.album-box-bd').css('height',scrollH);
+        },
+        imgMore: function(e){
+            var _self = $(e.target),
+                _this= this;
+                num = parseInt(_self.data('num'));
+            num++;
+            _self.attr('data-num',num);
+
+            _this.loadData(_this.iType, num, _this.pNum);
+
+        },
+        videoMore: function(e){
+            var _self = $(e.target),
+                _this= this;
+                num = parseInt(_self.data('num'));
+            num++;
+            _self.attr('data-num',num);
+
+            _this.loadVideo(_this.vType, num, _this.pNum);
+
+        },
+        download: function(e){
+            var _this = this,
+                $etg = $(e.target),
+                downloadUrl = AppApi.album.download,
+                _ck = $('input[data-inner=inner]'),
+                ckFid = '',
+                srcData = '',
+                ckArr = [];
+
+            $.each(_ck, function(idx, val) {
+                var self = $(this);
+                if (self.hasClass('cked')) {
+                    ckArr.push(self.data('fid'));
+                    srcData = self.parents('li').find('img').attr('src') +'?='+ new Date().getTime();
+                }
+
+            });
+            var dowloadDate = ckArr.join("");
+            var msg = '';
+            var downloadItem = function(){
+
+                $.ajax({
+                    url: downloadUrl,
+                    //type: 'POST',
+                    cache: false,
+                    dataType: window.DEBUG_TEST_DATA ? 'json':'jsonp',
+                    timeout: 8000,
+                    data: dowloadDate,
+                    success: function(res) {
+                        if(res.code == 0 ){
+                            console.log(res.msg);
+                            _this.downloadFile(srcData);
+                            msg = res.msg;
+                        }else if(res.code != 0){
+                            console.log(res.msg);
+                            msg = res.msg;
+                        }
+                        $.gxDialog({
+                            title: '提示',
+                            info: msg,
+                            timeout: 1000
+                        });
+                    },
+                    error: function(err) {
+                        console.log("error");
+                    }
+                });
+
+            };
+            if ( ckArr && ckArr.length != 1 ) {
+                $.gxDialog({
+                    title: '提示',
+                    width: 400,
+                    timeout: 3000,
+                    info: '请选择单张要下载的照片！'
+                });
+            } else{
+                $.gxDialog({
+                    title: '提示',
+                    width: 400,
+                    info: '确定下载该照片吗？',
+                    ok: function(){
+                        downloadItem();
+                    },
+                    no: function(){
+
+                    }
+                });
+            }
+        },
+        dele: function(){
+            var _this = this,
+                delUrl = AppApi.album.dele,
+                _ck = $('input[data-inner=inner]'),
+                ckArr = [];
+
+            $.each(_ck, function(idx, val) {
+                var self = $(this);
+                if (self.hasClass('cked')) {
+                    ckArr.push(self.data('fid'));
+                }
+
+            });
+
+            var deleDate = {
+                fids: ckArr.join(",")
+            };
+            var msg = '';
+            var deleItem = function(){
+                $.each(_ck, function(idx, val) {
+                    var self = $(this);
+                    if (self.hasClass('cked')) {
+                        self.parents('li').remove();
+                    }
+                });
+
+                $.ajax({
+                    url: delUrl,
+                    //type: 'POST',
+                    cache: false,
+                    dataType: window.DEBUG_TEST_DATA ? 'json':'jsonp',
+                    timeout: 8000,
+                    data: deleDate,
+                    success: function(res) {
+                        if(res.code == 0 ){
+                            console.log(res.msg);
+                            msg = res.msg;
+                        }else if(res.code != 0){
+                            console.log(res.msg);
+                            msg = res.msg;
+                        }
+                        $.gxDialog({
+                            title: '提示',
+                            info: msg,
+                            timeout: 1000
+                        });
+                    },
+                    error: function(err) {
+                        console.log("error");
+                    }
+                });
+
+            };
+            if ( ckArr && ckArr.length <= 0) {
+                $.gxDialog({
+                    title: '提示',
+                    width: 400,
+                    timeout: 3000,
+                    info: '请选择要删除的照片！'
+                });
+            } else{
+                $.gxDialog({
+                    title: '提示',
+                    width: 400,
+                    info: '确定删除该照片吗？',
+                    ok: function(){
+                        deleItem();
+                    },
+                    no: function(){
+
+                    }
+                });
+            }
+        },
+        downloadFile: function(fileName, content){
+            var aLink = document.createElement('a'),
+                blob = new Blob([content]),
+                evt = document.createEvent("HTMLEvents");
+
+            evt.initEvent("click");
+
+            aLink.download = fileName;
+            aLink.href = URL.createObjectURL(blob);
+            aLink.dispatchEvent(evt);
         }
 
 
-    });
+
+});
 
 
     module.exports = AlbumView;

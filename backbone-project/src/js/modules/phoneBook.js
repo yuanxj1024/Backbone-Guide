@@ -17,36 +17,43 @@ define(function (require, exports, module) {
     require('pagination');
     require('gxdialog');
 
+    //现实数据的状态， 所有，删除的
+    var displayStatus = 0;
+
     var PhoneBookView = Backbone.View.extend({
         el: $('.MessageView'),
         events: {
-            'mouseover .menu-hover': function() {
+            'click .menu-hover': function() {
                 $('.menu-layer').show();
+                return false;
             },
             'mouseleave .menu-layer': function(){
                 $('.menu-layer').hide();
             },
-            'mouseover .hover-menu-area': function(e){
+            'click .hover-menu-area': function(e){
                 var tar = $(e.target).next('div');
                 tar.show();
+                return false;
             },
-            'mouseleave .hover-menu-item': function(e){
-                $(e.target).parents('.hover-menu-item').hide();
-            },
+            //'mouseleave .hover-menu-item': function(e){
+            //    $(e.target).parents('.hover-menu-item').hide();
+            //},
             'click .add-contact':function(e){
                 this.form[0].reset();
                 $(e.target).parents('.hover-menu-item').hide();
                 $('.contact-form-wrap').show();
                 $('#edit-contact-id').val('');
+                return false;
             },
             'click .btn-cancel': function(){
                 this.form[0].reset();
                 $('.contact-form-wrap').hide();
+                return false;
             },
             'click .btn-save': 'saveContact',
             'click .drop-list-area': function(e){
-                //this.form[0].reset();
                 $(e.target).nextAll('.drop-list').show();
+                return false;
             },
             'click .drop-list li': function(e){
                 var tar = $(e.target),
@@ -64,7 +71,14 @@ define(function (require, exports, module) {
                 $('.float-menu').hide();
             },
             'click .btn-contact-delete': 'deleteContactHanler',
-            'click #btn-search': 'searchHandler'
+            'click #btn-search': 'searchHandler',
+            'click .btn-change-status': function(e){
+                var el = $(e.target);
+                displayStatus = el.attr('data-status');
+                this.renderList();
+
+                return false;
+            }
         },
         initialize: function() {
             this.user = auth.getUser();
@@ -116,27 +130,6 @@ define(function (require, exports, module) {
                     }
                 }
             });
-
-            //$.when($.ajax({
-            //    url: appapi.phoneBook.list,
-            //    method: 'GET',
-            //    data: arg || {}
-            //}))
-            //  .done(function(result){
-            //    if(typeof result == 'string'){
-            //        result = JSON.parse(result);
-            //    }
-            //    if(result){
-            //        var tpl = $('#contact-list-tpl').html();
-            //        var tplFun = doT.template(tpl);
-            //        self.initPaginaton({
-            //            pageCount: Math.ceil(result.totalCount *1.0 / arg.pageSize * 1.0),
-            //            current: arg.currentPage
-            //        });
-            //        self.contactItems = result.data || [];
-            //        $('.contact-list-data').html(tplFun(self.contactItems));
-            //    }
-            //});
         },
         //初始化验证表单
         initForm: function(){
@@ -147,7 +140,7 @@ define(function (require, exports, module) {
                         required: true,
                         minlength: 1
                     },
-                    mobile1:{
+                    phone:{
                         required: function(el){
                             var val = $(el).val();
                             return !val.match(/^\d{11}$/g);
@@ -155,18 +148,10 @@ define(function (require, exports, module) {
                         minlength: 11,
                         maxlength: 11
                     },
-                    unitMobile:{
-                        required: true
-                    },
-                    homeMobile: {
-                        required: true
-                    },
                     homeEmail: {
-                        required: true,
                         email: true
                     },
                     unitEmail: {
-                        required: true,
                         email: true
                     }
                 }
@@ -190,7 +175,7 @@ define(function (require, exports, module) {
                         result = JSON.parse(result);
                     }
                     var msg = '';
-                    if(result && result['code'] && result.code ==0){
+                    if(result && result.code ==0){
                         $('#edit-contact-id').val('');
                         msg= '保存成功！';
                     }else {

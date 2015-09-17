@@ -30,6 +30,7 @@ define(function (require, exports, module) {
         },
         render: function(){
             var _this = this;
+            //$('body').css('overflow-y', 'auto');
 
             doT.static('/templates/register.html', function(html) {
                 _this.$el.html(html);

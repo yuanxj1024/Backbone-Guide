@@ -259,7 +259,6 @@
 .record-list{
   position: relative;
   background: #f3f3f3;
-  min-height: 649px;
 }
 .group-letter{
   height: 40px;
@@ -512,6 +511,9 @@
     line-height: 40px;
     background: #e3e3e3;
     border-top: 1px solid #f3f3f3;
+    &.curr{
+      background: #dfeef3;
+    }
     div {
       float: left;
       text-align: left;
@@ -655,4 +657,9 @@
       background-size: 100%;
     }
   }
+}
+
+.of-y{
+  overflow: hidden;
+  overflow-y: auto;
 }
