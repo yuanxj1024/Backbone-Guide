@@ -53,7 +53,7 @@
                 <div class="mail-list-left hover">所有联系人(<span id="all-total"></span>)</div>
                 <!--<div class="mail-list-left">未分组</div>-->
                 <div class="group-bottom" id="recycle">
-                    <div class="mail-list-left">回收站</div>
+                    <div data-status="1" class="mail-list-left btn-change-status">回收站</div>
                     <div class="group-foot">
                         <div class="group-set gx-left">
                             <div class="set-up hover-menu-area"></div>
@@ -183,6 +183,9 @@
                             <div class="form-group">
                                 <input type="text" id="contact-nickname" class="gx-textbox" placeholder="请输入昵称" name="appellation"/>
                             </div>
+                            <div class="form-group">
+                                <input type="text" class="gx-textbox" placeholder="请输入手机号码" name="phone"/>
+                            </div>
                             <div class="group-contact">
                                 <!--删除状态-->
                                 <!--<div class="group-contact-text form-group gx-textbox">-->
@@ -205,12 +208,12 @@
                                 <!--</div>-->
                                 <div class="group-contact-text form-group gx-textbox  fix-error-pos">
                                     <div class="contact-select">
-                                        <span class="replace-item drop-list-area">手机</span>
+                                        <span class="replace-item drop-list-area">单位电话</span>
                                         <i class="contact-select-icon drop-list-area"></i>
-                                        <div class="contact-select-pop hide drop-list">
+                                        <div class="contact-select-pop hide drop-list float-menu">
                                             <div class="contact-select-list">
                                                 <ul>
-                                                    <li tag="input-phone" for="input-mobile1" >手机</li>
+                                                    <!--<li tag="input-phone" for="input-mobile1" >手机</li>-->
                                                     <li tag="input-phone" for="input-unitMobile" >单位电话</li>
                                                     <li tag="input-phone" for="input-homeMobile" >家庭电话</li>
                                                 </ul>
@@ -218,8 +221,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <input type="text" class="select-text input-phone input-mobile1" placeholder="请输入手机号码" name="phone"/>
-                                    <input type="text" class="select-text hide input-phone input-unitMobile" placeholder="请输入固定电话" name="unitMobile"/>
+                                    <input type="text" class="select-text input-phone input-unitMobile" placeholder="请输入固定电话" name="unitMobile"/>
                                     <input type="text" class="select-text hide input-phone input-homeMobile" placeholder="请输入家庭电话" name="homeMobile"/>
                                     <!--<div class="add-icon"></div>-->
                                 </div>
@@ -227,15 +229,11 @@
                                     <div class="contact-select">
                                         <span class="replace-item drop-list-area">个人邮箱</span>
                                         <i class="contact-select-icon drop-list-area"></i>
-                                        <div class="contact-select-pop hide drop-list">
+                                        <div class="contact-select-pop hide drop-list float-menu">
                                             <div class="contact-select-list">
                                                 <ul>
-                                                    <li tag="input-email" for="input-homeEmail">个人</li>
-                                                    <span class="replace-item drop-list-area">个人邮箱</span>
-                                                    <i class="contact-select-icon drop-list-area"></i>
-                                                    <li tag="input-email" for="input-unitEmail">公司</li>
-                                                    <span class="replace-item drop-list-area">个人邮箱</span>
-                                                    <i class="contact-select-icon drop-list-area"></i>
+                                                    <li tag="input-email" for="input-homeEmail">个人邮箱</li>
+                                                    <li tag="input-email" for="input-unitEmail">公司邮箱</li>
                                                 </ul>
                                                 <div class="contact-select-angle"></div>
                                             </div>

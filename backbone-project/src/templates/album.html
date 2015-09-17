@@ -53,10 +53,10 @@
         <div class="message-menu">
             <ul>
                 <li class="curr img-menu" data-type="1">
-                    <a href="javascript:;">云相册<span></span></a>
+                    <a href="javascript:;">云相册(<span></span>)</a>
                 </li>
                 <li class="video-menu" data-type="2">
-                    <a href="javascript:;">视屏<span></span></a>
+                    <a href="javascript:;">视屏(<span></span>)</a>
                 </li>
             </ul>
         </div>
@@ -76,129 +76,96 @@
                     </div>
                 </div>
                 <div class="album-box-bd">
-                    <div id="img-view"></div>
+                    <div id="img-view">
+                        <div class="img-list"></div>
+                        <div class="loadingMore imgMore">
+                            <a href="javascript:;" data-num="2">加载更多</a>
+                        </div>
+                    </div>
                     <script id="img-tmpl" type="text/x-dot-template">
-
-                        {%if($data.code == 0){%}
-                        {%
-                            var newArr = [];
-                            var repetitionArr = [];
-                            for (var i = 0, l = $data.data.length; i < l; i++) {
-                                if(newArr.indexOf($data.data[i].ctime) == -1){
-                                    newArr.push($data.data[i].ctime);
-                                }
-                                else if(repetitionArr.indexOf($data.data[i].ctime) == -1){
-                                    repetitionArr.push($data.data[i].ctime);
-                                }
-                            }
-                            newArr.sort(function(a,b){return b-a});
-                        %}
-
-                        {%
-                            var myDate;
-                            for (var t = 0, l = newArr.length; t < l; t++) {
-                            myDate = new Date(newArr[t]).format('yyyy-MM-dd');
-                        %}
+                        {%if($data.length >=0 ){%}
+                        {%for (var i = 0, l = $data.length; i < l; i++){%}
                         <div class="album-time clearfix">
-                            <span class="gx-left">{%! myDate %}</span>
+                            <span class="gx-left">{%!$data[i].ctime%}</span>
                             <label class="ui-checkbox gx-right">
                                 <input type="checkbox" data-out="out"/>
                             </label>
                         </div>
                         <div class="album-item">
                             <ul>
-
                                 {%
-                                    var itemDate;
-                                    for (var j = 0, _l = $data.data.length; j < _l; j++) {
-                                    itemDate = new Date($data.data[j].ctime).format('yyyy-MM-dd');
+                                    var item = $data[i].newFilesModelList;
+                                    for (var j = 0, l = item.length; j < l; j++){
                                 %}
-                                {%if(myDate == itemDate){%}
                                 <li>
-                                    <a class="colorbox1" href="{%! $data.data[j].path %}">
-                                        <img src="{%! $data.data[j].path %}" alt=""/>
+                                    <a class="colorbox1" href="{%!item[j].path%}">
+                                        <img src="../img/300x300.png" data-fid="{%!item[j].fid%}"/>
                                     </a>
                                     <label class="ui-checkbox">
-                                        <input type="checkbox" data-inner="inner"/>
+                                        <input type="checkbox" data-inner="inner" data-fid="{%!item[j].fid%}"/>
                                     </label>
                                 </li>
-                                {% } %}
-                                {% } %}
+                                {%}%}
                             </ul>
                         </div>
-                        {% } %}
-                        {% }else{ %}
-                        <p>暂无数据</p>
                         {%}%}
+                        {% }else{ %}
+                        <div class="no-content">
+                            <p>暂无照片</p>
+                        </div>
+                        {%}%}
+
                     </script>
 
-                    <div id="video-view">
+                    <div id="video-view" class="gx-hide">
+                        <div class="video-list"></div>
+                        <div class="loadingMore videoMore">
+                            <a href="javascript:;" data-num="2">加载更多</a>
+                        </div>
                     </div>
                     <script id="video-tmpl" type="text/x-dot-template">
-
-                        {%if($data.code == 0){%}
-                        {%
-                        var newArr = [];
-                        var repetitionArr = [];
-                        for (var i = 0, l = $data.data.length; i < l; i++) {
-                        if(newArr.indexOf($data.data[i].ctime) == -1){
-                        newArr.push($data.data[i].ctime);
-                        }
-                        else if(repetitionArr.indexOf($data.data[i].ctime) == -1){
-                        repetitionArr.push($data.data[i].ctime);
-                        }
-                        }
-                        newArr.sort(function(a,b){return b-a});
-                        %}
-
-                        {%
-                        var myDate;
-                        for (var t = 0, l = newArr.length; t < l; t++) {
-                        myDate = new Date(newArr[t]).format('yyyy-MM-dd');
-                        %}
+                        {%if($data.length >=0 ){%}
+                        {%for (var i = 0, l = $data.length; i < l; i++){%}
                         <div class="album-time clearfix">
-                            <span class="gx-left">{%! myDate %}</span>
+                            <span class="gx-left">{%!$data[i].ctime%}</span>
                             <label class="ui-checkbox gx-right">
                                 <input type="checkbox" data-out="out"/>
                             </label>
                         </div>
                         <div class="album-item">
                             <ul>
-
                                 {%
-                                var itemDate;
-                                for (var j = 0, _l = $data.data.length; j < _l; j++) {
-                                itemDate = new Date($data.data[j].ctime).format('yyyy-MM-dd');
+                                var item = $data[i].newFilesModelList;
+                                for (var j = 0, l = item.length; j < l; j++){
                                 %}
-                                {%if(myDate == itemDate){%}
                                 <li>
-                                    <a class="videobox1 cboxElement" href="#video_{%=j+1%}">
-                                        <img src="{%! $data.data[j].path %}" alt=""/>
+                                    <a class="videobox1" href="#video_{%=j+1%}">
+                                        <img src="../img/300x300.png" data-fid="{%!item[j].fid%}" alt="{%!item[j].fileName%}"/>
                                     </a>
                                     <label class="ui-checkbox">
                                         <input type="checkbox" data-inner="inner"/>
                                     </label>
                                     <div style="display: none;">
-                                        <p>aaaa</p>
-                                    <video id="video_{%=j+1%}" class="video-js vjs-default-skin" controls preload="none" width="640" height="264"
-                                           poster="http://video-js.zencoder.com/oceans-clip.png"
-                                           data-setup="{}">
-                                        <source src="http://video-js.zencoder.com/oceans-clip.mp4" type='video/mp4' />
-                                        <source src="http://video-js.zencoder.com/oceans-clip.webm" type='video/webm' />
-                                        <source src="http://video-js.zencoder.com/oceans-clip.ogv" type='video/ogg' />
-                                        <track kind="captions" src="demo.captions.vtt" srclang="en" label="English"></track><!-- Tracks need an ending tag thanks to IE9 -->
-                                        <track kind="subtitles" src="demo.captions.vtt" srclang="en" label="English"></track><!-- Tracks need an ending tag thanks to IE9 -->
-                                        <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
-                                    </video>
+                                        <video id="video_{%=j+1%}" class="video-js vjs-default-skin" controls preload="none" width="640" height="264"
+                                               poster="http://video-js.zencoder.com/oceans-clip.png"
+                                               data-setup="{}">
+                                            <source src="http://video-js.zencoder.com/oceans-clip.mp4" type='video/mp4' />
+                                            <source src="http://video-js.zencoder.com/oceans-clip.webm" type='video/webm' />
+                                            <source src="http://video-js.zencoder.com/oceans-clip.ogv" type='video/ogg' />
+                                            <track kind="captions" src="demo.captions.vtt" srclang="en" label="English"></track><!-- Tracks need an ending tag thanks to IE9 -->
+                                            <track kind="subtitles" src="demo.captions.vtt" srclang="en" label="English"></track><!-- Tracks need an ending tag thanks to IE9 -->
+                                            <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+                                        </video>
                                     </div>
                                 </li>
-                                {% } %}
-                                {% } %}
+                                {%}%}
                             </ul>
                         </div>
-                        {% } %}
+                        {%}%}
                         {% }else{ %}
-                        <p>暂无视屏</p>
+                        <div class="no-content">
+                            <p>暂无视屏</p>
+                        </div>
                         {%}%}
                     </script>
                     <!--<div class="album-time clearfix">-->
@@ -308,12 +275,13 @@
                 </div>
             </div>
             <div class="album-btn">
-                <a href="">下载</a>
-                <a href="">删除</a>
+                <a class="download-btn" href="javascript:;">下载</a>
+                <a class="del-btn" href="javascript:;">删除</a>
             </div>
         </div>
     </div>
 </div>
+<iframe id="first" src=""></iframe>
 <script>
     videojs.options.flash.swf = "video-js.swf";
 </script>
