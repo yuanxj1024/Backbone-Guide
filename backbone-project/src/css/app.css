@@ -835,7 +835,10 @@ body {
 .gx-wrapper > div {
   display: none;
   width: 100%;
-  height: 100%; }
+  height: 100%;
+  overflow: hidden; }
+  .gx-wrapper > div.RegisterView {
+    overflow-y: auto; }
 
 .loading-layer {
   display: none;
@@ -856,6 +859,20 @@ body {
     left: 50%;
     margin-top: -18px;
     margin-left: -18px; }
+
+.no-content {
+  text-align: center;
+  padding: 30px; }
+  .no-content p {
+    font-size: 14px; }
+
+.loadingMore {
+  font-size: 14px;
+  text-align: center;
+  padding: 10px; }
+  .loadingMore a {
+    display: inline-block;
+    padding: 5px 15px; }
 
 .IndexView {
   background: #dcedf8 url("../../img/bg_bule.jpg") no-repeat left bottom;
@@ -1691,8 +1708,7 @@ textarea.gx-textbox {
 
 .record-list {
   position: relative;
-  background: #f3f3f3;
-  min-height: 649px; }
+  background: #f3f3f3; }
 
 .group-letter {
   height: 40px;
@@ -1921,6 +1937,8 @@ textarea.gx-textbox {
   line-height: 40px;
   background: #e3e3e3;
   border-top: 1px solid #f3f3f3; }
+  .call-record-sound li.curr {
+    background: #dfeef3; }
   .call-record-sound li div {
     float: left;
     text-align: left;
@@ -2041,6 +2059,10 @@ textarea.gx-textbox {
     .note-list-detail .note-list-detail-bottom .note-bottom-del-icon {
       background: url(../img/delete-icon.png) no-repeat;
       background-size: 100%; }
+
+.of-y {
+  overflow: hidden;
+  overflow-y: auto; }
 
 .col-left {
   width: 30%;
@@ -2300,8 +2322,7 @@ textarea.gx-textbox {
     font-size: 12px; }
 
 .detail-content .record-list .contact-list-data {
-  overflow: hidden;
-  overflow-y: auto;
+  overflow-y: scroll;
   padding-bottom: 55px; }
 .detail-content .record-list .group-letter-name li:hover {
   background-color: #CACACA; }
