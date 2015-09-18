@@ -15,10 +15,13 @@ define(function (require, exports, module) {
     var header = require('mod/inner-page-header').instance;
     require('gxdialog');
 
-    console.log(AppApi.login.check);
+    // 设置弹出层颜色
+    $.gxDialog.defaults.background = '#000';
 
     var NoteView = Backbone.View.extend({
-        el: $('.MessageView'),
+        el: $('.NoteView'),
+        Yes: 'Y',
+        No: 'N',
         events: {
             'mouseover .menu-hover': function() {
                 $('.menu-layer').show();
@@ -42,7 +45,11 @@ define(function (require, exports, module) {
                 self.$el.html(html);
                 self.$el.show();
                 header.render();
-                self.renderNodeList();
+                self.renderNodeList({
+                    pageEnable: self.Yes,
+                    currentPage: 1,
+                    pageSize: 20
+                });
             });
             return self;
         },
@@ -54,14 +61,14 @@ define(function (require, exports, module) {
                 data: args || {}
             })).done(function(result){
                 //TODO
-                result = {
-                    data:[
-                        {
-                            id: 1,
-                            info: 'xxxxx'
-                        }
-                    ]
-                };
+                //result = {
+                //    data:[
+                //        {
+                //            id: 1,
+                //            info: 'xxxxx'
+                //        }
+                //    ]
+                //};
                 if(result && typeof result == 'string'){
                     result = JSON.parse(result);
                 }
@@ -78,12 +85,10 @@ define(function (require, exports, module) {
         },
         addNoteClickHandler: function(){
 
-
         },
         removeNoteClickHandler: function(e){
             var id = $(e.target).attr('data-id'),
               self = this;
-            console.log(id);
             $.gxDialog({
                 title: '确认删除',
                 width: 400,
@@ -132,26 +137,32 @@ define(function (require, exports, module) {
                 url: appapi.note.detail,
                 method: 'GET',
                 data:{
-                    id: id
+                    pageEnable: self.Yes,
+                    currentPage: 1,
+                    pageSize: 20
                 }
             })).done(function(result){
                 //TODO
-                result = {
-                    data:{
-                        id: 1,
-                        info: 'xxx'
-                    }
-                };
+                //result = {
+                //    data:{
+                //        id: 1,
+                //        info: 'xxx'
+                //    }
+                //};
                 if(typeof result == 'string'){
                     result = JSON.parse(result);
                 }
                 if(result && result.data){
                     var tplFun =  doT.template($('#note-detail-tpl').html());
-                    $.gxDialog({
-                       title: '便签详情',
-                        width: 520,
-                        info: tplFun(result.data),
-                        ok:function(){}
+                    $.each(result.data, function(idx, val){
+                        var resId = val.id;
+                        if (resId == id) {
+                            $.gxDialog({
+                                title: '',
+                                width: 520,
+                                info: tplFun(val)
+                            });
+                        }
                     });
                 }
 

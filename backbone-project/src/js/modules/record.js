@@ -67,8 +67,7 @@ define(function (require, exports, module) {
 
             $.ajax({
                 url: listUrl,
-                //type: 'POST',
-                cache: false,
+                type: 'POST',
                 dataType: window.DEBUG_TEST_DATA ? 'json':'jsonp',
                 timeout: 8000,
                 data: {
@@ -97,8 +96,7 @@ define(function (require, exports, module) {
 
             $.ajax({
                 url: numUrl,
-                //type: 'POST',
-                cache: false,
+                type: 'POST',
                 dataType: window.DEBUG_TEST_DATA ? 'json':'jsonp',
                 timeout: 8000,
                 data: {
@@ -126,11 +124,59 @@ define(function (require, exports, module) {
         loadingMore: function(e){
             var _self = $(e.target),
                 _this= this;
-            num = parseInt(_self.data('num'));
             num++;
             _self.attr('data-num',num);
 
-            _this.loadData(_this.rType, num, _this.pNum);
+            var listUrl = AppApi.album.findFiles;
+            $.ajax({
+                url: listUrl,
+                //type: 'POST',
+                dataType: window.DEBUG_TEST_DATA ? 'json':'jsonp',
+                timeout: 8000,
+                cache: false,
+                data: {
+                    type: _this.rType,
+                    currentPage: num,
+                    pageSize: _this.pNum
+                },
+                success: function(res) {
+                    if (res.code == 8) {
+                        $.gxDialog({
+                            title: '提示',
+                            width: 400,
+                            info: res.msg,
+                            timeout: 1000
+                        });
+                        return false;
+                    }
+                    var _el = $('.record-list').find('.record-time');
+                    $.each(_el, function(index, val){
+                        var self = $(this);
+                        var domTime = self.find('.item-group-time').text();
+                        $.each(res, function(idx, v) {
+                            var item = v.newFilesModelList;
+                            var jsonTime = v.ctime
+                            if (jsonTime == domTime) {
+                                $.each(item, function(i, iv) {
+                                    var _html = '<li class="record-item" data-fid="{%!item[j].fid%}" data-path="{%!item[j].path%}">'
+                                            +'<div class="call-record-sound-first">'
+                                        +'<i class="call-record-sound-icon"></i>'
+                                        +'<span>'+iv.fileName+'</span>'
+                                        +'</div>'
+                                        +'<div class="call-record-sound-two">'
+                                        +'<span class="record-time">'+iv.ctime+'</span>'
+                                        +'</div>'
+                                        +'</li>';
+                                    self.next('.call-record-sound').find('ul').append(_html);
+                                });
+                            }
+                        });
+                    });
+                },
+                error: function(err) {
+                    console.log("error");
+                }
+            });
         },
         scrollBox: function(){
             var _this = this,
@@ -143,7 +189,7 @@ define(function (require, exports, module) {
                 $etg = $(e.target),
                 downloadUrl = AppApi.album.download,
                 $curr = $('.record-item'),
-                currFid = '',
+                currName = '',
                 srcData = '',
                 currArr = [];
 
@@ -151,7 +197,8 @@ define(function (require, exports, module) {
                 var self = $(this);
                 if (self.hasClass('curr')) {
                     currArr.push(self.data('fid'));
-                    srcData = self.data('path') +'?='+ new Date().getTime();
+                    srcData = self.data('path');
+                    currName = self.data('name');
                 }
 
             });
@@ -161,25 +208,13 @@ define(function (require, exports, module) {
 
                 $.ajax({
                     url: downloadUrl,
-                    //type: 'POST',
-                    cache: false,
+                    type: 'POST',
                     dataType: window.DEBUG_TEST_DATA ? 'json':'jsonp',
                     timeout: 8000,
                     data: dowloadDate,
                     success: function(res) {
-                        if(res.code == 0 ){
-                            console.log(res.msg);
-                            _this.downloadFile(srcData);
-                            msg = res.msg;
-                        }else if(res.code != 0){
-                            console.log(res.msg);
-                            msg = res.msg;
-                        }
-                        $.gxDialog({
-                            title: '提示',
-                            info: msg,
-                            timeout: 1000
-                        });
+                        _this.downloadFile(currName, srcData);
+
                     },
                     error: function(err) {
                         console.log("error");
@@ -235,8 +270,7 @@ define(function (require, exports, module) {
 
                 $.ajax({
                     url: delUrl,
-                    //type: 'POST',
-                    cache: false,
+                    type: 'POST',
                     dataType: window.DEBUG_TEST_DATA ? 'json':'jsonp',
                     timeout: 8000,
                     data: deleDate,
@@ -250,6 +284,7 @@ define(function (require, exports, module) {
                         }
                         $.gxDialog({
                             title: '提示',
+                            width: 400,
                             info: msg,
                             timeout: 1000
                         });

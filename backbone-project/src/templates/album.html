@@ -76,17 +76,80 @@
                     </div>
                 </div>
                 <div class="album-box-bd">
+
                     <div id="img-view">
                         <div class="img-list"></div>
                         <div class="loadingMore imgMore">
-                            <a href="javascript:;" data-num="2">加载更多</a>
+                            <a href="javascript:;" data-num="1">加载更多</a>
                         </div>
                     </div>
                     <script id="img-tmpl" type="text/x-dot-template">
                         {%if($data.length >=0 ){%}
                         {%for (var i = 0, l = $data.length; i < l; i++){%}
+                        <div class="item-group">
+                            <div class="album-time clearfix">
+                                <span class="item-group-time gx-left">{%!$data[i].ctime%}</span>
+                                <label class="ui-checkbox gx-right">
+                                    <input type="checkbox" data-out="out"/>
+                                </label>
+                            </div>
+                            <div class="album-item">
+                                <ul>
+                                    {%
+                                        var item = $data[i].newFilesModelList;
+                                        for (var j = 0, l = item.length; j < l; j++){
+                                        var random = new Date().getTime();
+                                    %}
+                                    <li>
+                                        <a class="colorbox1" href="{%!item[j].path%}&{%!random%}">
+                                            <span style="background-image: url(../img/300x300.png);">
+                                                <img src="{%!item[j].path%}&{%!random%}" data-name="{%!item[j].fileName%}"/>
+                                            </span>
+                                        </a>
+                                        <label class="ui-checkbox">
+                                            <input type="checkbox" data-inner="inner" data-fid="{%!item[j].fid%}"/>
+                                        </label>
+                                    </li>
+                                    {%}%}
+                                </ul>
+                            </div>
+                        </div>
+                        {%}%}
+                        {% }else{ %}
+                        <div class="no-content">
+                            <p>暂无照片</p>
+                        </div>
+                        {%}%}
+                    </script>
+                    <script id="imgMore-tmpl" type="text/x-dot-template">
+                        {%
+                            for (var j = 0, l = $data.length; j < l; j++){
+                            var random = new Date().getTime();
+                        %}
+                        <li>
+                            <a class="colorbox1" href="{%!$data[j].path%}&{%!random%}">
+                                <span style="background-image: url(../img/300x300.png);">
+                                    <img src="{%!$data[j].path%}&{%!random%}" data-name="{%!$data[j].fileName%}"/>
+                                </span>
+                            </a>
+                            <label class="ui-checkbox">
+                                <input type="checkbox" data-inner="inner" data-fid="{%!$data[j].fid%}"/>
+                            </label>
+                        </li>
+                        {%}%}
+                    </script>
+
+                    <div id="video-view" class="gx-hide">
+                        <div class="video-list"></div>
+                        <div class="loadingMore videoMore">
+                            <a href="javascript:;" data-num="1">加载更多</a>
+                        </div>
+                    </div>
+                    <script id="video-tmpl" type="text/x-dot-template">
+                        {%if($data.length >=0 ){%}
+                        {%for (var i = 0, l = $data.length; i < l; i++){%}
                         <div class="album-time clearfix">
-                            <span class="gx-left">{%!$data[i].ctime%}</span>
+                            <span class="item-group-time gx-left">{%!$data[i].ctime%}</span>
                             <label class="ui-checkbox gx-right">
                                 <input type="checkbox" data-out="out"/>
                             </label>
@@ -96,51 +159,13 @@
                                 {%
                                     var item = $data[i].newFilesModelList;
                                     for (var j = 0, l = item.length; j < l; j++){
-                                %}
-                                <li>
-                                    <a class="colorbox1" href="{%!item[j].path%}">
-                                        <img src="../img/300x300.png" data-fid="{%!item[j].fid%}"/>
-                                    </a>
-                                    <label class="ui-checkbox">
-                                        <input type="checkbox" data-inner="inner" data-fid="{%!item[j].fid%}"/>
-                                    </label>
-                                </li>
-                                {%}%}
-                            </ul>
-                        </div>
-                        {%}%}
-                        {% }else{ %}
-                        <div class="no-content">
-                            <p>暂无照片</p>
-                        </div>
-                        {%}%}
-
-                    </script>
-
-                    <div id="video-view" class="gx-hide">
-                        <div class="video-list"></div>
-                        <div class="loadingMore videoMore">
-                            <a href="javascript:;" data-num="2">加载更多</a>
-                        </div>
-                    </div>
-                    <script id="video-tmpl" type="text/x-dot-template">
-                        {%if($data.length >=0 ){%}
-                        {%for (var i = 0, l = $data.length; i < l; i++){%}
-                        <div class="album-time clearfix">
-                            <span class="gx-left">{%!$data[i].ctime%}</span>
-                            <label class="ui-checkbox gx-right">
-                                <input type="checkbox" data-out="out"/>
-                            </label>
-                        </div>
-                        <div class="album-item">
-                            <ul>
-                                {%
-                                var item = $data[i].newFilesModelList;
-                                for (var j = 0, l = item.length; j < l; j++){
+                                    var random = new Date().getTime();
                                 %}
                                 <li>
                                     <a class="videobox1" href="#video_{%=j+1%}">
-                                        <img src="../img/300x300.png" data-fid="{%!item[j].fid%}" alt="{%!item[j].fileName%}"/>
+                                        <span style="background-image: url(../img/300x300.png);">
+                                            <img src="{%!item[j].path%}&{%!random%}" data-name="{%!item[j].fileName%}"/>
+                                        </span>
                                     </a>
                                     <label class="ui-checkbox">
                                         <input type="checkbox" data-inner="inner"/>
@@ -152,8 +177,8 @@
                                             <source src="http://video-js.zencoder.com/oceans-clip.mp4" type='video/mp4' />
                                             <source src="http://video-js.zencoder.com/oceans-clip.webm" type='video/webm' />
                                             <source src="http://video-js.zencoder.com/oceans-clip.ogv" type='video/ogg' />
-                                            <track kind="captions" src="demo.captions.vtt" srclang="en" label="English"></track><!-- Tracks need an ending tag thanks to IE9 -->
-                                            <track kind="subtitles" src="demo.captions.vtt" srclang="en" label="English"></track><!-- Tracks need an ending tag thanks to IE9 -->
+                                            < kind="captions" src="demo.captions.vtt" srclang="en" label="English"><!-- Tracks need an ending tag thanks to IE9 -->
+                                            < kind="subtitles" src="demo.captions.vtt" srclang="en" label="English"><!-- Tracks need an ending tag thanks to IE9 -->
                                             <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
                                         </video>
                                     </div>
@@ -166,6 +191,35 @@
                         <div class="no-content">
                             <p>暂无视屏</p>
                         </div>
+                        {%}%}
+                    </script>
+                    <script id="videoMore-tmpl" type="text/x-dot-template">
+                        {%
+                            for (var j = 0, l = $data.length; j < l; j++){
+                            var random = new Date().getTime();
+                        %}
+                        <li>
+                            <a class="videobox1" href="#videoMore_{%=j+1%}">
+                                <span style="background-image: url(../img/300x300.png);">
+                                    <img src="{%!$data[j].path%}&{%!random%}" data-name="{%!$data[j].fileName%}"/>
+                                </span>
+                            </a>
+                            <label class="ui-checkbox">
+                                <input type="checkbox" data-inner="inner"/>
+                            </label>
+                            <div style="display: none;">
+                                <video id="videoMore_{%=j+1%}" class="video-js vjs-default-skin" controls preload="none" width="640" height="264"
+                                       poster="http://video-js.zencoder.com/oceans-clip.png"
+                                       data-setup="{}">
+                                    <source src="http://video-js.zencoder.com/oceans-clip.mp4" type='video/mp4' />
+                                    <source src="http://video-js.zencoder.com/oceans-clip.webm" type='video/webm' />
+                                    <source src="http://video-js.zencoder.com/oceans-clip.ogv" type='video/ogg' />
+                                    < kind="captions" src="demo.captions.vtt" srclang="en" label="English"><!-- Tracks need an ending tag thanks to IE9 -->
+                                    < kind="subtitles" src="demo.captions.vtt" srclang="en" label="English"><!-- Tracks need an ending tag thanks to IE9 -->
+                                    <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+                                </video>
+                            </div>
+                        </li>
                         {%}%}
                     </script>
                     <!--<div class="album-time clearfix">-->
@@ -281,7 +335,6 @@
         </div>
     </div>
 </div>
-<iframe id="first" src=""></iframe>
 <script>
     videojs.options.flash.swf = "video-js.swf";
 </script>

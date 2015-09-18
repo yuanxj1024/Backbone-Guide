@@ -65,7 +65,7 @@
         </div>
         <div class="sidebar-header-center">
             <div class="mail-list-name">
-                <div id="record-num" class="mail-list-left hover">全部录音（<span></span>)</div>
+                <div id="record-num" class="mail-list-left hover">全部录音(<span></span>)</div>
             </div>
             <script id="num-tmpl" type="text/x-dot-template">
                 {%!$data.data %}
@@ -78,7 +78,7 @@
             <div id="record-view" class="of-y">
                 <div class="record-list"></div>
                 <div class="loadingMore">
-                    <a href="javascript:;" data-num="2">加载更多</a>
+                    <a href="javascript:;" data-num="1">加载更多</a>
                 </div>
             </div>
             <script id="record-tmpl" type="text/x-dot-template">
@@ -90,13 +90,13 @@
                         var item = $data[i].newFilesModelList;
                         for (var j = 0, l = item.length; j < l; j++){
                         %}
-                        <li class="record-item" data-fid="{%!item[j].fid%}" data-path="{%!item[j].path%}">
+                        <li class="record-item" data-fid="{%!item[j].fid%}" data-path="{%!item[j].path%}" data-name="{%!item[j].fileName%}">
                             <div class="call-record-sound-first">
                                 <i class="call-record-sound-icon"></i>
                                 <span>{%!item[j].fileName%}</span>
                             </div>
                             <div class="call-record-sound-two">
-                                <span>{%!$data[i].ctime%}</span>
+                                <span class="record-time">{%!$data[i].ctime%}</span>
                                 <!--<span>01:12:12</span>-->
                             </div>
                         </li>

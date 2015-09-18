@@ -75,8 +75,11 @@ define(function (require, exports, module) {
             'click .btn-change-status': function(e){
                 var el = $(e.target);
                 displayStatus = el.attr('data-status');
-                this.renderList();
-
+                $('.btn-change-status').removeClass('hover');
+                el.addClass('hover');
+                this.renderList({
+                    currentPage: 1
+                });
                 return false;
             }
         },
@@ -104,7 +107,7 @@ define(function (require, exports, module) {
         renderList: function(arg){
             var self = this;
             arg = $.extend({
-                deleteStatus:0,
+                deleteStatus: displayStatus ||0,
                 currentPage:1,
                 pageSize:15
             }, arg);
@@ -120,7 +123,11 @@ define(function (require, exports, module) {
                     if(result){
                         var tpl = $('#contact-list-tpl').html();
                         var tplFun = doT.template(tpl);
-                        $('#all-total').text(result.totalCount);
+                        if(displayStatus ==0){
+                            $('#all-total').text(result.totalCount);
+                        }else if(displayStatus == 1){
+                            $('#del-total').text(result.totalCount);
+                        }
                         self.initPaginaton({
                             pageCount: Math.ceil(result.totalCount *1.0 / arg.pageSize * 1.0),
                             current: arg.currentPage
@@ -162,9 +169,11 @@ define(function (require, exports, module) {
         } ,
         //添加联系人
         saveContact: function() {
-            $('input[name="creatorId"]').val(this.user.id);
+            var self = this;
             var isValid = this.form.valid();
             var isUpdate = !!$('#edit-contact-id').val();
+
+            $('input[name="creatorId"]').val(this.user.id);
             if(isValid){
                 $.when($.ajax({
                     url: isUpdate ? appapi.phoneBook.update: appapi.phoneBook.add,
@@ -178,6 +187,8 @@ define(function (require, exports, module) {
                     if(result && result.code ==0){
                         $('#edit-contact-id').val('');
                         msg= '保存成功！';
+                        self.renderList();
+                        $('.contact-form-wrap').hide();
                     }else {
                         msg = '数据保存失败，稍后再试!';
                     }

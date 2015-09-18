@@ -53,8 +53,8 @@ define(function (require, exports, module) {
             update: window.App.host + '/LinkMan/EditLinkman'
         },
         calllog: {
-            list: window.App.host + '/IcloudCallRecord',
-            group: window.App.host + ''
+            list: window.App.host + '/LinkMan/IcloudCallRecord?pageEnable=Y',
+            group: window.App.host + '/LinkMan/icloudCallGroup'
         },
         message: {
             list: window.App.host + '/list',
@@ -62,10 +62,10 @@ define(function (require, exports, module) {
             dialog: window.App.host + '/dialog'
         },
         note: {
-            list: window.App.host + '/LinkMan/GetLinkmanByPassportId',
+            list: window.App.host + '/LinkMan/icloudNote',
             add: window.App.host + '/add',
             remove: window.App.host + '/remove',
-            detail: window.App.host + '/'
+            detail: window.App.host + '/LinkMan/icloudNote'
         },
         album: {
             num: window.App.host + "/Files/getFilesCount",
@@ -74,7 +74,8 @@ define(function (require, exports, module) {
             download: window.App.host + "/Files/passport"
 
             //num: "/data/num.json",
-            //imgList: "/data/album.json",
+            //findFiles: "/data/album.json",
+            //findFilesm: "/data/album_m.json",
             //videoList: "/data/album.json"
         },
         record: {

@@ -24,7 +24,7 @@ define(function (require, exports, module) {
         el: $('.AlbumView'),
         iType: 1,
         vType: 2,
-        pNum: 12,
+        pNum: 6,
         events: {
             'mouseover .menu-hover': function() {
                 $('.menu-layer').show();
@@ -71,7 +71,7 @@ define(function (require, exports, module) {
 
             $.ajax({
                 url: numUrl,
-                //type: 'POST',
+                type: 'POST',
                 cache: false,
                 dataType: window.DEBUG_TEST_DATA ? 'json':'jsonp',
                 timeout: 8000,
@@ -81,7 +81,7 @@ define(function (require, exports, module) {
                 success: function(res) {
 
                     if(res.code == 0 ){
-                        console.log(res.msg);
+                        //console.log(res.msg);
                         var tpl = $('#num-tmpl').html();
                         var tplFun = doT.template(tpl);
                         el.find('span').html(tplFun(res));
@@ -102,30 +102,9 @@ define(function (require, exports, module) {
                 listUrl = AppApi.album.findFiles;
             _this.loadNum(_this.iType, $('.img-menu'));
 
-            var photoBox = function (){
-                $('.colorbox1').colorbox({
-                    rel: 'group2',
-                    transition: "fade",
-                    opacity: '0.6',
-                    onLoad: function(){
-                        var _html = '<div class="album-other">' +
-                            '<a href="" class="album-download"><i></i>下载</a>' +
-                            '<span class="album-intro"><i></i>信息</span>' +
-                            '<span class="album-del"><i></i>删除</span>' +
-                            '</div>';
-                        $('#cboxContent').append(_html);
-                    },
-                    onComplete: function(){
-                        $('.album-del').on('click', function(){
-                            alert("aa")
-                        });
-                    }
-                });
-            };
-
             $.ajax({
                 url: listUrl,
-                //type: 'POST',
+                type: 'POST',
                 cache: false,
                 dataType: window.DEBUG_TEST_DATA ? 'json':'jsonp',
                 timeout: 8000,
@@ -139,7 +118,7 @@ define(function (require, exports, module) {
                         var tpl = $('#img-tmpl').html();
                         var tplFun = doT.template(tpl);
                         $('.img-list').append(tplFun(res));
-                        photoBox();
+                        _this.photoBox();
 
                     //}else if(res.code != 0){
                     //    console.log("失败");
@@ -149,6 +128,7 @@ define(function (require, exports, module) {
                     console.log("error");
                 }
             });
+
         },
         selectAll:function(e){
             var _this = this;
@@ -199,34 +179,12 @@ define(function (require, exports, module) {
                 listUrl = AppApi.album.findFiles;
 
             _this.loadNum(_this.vType, $('.video-menu'));
-            var videoBox = function (){
-                $('.videobox1').colorbox({
-                    inline:true,
-                    height: "400",
-                    transition:"fade",
-                    opacity: '0.6',
-                    onLoad: function(){
-                        var _html = '<div class="album-other">' +
-                            '<a href="" class="album-download"><i></i>下载</a>' +
-                            '<span class="album-intro"><i></i>信息</span>' +
-                            '<span class="album-del"><i></i>删除</span>' +
-                            '</div>';
-                        $('#cboxContent').append(_html);
-                    },
-                    onComplete: function(){
-                        $('.album-del').on('click', function(){
-                            alert("aa")
-                        });
-                    }
-                });
-            };
-
             $.ajax({
                 url: listUrl,
-                //type: 'POST',
-                cache: false,
+                type: 'POST',
                 dataType: window.DEBUG_TEST_DATA ? 'json':'jsonp',
                 timeout: 8000,
+                cache: false,
                 data: {
                     type: type,
                     currentPage: currPage,
@@ -238,7 +196,7 @@ define(function (require, exports, module) {
                         var tpl = $('#video-tmpl').html();
                         var tplFun = doT.template(tpl);
                         $('.video-list').append(tplFun(res));
-                        videoBox();
+                        _this.videoBox();
 
                     //}else if(res.code != 0){
                     //    console.log("失败");
@@ -256,24 +214,149 @@ define(function (require, exports, module) {
                 scrollH = wrapH - (36+36+40);
             _this.$('.album-box-bd').css('height',scrollH);
         },
+        photoBox: function (){
+            $('.colorbox1').colorbox({
+                rel: 'group2',
+                transition: "fade",
+                opacity: '0.6',
+                onLoad: function(){
+                    var _html = '<div class="album-other">' +
+                        '<a href="" class="album-download"><i></i>下载</a>' +
+                        '<span class="album-intro"><i></i>信息</span>' +
+                        '<span class="album-del"><i></i>删除</span>' +
+                        '</div>';
+                    $('#cboxContent').append(_html);
+                },
+                onComplete: function(){
+                    $('.album-del').on('click', function(){
+                        alert("aa")
+                    });
+                    $('.album-download').on('click', function(){
+
+                        alert(1)
+                    });
+                }
+            });
+        },
+        videoBox: function (){
+            $('.videobox1').colorbox({
+                inline:true,
+                height: "400",
+                transition:"fade",
+                opacity: '0.6',
+                onLoad: function(){
+                    var _html = '<div class="album-other">' +
+                        '<a href="" class="album-download"><i></i>下载</a>' +
+                        '<span class="album-intro"><i></i>信息</span>' +
+                        '<span class="album-del"><i></i>删除</span>' +
+                        '</div>';
+                    $('#cboxContent').append(_html);
+                },
+                onComplete: function(){
+                    $('.album-del').on('click', function(){
+                        alert("aa")
+                    });
+                }
+            });
+        },
         imgMore: function(e){
             var _self = $(e.target),
                 _this= this;
-                num = parseInt(_self.data('num'));
             num++;
             _self.attr('data-num',num);
 
-            _this.loadData(_this.iType, num, _this.pNum);
+            var listUrl = AppApi.album.findFiles;
+            $.ajax({
+                url: listUrl,
+                //type: 'POST',
+                dataType: window.DEBUG_TEST_DATA ? 'json':'jsonp',
+                timeout: 8000,
+                cache: false,
+                data: {
+                    type: _this.iType,
+                    currentPage: num,
+                    pageSize: _this.pNum
+                },
+                success: function(res) {
+                    if (res.code == 8) {
+                        $.gxDialog({
+                            title: '提示',
+                            width: 400,
+                            info: res.msg,
+                            timeout: 1000
+                        });
+                        return false;
+                    }
+                    var _el = $('.img-list').find('.album-time');
+                    $.each(_el, function(index, val){
+                        var self = $(this);
+                        var domTime = self.find('.item-group-time').text();
+                        $.each(res, function(idx, v) {
+                            var item = v.newFilesModelList;
+                            var jsonTime = v.ctime
+                            if (jsonTime == domTime) {
+                                var tpl = $('#imgMore-tmpl').html();
+                                var tplFun = doT.template(tpl);
+                                self.next('.album-item').find('ul').append(tplFun(item));
+                                _this.photoBox();
+                            }
+                        });
+                    });
+                },
+                error: function(err) {
+                    console.log("error");
+                }
+            });
 
         },
         videoMore: function(e){
             var _self = $(e.target),
                 _this= this;
-                num = parseInt(_self.data('num'));
             num++;
             _self.attr('data-num',num);
 
-            _this.loadVideo(_this.vType, num, _this.pNum);
+            var listUrl = AppApi.album.findFiles;
+            $.ajax({
+                url: listUrl,
+                //type: 'POST',
+                dataType: window.DEBUG_TEST_DATA ? 'json':'jsonp',
+                timeout: 8000,
+                cache: false,
+                data: {
+                    type: _this.vType,
+                    currentPage: num,
+                    pageSize: _this.pNum
+                },
+                success: function(res) {
+                    if (res.code == 8) {
+                        $.gxDialog({
+                            title: '提示',
+                            width: 400,
+                            info: res.msg,
+                            timeout: 1000
+                        });
+                        return false;
+                    }
+                    var _el = $('.video-list').find('.album-time');
+                    $.each(_el, function(index, val){
+                        var self = $(this);
+                        var domTime = self.find('.item-group-time').text();
+                        $.each(res, function(idx, v) {
+                            var item = v.newFilesModelList;
+                            var jsonTime = v.ctime
+                            if (jsonTime == domTime) {
+                                var tpl = $('#videoMore-tmpl').html();
+                                var tplFun = doT.template(tpl);
+                                self.next('.album-item').find('ul').append(tplFun(item));
+                                _this.videoBox();
+                            }
+                        });
+                    });
+                },
+                error: function(err) {
+                    console.log("error");
+                }
+            });
 
         },
         download: function(e){
@@ -281,7 +364,7 @@ define(function (require, exports, module) {
                 $etg = $(e.target),
                 downloadUrl = AppApi.album.download,
                 _ck = $('input[data-inner=inner]'),
-                ckFid = '',
+                imgName = '',
                 srcData = '',
                 ckArr = [];
 
@@ -289,35 +372,26 @@ define(function (require, exports, module) {
                 var self = $(this);
                 if (self.hasClass('cked')) {
                     ckArr.push(self.data('fid'));
-                    srcData = self.parents('li').find('img').attr('src') +'?='+ new Date().getTime();
+                    srcData = self.parents('li').find('img').attr('src');
+                    imgName = self.parents('li').find('img').data('name');
                 }
 
             });
-            var dowloadDate = ckArr.join("");
+            var dowloadDate ={
+                fid:ckArr.join("")
+            };
             var msg = '';
             var downloadItem = function(){
 
                 $.ajax({
                     url: downloadUrl,
                     //type: 'POST',
-                    cache: false,
-                    dataType: window.DEBUG_TEST_DATA ? 'json':'jsonp',
+                    dataType: 'text',
                     timeout: 8000,
+                    cache: false,
                     data: dowloadDate,
                     success: function(res) {
-                        if(res.code == 0 ){
-                            console.log(res.msg);
-                            _this.downloadFile(srcData);
-                            msg = res.msg;
-                        }else if(res.code != 0){
-                            console.log(res.msg);
-                            msg = res.msg;
-                        }
-                        $.gxDialog({
-                            title: '提示',
-                            info: msg,
-                            timeout: 1000
-                        });
+                        _this.downloadFile(imgName, res);
                     },
                     error: function(err) {
                         console.log("error");
@@ -374,10 +448,10 @@ define(function (require, exports, module) {
 
                 $.ajax({
                     url: delUrl,
-                    //type: 'POST',
-                    cache: false,
+                    type: 'POST',
                     dataType: window.DEBUG_TEST_DATA ? 'json':'jsonp',
                     timeout: 8000,
+                    cache: false,
                     data: deleDate,
                     success: function(res) {
                         if(res.code == 0 ){
@@ -389,6 +463,7 @@ define(function (require, exports, module) {
                         }
                         $.gxDialog({
                             title: '提示',
+                            width: 400,
                             info: msg,
                             timeout: 1000
                         });
@@ -420,7 +495,7 @@ define(function (require, exports, module) {
                 });
             }
         },
-        downloadFile: function(fileName, content){
+        downloadFile: function(fileName, content){ //TODO
             var aLink = document.createElement('a'),
                 blob = new Blob([content]),
                 evt = document.createEvent("HTMLEvents");
@@ -432,10 +507,7 @@ define(function (require, exports, module) {
             aLink.dispatchEvent(evt);
         }
 
-
-
 });
-
 
     module.exports = AlbumView;
 });
