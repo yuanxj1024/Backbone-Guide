@@ -59,7 +59,8 @@ define(function (require, exports, module) {
         message: {
             list: window.App.host + '/list',
             //获取对话
-            dialog: window.App.host + '/dialog'
+            dialog: window.App.host + '/dialog',
+            group: window.App.host + '/LinkMan/iMessageGroup'
         },
         note: {
             list: window.App.host + '/LinkMan/icloudNote',

@@ -1,0 +1,54 @@
+.agreement-container{
+  width: 1000px;
+  background: #fff;
+  box-shadow: 1px 1px 15px #666;
+  -moz-box-shadow: 1px 1px 15px #666;
+  -webkit-box-shadow: 1px 1px 15px #666;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  margin: 30px auto 30px;
+}
+.agreemnt{
+  padding: 0 40px 30px;
+  h2{
+    padding-top: 40px;
+    font-size: 18px;
+    color: #333;
+    text-align: center;
+  }
+  .text-indent{
+    text-indent: 2em;
+  }
+  p{
+    color: #333;
+    font-size: 12px;
+    padding-top: 10px;
+    line-height: 20px;
+  }
+  h3{
+    color: #666;
+    font-size: 14px;
+    padding-top: 10px;
+  }
+  b {
+    display: block;
+    color: #333;
+    font-weight: normal;
+    font-size: 12px;
+    padding: 5px 0 0 20px;
+    line-height: 20px;
+  }
+  a{
+    color: #3f99d8;
+  }
+  span{
+    border-bottom: 1px solid #666;
+  }
+  strong{
+    color: #666;
+  }
+  .red{
+    color: #f00;
+  }
+}

@@ -40,10 +40,8 @@
                     <div class="gx-select">
                         <select id="userQuestion1" name="userQuestion1" class="required">
                             <option value="">请选择安全提示问题1</option>
-                            {% for (var i = 0, l = $data.data.length; i < l; i++) { %}
-                            {%if($data.data[i].id == 1){%}
+                            {% for (var i = 0, l = $data.data.length; i <= 5; i++) { %}
                             <option value="{%! $data.data[i].id %}">{%! $data.data[i].question %}</option>
-                            {% } %}
                             {% } %}
                         </select>
                     </div>
@@ -57,10 +55,8 @@
                     <div class="gx-select">
                         <select id="userQuestion2" name="userQuestion2" class="required">
                             <option value="">请选择安全提示问题2</option>
-                            {% for (var i = 0, l = $data.data.length; i < l; i++) { %}
-                            {%if($data.data[i].id == 2){%}
+                            {% for (var i = 6, l = $data.data.length; i <= 11; i++) { %}
                             <option value="{%! $data.data[i].id %}">{%! $data.data[i].question %}</option>
-                            {% } %}
                             {% } %}
                         </select>
                     </div>
@@ -74,10 +70,8 @@
                     <div class="gx-select">
                         <select id="userQuestion3" name="userQuestion3" class="required">
                             <option value="">请选择安全提示问题3</option>
-                            {% for (var i = 0, l = $data.data.length; i < l; i++) { %}
-                            {%if($data.data[i].id == 3){%}
+                            {% for (var i = 12, l = $data.data.length; i <= 17; i++) { %}
                             <option value="{%! $data.data[i].id %}">{%! $data.data[i].question %}</option>
-                            {% } %}
                             {% } %}
                         </select>
                     </div>

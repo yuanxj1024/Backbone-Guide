@@ -58,6 +58,7 @@ seajs.config({
         'doT': 'lib/doT.js',
         'video': 'lib/video.js',
         'seajs-text': 'lib/seajs-text.js',
+        'jquery/lazyload': 'lib/jquery.lazyload.js',
         'pagination': 'lib/jquery.page.js'
     },
 

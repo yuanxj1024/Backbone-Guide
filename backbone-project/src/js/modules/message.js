@@ -44,8 +44,10 @@ define(function (require, exports, module) {
         loadData: function() {
             $.ajax({
                 method: 'GET',
-                url: '/',
-                data: {},
+                url: appapi.message.group,
+                data: {
+                    //passportId: 1
+                },
                 success: function(result){
                     result = [
                         {

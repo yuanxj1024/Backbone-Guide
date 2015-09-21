@@ -20,10 +20,10 @@ define(function (require, exports, module) {
     var PhoneResetPwdView = Backbone.View.extend({
         el: $('.PhoneResetPwdView'),
         events: {
-            "click .J_next": "NextFun",
-            "click .J_sure": "SureFun",
-            "click .send-code": "sendCode",
-            "click .code-image": "refreshCode"
+            "click .J_phone_next": "NextFun",
+            "click .J_phone_sure": "SureFun",
+            "click .send-code-pwd": "sendCode",
+            "click .J_phone_codeImage": "refreshCode"
         },
         initialize: function() {
             this.render();
@@ -54,8 +54,9 @@ define(function (require, exports, module) {
 
             //注册一个密码验证规则
             $.validator.addMethod("isPassWord",function(value,element){
-                return this.optional(element) || /^[\@A-Za-z0-9\!\#\$\%\^\&\*\.\~]{6,16}$/.test(value);
-            },"密码不能有空格,长度在6-16个字符之间");
+                var pwd_simple = /^(?=.*?[0-9])(?=.*?[a-zA-Z])[0-9A-Za-z\_\.\~\@\#\$\%\^\&\*\!]{8,16}$/;
+                return this.optional(element) || pwd_simple.test(value);
+            },"密码不能有空格,长度在8-16个字符之间");
 
             // 验证手机是否注册
             $.validator.addMethod("isCheckPhone",function(value,element){
@@ -77,10 +78,12 @@ define(function (require, exports, module) {
                             if(res.code == 0 ){
                                 console.log(res.msg);
                                 ok = true;
+                                lock = false;
 
                             }else if(res.code != 0){
                                 console.log(res.msg);
                                 ok = false;
+                                lock = true;
                             }
                         },
                         error: function(err) {
@@ -187,11 +190,11 @@ define(function (require, exports, module) {
                 messages: {
                     newPwd: {
                         required: "请输入正确的密码",
-                        isPassWord: "密码不能有空格,长度在6-16个字符之间"
+                        isPassWord: "密码长度8~16位，数字、字母、字符至少包含两种",
                     },
                     sureNewPwd:{
                         required: "请输入正确的密码",
-                        isPassWord: "密码不能有空格,长度在6-16个字符之间",
+                        isPassWord: "密码长度8~16位，数字、字母、字符至少包含两种",
                         equalTo: "您两次输入的密码不一致"
                     }
                 },
@@ -208,30 +211,40 @@ define(function (require, exports, module) {
         },
         sendCode:function(){
             var _this = this,
-                phoneVal = $('#userPhone').val(),
+                phoneVal = _this.$('#userPhone').val(),
                 codeLength = 6,
                 time = 100,
                 code = "",
                 msgType = 2,
                 phoneUrl = AppApi.resetPwd.sendCode;
 
+            if (lock) {
+                $.gxDialog({
+                    title: '',
+                    width: 400,
+                    timeout: 3000,
+                    info: '亲，手机未注册不能发送！'
+                });
+                return false;
+            }
+
             if (phoneVal.length == 11) {
                 // 生产验证码
                 //for(var i = 0; i < codeLength; i++ ){
                 //    code += parseInt(Math.random() * 9).toString();
                 //}
-                $('.send-code').attr("disabled", "true").val( time + "s输入验证码");
+                $('.send-code-pwd').attr("disabled", "true").val( time + "s输入验证码");
 
                 // 倒计时
                 var InterValObj = setInterval(function () {
                     if (time == 0) {
                         window.clearInterval(InterValObj);
-                        $('.send-code').removeAttr("disabled").val("重新发送验证码");
+                        $('.send-code-pwd').removeAttr("disabled").val("重新发送验证码");
                         //code = ""
 
                     } else{
                         time--;
-                        $('.send-code').val( time + "s内输入验证码");
+                        $('.send-code-pwd').val( time + "s内输入验证码");
                     }
                 }, 1000)
 
@@ -261,13 +274,13 @@ define(function (require, exports, module) {
                 });
 
             } else{
-                $('#userPhone').parents('.form-group').children('.form-tips').text("手机号码不能为空!");
+                _this.$('#userPhone').parents('.form-group').children('.form-tips').text("手机号码不能为空!");
             }
 
         },
         refreshCode: function(e){
             var _self = $(e.target);
-            $('.code-image').attr("src", _self.attr("src") + "?a=" + new Date().getTime());
+            $('.J_phone_codeImage').attr("src", _self.attr("src") + "?a=" + new Date().getTime());
         },
         NextFun: function(){
             var _this = this,
@@ -294,7 +307,7 @@ define(function (require, exports, module) {
                             _this.$('.forgetPWD-content').hide();
                             _this.$('.settingPWD-content').show();
                         } else{
-                            console.log("dialog");
+                            console.log(res.msg);
                         }
                     },
                     error: function(err) {

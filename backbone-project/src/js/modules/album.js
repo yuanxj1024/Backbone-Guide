@@ -15,6 +15,7 @@ define(function (require, exports, module) {
         header = require('mod/inner-page-header').instance,
         colorbox = require("jquery/colorbox"),
         gxdialog = require("gxdialog"),
+        lazyload = require("jquery/lazyload"),
         videojs = require("video");
 
     // 设置弹出层颜色
@@ -59,12 +60,12 @@ define(function (require, exports, module) {
                 _this.$el.html(html);
                 _this.$el.show();
                 header.render();
+                _this.scrollBox();
                 _this.loadData(_this.iType,1,_this.pNum);
                 _this.loadVideo(_this.vType, 1, _this.pNum);
-                _this.scrollBox();
-
             });
-            return _this;
+
+
         },
         loadNum: function(type, el){
             var numUrl = AppApi.album.num;
@@ -81,7 +82,6 @@ define(function (require, exports, module) {
                 success: function(res) {
 
                     if(res.code == 0 ){
-                        //console.log(res.msg);
                         var tpl = $('#num-tmpl').html();
                         var tplFun = doT.template(tpl);
                         el.find('span').html(tplFun(res));
@@ -104,7 +104,7 @@ define(function (require, exports, module) {
 
             $.ajax({
                 url: listUrl,
-                type: 'POST',
+                //type: 'POST',
                 cache: false,
                 dataType: window.DEBUG_TEST_DATA ? 'json':'jsonp',
                 timeout: 8000,
@@ -114,11 +114,17 @@ define(function (require, exports, module) {
                     pageSize: pageNum
                 },
                 success: function(res) {
+
                     //if(res.code == 0 ){
                         var tpl = $('#img-tmpl').html();
                         var tplFun = doT.template(tpl);
                         $('.img-list').append(tplFun(res));
                         _this.photoBox();
+
+                        $('img.lazyload-img').lazyload({
+                            effect : "fadeIn",
+                            container: $(".album-box-bd")
+                        });
 
                     //}else if(res.code != 0){
                     //    console.log("失败");
@@ -218,24 +224,24 @@ define(function (require, exports, module) {
             $('.colorbox1').colorbox({
                 rel: 'group2',
                 transition: "fade",
-                opacity: '0.6',
-                onLoad: function(){
-                    var _html = '<div class="album-other">' +
-                        '<a href="" class="album-download"><i></i>下载</a>' +
-                        '<span class="album-intro"><i></i>信息</span>' +
-                        '<span class="album-del"><i></i>删除</span>' +
-                        '</div>';
-                    $('#cboxContent').append(_html);
-                },
-                onComplete: function(){
-                    $('.album-del').on('click', function(){
-                        alert("aa")
-                    });
-                    $('.album-download').on('click', function(){
-
-                        alert(1)
-                    });
-                }
+                opacity: '0.6'
+                //onLoad: function(){
+                //    var _html = '<div class="album-other">' +
+                //        '<a href="" class="album-download"><i></i>下载</a>' +
+                //        '<span class="album-intro"><i></i>信息</span>' +
+                //        '<span class="album-del"><i></i>删除</span>' +
+                //        '</div>';
+                //    $('#cboxContent').append(_html);
+                //},
+                //onComplete: function(){
+                //    $('.album-del').on('click', function(){
+                //        alert("aa")
+                //    });
+                //    $('.album-download').on('click', function(){
+                //
+                //        alert(1)
+                //    });
+                //}
             });
         },
         videoBox: function (){
@@ -243,20 +249,20 @@ define(function (require, exports, module) {
                 inline:true,
                 height: "400",
                 transition:"fade",
-                opacity: '0.6',
-                onLoad: function(){
-                    var _html = '<div class="album-other">' +
-                        '<a href="" class="album-download"><i></i>下载</a>' +
-                        '<span class="album-intro"><i></i>信息</span>' +
-                        '<span class="album-del"><i></i>删除</span>' +
-                        '</div>';
-                    $('#cboxContent').append(_html);
-                },
-                onComplete: function(){
-                    $('.album-del').on('click', function(){
-                        alert("aa")
-                    });
-                }
+                opacity: '0.6'
+                //onLoad: function(){
+                //    var _html = '<div class="album-other">' +
+                //        '<a href="" class="album-download"><i></i>下载</a>' +
+                //        '<span class="album-intro"><i></i>信息</span>' +
+                //        '<span class="album-del"><i></i>删除</span>' +
+                //        '</div>';
+                //    $('#cboxContent').append(_html);
+                //},
+                //onComplete: function(){
+                //    $('.album-del').on('click', function(){
+                //        alert("aa")
+                //    });
+                //}
             });
         },
         imgMore: function(e){
@@ -498,16 +504,19 @@ define(function (require, exports, module) {
         downloadFile: function(fileName, content){ //TODO
             var aLink = document.createElement('a'),
                 blob = new Blob([content]),
-                evt = document.createEvent("HTMLEvents");
+                evt = document.createEvent("MouseEvents");
+                //evt = document.createEvent("HTMLEvents");
 
-            evt.initEvent("click");
-
+            evt.initEvent("click",true,true);
+            dispatchEvent(evt);
             aLink.download = fileName;
             aLink.href = URL.createObjectURL(blob);
             aLink.dispatchEvent(evt);
         }
 
 });
+
+
 
     module.exports = AlbumView;
 });

@@ -30,7 +30,6 @@ define(function (require, exports, module) {
         },
         render: function(){
             var _this = this;
-            //$('body').css('overflow-y', 'auto');
 
             doT.static('/templates/register.html', function(html) {
                 _this.$el.html(html);
@@ -45,7 +44,7 @@ define(function (require, exports, module) {
             var securityQuestionsUrl = AppApi.register.securityQuestions;
             $.ajax({
                 url: securityQuestionsUrl,
-                //type: 'POST',
+                type: 'POST',
                 cache: false,
                 dataType: window.DEBUG_TEST_DATA ? 'json':'jsonp',
                 timeout: 8000,
@@ -77,6 +76,16 @@ define(function (require, exports, module) {
                 code = "",
                 msgType = 1,
                 phoneUrl = AppApi.register.sendCode;
+
+            if (lock) {
+                $.gxDialog({
+                    title: '',
+                    width: 400,
+                    timeout: 3000,
+                    info: '亲，手机已注册不能发送！'
+                });
+                return false;
+            }
 
             if (phoneVal.length == 11) {
                 // 生产验证码
@@ -124,7 +133,7 @@ define(function (require, exports, module) {
                 });
 
             } else{
-                $('#userPhone').parents('.form-group').children('.form-tips').text("手机号码不能为空!");
+                _this.$('#userPhone').parents('.form-group').children('.form-tips').text("手机号码不能为空!");
             }
 
         },
@@ -143,46 +152,44 @@ define(function (require, exports, module) {
             }, "请输入正确的手机号码");
             //注册一个密码验证规则
             $.validator.addMethod("isPassWord",function(value,element){
-                return this.optional(element) || /^[\@A-Za-z0-9\!\#\$\%\^\&\*\.\~]{6,16}$/.test(value);
-            },"密码不能有空格,长度在6-16个字符之间");
+                var pwd_simple = /^(?=.*?[0-9])(?=.*?[a-zA-Z])[0-9A-Za-z\_\.\~\@\#\$\%\^\&\*\!]{8,16}$/;
+                return this.optional(element) || pwd_simple.test(value);
+            },"密码不能有空格,长度在8-16个字符之间");
 
             // 验证手机是否注册
             $.validator.addMethod("isCheckPhone",function(value,element){
-                var flag = 1,
+                var ok = true,
                     checkPhoneUrl = AppApi.register.checkPhone;
 
-                $.ajax({
-                    url: checkPhoneUrl,
-                    type: 'POST',
-                    dataType: window.DEBUG_TEST_DATA ? 'json':'jsonp',
-                    timeout: 8000,
-                    cache: false,
-                    async:false,
-                    data: {
-                        Phone: value
-                    },
-                    success: function(res) {
-                        if(res.code == 0 ){
-                            console.log(res.msg);
-                            flag = 2;
+                if (ok) {
+                    $.ajax({
+                        url: checkPhoneUrl,
+                        type: 'POST',
+                        cache: false,
+                        dataType: window.DEBUG_TEST_DATA ? 'json':'jsonp',
+                        timeout: 8000,
+                        async: false,
+                        data: {
+                            Phone: value
+                        },
+                        success: function(res) {
+                            if(res.code == 0 ){
+                                console.log(res.msg);
+                                ok = true;
+                                lock = false;
 
-                        }else if(res.code != 0){
-                            console.log(res.msg);
-                            flag = 0;
-
+                            }else if(res.code != 0){
+                                console.log(res.msg);
+                                ok = false;
+                                lock = true;
+                            }
+                        },
+                        error: function(err) {
+                            console.log("error");
                         }
-                    },
-                    error: function(err) {
-                        console.log("error");
-                    }
-                });
-
-
-                if ( flag == 0 ) {
-                    return false;
-                } else {
-                    return true;
+                    });
                 }
+                return ok;
 
             },"手机号已被注册");
 
@@ -217,7 +224,7 @@ define(function (require, exports, module) {
                     }
                 });
 
-                if ( flag == 0 ) {
+                if( flag == 0 ) {
                     return false;
                 } else {
                     return true;
@@ -236,7 +243,7 @@ define(function (require, exports, module) {
                     },
                     phoneCode: {
                         required: true,
-                        digits: true,
+                        digits: true
                     },
                     pwd: {
                         required: true,
@@ -281,12 +288,12 @@ define(function (require, exports, module) {
                         digits: "请输入数字验证码"
                     },
                     pwd: {
-                        required: "请输入正确的密码",
-                        isPassWord: "密码不能有空格,长度在6-16个字符之间"
+                        required: "请输入正确的密码！",
+                        isPassWord: "密码长度8~16位，数字、字母、字符至少包含两种"
                     },
                     surePwd:{
-                        required: "请输入正确的密码",
-                        isPassWord: "密码不能有空格,长度在6-16个字符之间",
+                        required: "请输入正确的密码！",
+                        isPassWord: "密码长度8~16位，数字、字母、字符至少包含两种",
                         equalTo: "您两次输入的密码不一致"
                     },
                     imgCode:{
@@ -389,8 +396,6 @@ define(function (require, exports, module) {
         }
 
     });
-
-
 
     module.exports = RegisterView;
 });

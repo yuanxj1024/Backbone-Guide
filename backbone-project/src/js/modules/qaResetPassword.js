@@ -24,7 +24,7 @@ define(function (require, exports, module) {
             "click .J_next_2": "NextTwoFun",
             "click .J_back": "BackFun",
             "click .J_sure": "SureFun",
-            "click .code-image": "refreshCode"
+            "click .J_QA_codeImage": "refreshCode"
         },
         initialize: function() {
             this.render();
@@ -56,8 +56,9 @@ define(function (require, exports, module) {
 
             //注册一个密码验证规则
             $.validator.addMethod("isPassWord",function(value,element){
-                return this.optional(element) || /^[\@A-Za-z0-9\!\#\$\%\^\&\*\.\~]{6,16}$/.test(value);
-            },"密码不能有空格,长度在6-16个字符之间");
+                var pwd_simple = /^(?=.*?[0-9])(?=.*?[a-zA-Z])[0-9A-Za-z\_\.\~\@\#\$\%\^\&\*\!]{8,16}$/;
+                return this.optional(element) || pwd_simple.test(value);
+            },"密码不能有空格,长度在8-16个字符之间");
 
             // 验证手机是否注册
             $.validator.addMethod("isCheckPhone",function(value,element){
@@ -125,7 +126,7 @@ define(function (require, exports, module) {
                     }
                 });
 
-                if ( flag == 0 ) {
+                if( flag == 0 ) {
                     return false;
                 } else {
                     return true;
@@ -174,6 +175,9 @@ define(function (require, exports, module) {
                     },
                     userAnswers2: {
                         required: true
+                    },
+                    userAnswers3: {
+                        required: true
                     }
                 },
                 messages: {
@@ -181,6 +185,9 @@ define(function (require, exports, module) {
                         required: "请输入答案"
                     },
                     userAnswers2:{
+                        required: "请输入答案"
+                    },
+                    userAnswers3:{
                         required: "请输入答案"
                     }
                 },
@@ -210,11 +217,11 @@ define(function (require, exports, module) {
                 messages: {
                     newPwd: {
                         required: "请输入正确的密码",
-                        isPassWord: "密码不能有空格,长度在6-16个字符之间"
+                        isPassWord: "密码长度8~16位，数字、字母、字符至少包含两种"
                     },
                     sureNewPwd:{
                         required: "请输入正确的密码",
-                        isPassWord: "密码不能有空格,长度在6-16个字符之间",
+                        isPassWord: "密码长度8~16位，数字、字母、字符至少包含两种",
                         equalTo: "您两次输入的密码不一致"
                     }
                 },
@@ -231,7 +238,7 @@ define(function (require, exports, module) {
         },
         refreshCode: function(e){
             var _self = $(e.target);
-            $('.code-image').attr("src", _self.attr("src") + "?a=" + new Date().getTime());
+            $('.J_QA_codeImage').attr("src", _self.attr("src") + "?a=" + new Date().getTime());
         },
         strDialog:function(str){
             $.gxDialog({
@@ -297,7 +304,11 @@ define(function (require, exports, module) {
                     _this.$('#userQuestion2').val(),
                     _this.$('#userAnswers2').val()
                 );
-                var AResult = [ answers1, answers2 ];
+                var answers3 = new Answer(
+                    _this.$('#userQuestion3').val(),
+                    _this.$('#userAnswers3').val()
+                );
+                var AResult = [ answers1, answers2, answers3 ];
                 var formDate = {
                     Phone: _this.userPhoneVal,
                     answers: JSON.stringify(AResult)
@@ -351,7 +362,6 @@ define(function (require, exports, module) {
                     success: function(res) {
                         if (res.code == 0) {
                             console.log(res.msg);
-
                             _this.$('.settingPWD-content').hide();
                             _this.$('.successPWD-content').show();
                         } else{

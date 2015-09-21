@@ -206,6 +206,8 @@ textarea.gx-textbox {
 }
 .gx-select select{
   -webkit-appearance: none;
+  -moz-appearance:none;
+  appearance:none;
   border: 0;
   background: none;
   width: 100%;
@@ -214,6 +216,7 @@ textarea.gx-textbox {
   font-size: $font-size-base;
   padding: 7px 14px 7px 10px;
   outline: none;
+
 }
 .gx-select:after {
   position: absolute;
@@ -267,6 +270,7 @@ textarea.gx-textbox {
   .code-textbox{
     width: 60%;
   }
+  .send-code-pwd,
   .send-code{
     position: absolute;
     right: 0;
@@ -282,6 +286,7 @@ textarea.gx-textbox {
     text-align: center;
     outline: none;
   }
+  .send-code-pwd:hover,
   .send-code:hover{
     color: $color-white;
   }

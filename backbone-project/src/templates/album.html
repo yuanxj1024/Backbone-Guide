@@ -101,9 +101,11 @@
                                         var random = new Date().getTime();
                                     %}
                                     <li>
-                                        <a class="colorbox1" href="{%!item[j].path%}&{%!random%}">
+                                        <!--<a class="colorbox1" href="{%!item[j].path%}&{%!random%}">-->
+                                        <a class="colorbox1" href="../img/300x300.png">
                                             <span style="background-image: url(../img/300x300.png);">
-                                                <img src="{%!item[j].path%}&{%!random%}" data-name="{%!item[j].fileName%}"/>
+                                                <img class="lazyload-img" data-name="{%!item[j].fileName%}" data-original="{%!item[j].path%}&{%!random%}"/>
+
                                             </span>
                                         </a>
                                         <label class="ui-checkbox">
@@ -222,110 +224,6 @@
                         </li>
                         {%}%}
                     </script>
-                    <!--<div class="album-time clearfix">-->
-                        <!--<span class="gx-left">2015-2-22</span>-->
-                        <!--<label class="ui-checkbox gx-right">-->
-                            <!--<input type="checkbox" data-out="out"/>-->
-                        <!--</label>-->
-                    <!--</div>-->
-                    <!--<div class="album-item">-->
-                        <!--<ul>-->
-                            <!--<li>-->
-                                <!--<a class="colorbox1" href="../img/300x300.png">-->
-                                    <!--<img src="../img/300x300.png" alt=""/>-->
-                                <!--</a>-->
-                                <!--<label class="ui-checkbox">-->
-                                    <!--<input type="checkbox" data-inner="inner"/>-->
-                                <!--</label>-->
-                            <!--</li>-->
-                            <!--<li>-->
-                                <!--<a class="colorbox1" href="../img/300x300.png">-->
-                                    <!--<img src="../img/300x300.png" alt=""/>-->
-                                <!--</a>-->
-                                <!--<label class="ui-checkbox">-->
-                                    <!--<input type="checkbox" data-inner="inner"/>-->
-                                <!--</label>-->
-                            <!--</li>-->
-                            <!--<li>-->
-                                <!--<a class="colorbox1" href="../img/300x300.png">-->
-                                    <!--<img src="../img/300x300.png" alt=""/>-->
-                                <!--</a>-->
-                                <!--<label class="ui-checkbox">-->
-                                    <!--<input type="checkbox" data-inner="inner"/>-->
-                                <!--</label>-->
-                            <!--</li>-->
-                            <!--<li>-->
-                                <!--<a class="colorbox1" href="../img/300x300.png">-->
-                                    <!--<img src="../img/300x300.png" alt=""/>-->
-                                <!--</a>-->
-                                <!--<label class="ui-checkbox">-->
-                                    <!--<input type="checkbox" data-inner="inner"/>-->
-                                <!--</label>-->
-                            <!--</li>-->
-                            <!--<li>-->
-                                <!--<a class="colorbox1" href="../img/300x300.png">-->
-                                    <!--<img src="../img/300x300.png" alt=""/>-->
-                                <!--</a>-->
-                                <!--<label class="ui-checkbox">-->
-                                    <!--<input type="checkbox" data-inner="inner"/>-->
-                                <!--</label>-->
-                            <!--</li>-->
-                            <!--<li>-->
-                                <!--<a class="colorbox1" href="../img/300x300.png">-->
-                                    <!--<img src="../img/300x300.png" alt=""/>-->
-                                <!--</a>-->
-                                <!--<label class="ui-checkbox">-->
-                                    <!--<input type="checkbox" data-inner="inner"/>-->
-                                <!--</label>-->
-                            <!--</li>-->
-                        <!--</ul>-->
-                    <!--</div>-->
-                    <!--<div class="album-time clearfix">-->
-                        <!--<span class="gx-left">2015-2-22</span>-->
-                        <!--<label class="ui-checkbox gx-right">-->
-                            <!--<input type="checkbox" data-out="out"/>-->
-                        <!--</label>-->
-                    <!--</div>-->
-                    <!--<div class="album-item">-->
-                        <!--<ul>-->
-                            <!--<li>-->
-                                <!--<img src="../img/300x300.png" alt=""/>-->
-                                <!--<label class="ui-checkbox">-->
-                                    <!--<input type="checkbox" data-inner="inner"/>-->
-                                <!--</label>-->
-                            <!--</li>-->
-                            <!--<li>-->
-                                <!--<img src="../img/300x300.png" alt=""/>-->
-                                <!--<label class="ui-checkbox">-->
-                                    <!--<input type="checkbox" data-inner="inner"/>-->
-                                <!--</label>-->
-                            <!--</li>-->
-                            <!--<li>-->
-                                <!--<img src="../img/300x300.png" alt=""/>-->
-                                <!--<label class="ui-checkbox">-->
-                                    <!--<input type="checkbox" data-inner="inner"/>-->
-                                <!--</label>-->
-                            <!--</li>-->
-                            <!--<li>-->
-                                <!--<img src="../img/300x300.png" alt=""/>-->
-                                <!--<label class="ui-checkbox">-->
-                                    <!--<input type="checkbox" data-inner="inner"/>-->
-                                <!--</label>-->
-                            <!--</li>-->
-                            <!--<li>-->
-                                <!--<img src="../img/300x300.png" alt=""/>-->
-                                <!--<label class="ui-checkbox">-->
-                                    <!--<input type="checkbox" data-inner="inner"/>-->
-                                <!--</label>-->
-                            <!--</li>-->
-                            <!--<li>-->
-                                <!--<img src="../img/300x300.png" alt=""/>-->
-                                <!--<label class="ui-checkbox">-->
-                                    <!--<input type="checkbox" data-inner="inner"/>-->
-                                <!--</label>-->
-                            <!--</li>-->
-                        <!--</ul>-->
-                    <!--</div>-->
                 </div>
             </div>
             <div class="album-btn">
