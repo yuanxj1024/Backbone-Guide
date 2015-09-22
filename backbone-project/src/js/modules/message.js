@@ -24,7 +24,7 @@ define(function (require, exports, module) {
             'mouseleave .menu-layer': function(){
                 $('.menu-layer').hide();
             },
-            'click .message-item': 'msgItemClickHandler',
+            'click .message-item': 'msgItemClickHandler'
         },
         initialize: function() {
             this.render();
@@ -45,27 +45,13 @@ define(function (require, exports, module) {
             $.ajax({
                 method: 'GET',
                 url: appapi.message.group,
-                data: {
-                    //passportId: 1
-                },
                 success: function(result){
-                    result = [
-                        {
-                            id: 0,
-                            name: '10086',
-                            message: '温馨提示：您的话费余额不足，请尽快充值。如已经充值如已经充值请如已经充值请',
-                            time: new Date()
-                        },
-                        {
-                            id: 0,
-                            name: 'aaron',
-                            message: '温馨提示：您的话费余额不足，请尽快充值。如已经充值如已经充值请如已经充值请',
-                            time: new Date()
-                        }
-                    ];
+                    if(typeof result == 'string'){
+                        result = JSON.parse(result);
+                    }
                     var tpl = $('#msg-list-tpl').html();
                     var tplFun = doT.template(tpl);
-                    $('.message-listbox').html(tplFun(result));
+                    $('.message-listbox').html(tplFun(result.data));
                 },
                 error: function(err){
                     $('.message-listbox').html(tplFun([]));
@@ -78,34 +64,40 @@ define(function (require, exports, module) {
         },
         msgItemClickHandler: function(e){
             var el = $(e.target).parents('.message-item');
-            this.showDialogList({
-                id: el.attr('data-id'),
+            this.currentContactor = {
+                phone: el.attr('data-phone'),
                 name: el.attr('data-name')
-            });
+            };
+            this.showDialogList();
         },
         //显示来往短信
-        showDialogList: function(user) {
+        showDialogList: function(args) {
             var self = this;
             var tpl = $('#msg-record-tpl').html();
             var tplFun = doT.template(tpl);
 
+            var arg = $.extend({
+                contactPhone: this.currentContactor.phone,
+                pageEnable: 'Y',
+                pageSize: 50,
+                currentPage: 1
+            }, args);
+
             $.when($.ajax({
                 url: appapi.message.dialog,
-                data: {
-                    id: user.id
-                }
+                data: arg
             })).done(function(result){
                 if(result && typeof result == 'string'){
                     result = JSON.parse(result);
                 }
                 if(result && result.data.length > 0){
                     $('#msg-dialog-container').html(tplFun({
-                        to: user,
+                        to: self.currentContactor,
                         list: result.data
                     }));
                 }else {
                     $('#msg-dialog-container').html(tplFun({
-                        to: user,
+                        to: self.currentContactor,
                         list: []
                     }));
                 }

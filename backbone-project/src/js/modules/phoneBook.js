@@ -128,10 +128,12 @@ define(function (require, exports, module) {
                         }else if(displayStatus == 1){
                             $('#del-total').text(result.totalCount);
                         }
-                        self.initPaginaton({
-                            pageCount: Math.ceil(result.totalCount *1.0 / arg.pageSize * 1.0),
-                            current: arg.currentPage
-                        });
+                        if(!self.pagination){
+                            self.initPaginaton({
+                                pageCount: Math.ceil(result.totalCount *1.0 / arg.pageSize * 1.0),
+                                current: arg.currentPage
+                            });
+                        }
                         self.contactItems = result.data || [];
                         $('.contact-list-data').html(tplFun(self.contactItems));
                     }
@@ -190,7 +192,7 @@ define(function (require, exports, module) {
                         self.renderList();
                         $('.contact-form-wrap').hide();
                     }else {
-                        msg = '数据保存失败，稍后再试!';
+                        msg = result.msg || '数据保存失败，稍后再试!';
                     }
                     if(msg){
                         showAlert(msg);
@@ -255,7 +257,6 @@ define(function (require, exports, module) {
         },
         searchHandler: function(){
             var val = $('#input-contact-search');
-            console.log(val);
             //TODO search
             this.renderList({
                 name: val
@@ -263,7 +264,7 @@ define(function (require, exports, module) {
         },
         initPaginaton: function(arg){
             var self = this;
-            $('.page-wrap').createPage({
+            this.pagination = $('.page-wrap').createPage({
                 pageCount: arg.pageCount,
                 current: arg.current ||1,
                 backFn: function(index){
@@ -282,7 +283,7 @@ define(function (require, exports, module) {
     function showAlert(msg) {
         $.gxDialog({
             title:'提示',
-            width: 200,
+            width: 400,
             info: msg,
             oktext: '确定',
             ok:function(){}

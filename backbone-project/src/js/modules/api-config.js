@@ -59,7 +59,7 @@ define(function (require, exports, module) {
         message: {
             list: window.App.host + '/list',
             //获取对话
-            dialog: window.App.host + '/dialog',
+            dialog: window.App.host + '/LinkMan/synMsgByPhone',
             group: window.App.host + '/LinkMan/iMessageGroup'
         },
         note: {

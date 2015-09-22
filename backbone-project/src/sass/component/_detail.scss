@@ -476,20 +476,30 @@
         background: url(../img/heder-man.png) no-repeat;
         background-size: 100%;
       }
-      .record-list-incoming,
-      .record-list-exhale{
+      .record-icon-0,
+      .record-icon-1,
+      .record-icon-3,
+      .record-icon-2{
         display: block;
         float: left;
         margin: 13px 0 0 15px;
         width: 14px;
-        height: 12px;
+        height: 14px;
       }
-      .record-list-incoming{
-        background: url(../img/incoming.png) no-repeat;
+      .record-icon-0{
+        background: url(../../img/call_02.png) no-repeat;
         background-size: 100%;
       }
-      .record-list-exhale{
-        background: url(../img/exhale.png) no-repeat;
+      .record-icon-1{
+        background: url(../../img/call_04.png) no-repeat;
+        background-size: 100%;
+      }
+      .record-icon-2{
+        background: url(../../img/call_03.png) no-repeat;
+        background-size: 100%;
+      }
+      .record-icon-3{
+        background: url(../../img/call_01.png) no-repeat;
         background-size: 100%;
       }
     }

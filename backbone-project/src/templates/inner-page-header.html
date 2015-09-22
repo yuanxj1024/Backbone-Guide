@@ -7,7 +7,7 @@
   <li class="yun-user">
     <!--<a href="#user/login">登录</a>-->
     <!--<a href="#user/register">注册</a>-->
-    <span><img class="user-avatar" src="../img/use-header.png" alt=""/>{%=$data.name|| $data.id %}</span>
+    <span><img class="user-avatar" src="../img/use-header.png" alt=""/>{%= !!$data.name ? $data.name : $data.phone %}</span>
     <div class="drop-list gx-hide">
       <a href="">下拉列表</a>
     </div>

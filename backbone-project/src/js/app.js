@@ -63,7 +63,7 @@ define(function(require, exports, module) {
             }
         }
         return result;
-    }
+    };
     var num = window.num = 1,
         lock = window.lock = false;
 

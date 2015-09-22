@@ -77,9 +77,6 @@
         <div class="detail-content">
             <div id="record-view" class="of-y">
                 <div class="record-list"></div>
-                <div class="loadingMore">
-                    <a href="javascript:;" data-num="1">加载更多</a>
-                </div>
             </div>
             <script id="record-tmpl" type="text/x-dot-template">
                 {%if($data.length >=0 ){%}
@@ -102,6 +99,11 @@
                         </li>
                         {%}%}
                     </ul>
+                </div>
+                {%}%}
+                {%if($data.length >=20 ){%}
+                <div class="loadingMore">
+                    <a href="javascript:;" data-num="1">加载更多</a>
                 </div>
                 {%}%}
                 {% }else{ %}

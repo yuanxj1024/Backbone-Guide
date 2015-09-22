@@ -105,6 +105,7 @@
 			backFn : function(){}
 		},options);
 		ms.init(this,args);
+		return this;
 	}
 })(jQuery);
 

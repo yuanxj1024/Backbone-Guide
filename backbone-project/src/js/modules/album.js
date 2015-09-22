@@ -42,6 +42,7 @@ define(function (require, exports, module) {
             'click .videoMore a': 'videoMore',
             'click .download-btn': 'download',
             'click .del-btn': 'dele',
+            'click .album-del': 'dialogDele',
             'click input[type=checkbox]': function(e){
                 var _self = $(e.target);
                 if (_self.hasClass('cked')) {
@@ -62,7 +63,6 @@ define(function (require, exports, module) {
                 header.render();
                 _this.scrollBox();
                 _this.loadData(_this.iType,1,_this.pNum);
-                _this.loadVideo(_this.vType, 1, _this.pNum);
             });
 
 
@@ -101,10 +101,11 @@ define(function (require, exports, module) {
             var _this = this;
                 listUrl = AppApi.album.findFiles;
             _this.loadNum(_this.iType, $('.img-menu'));
+            _this.loadNum(_this.vType, $('.video-menu'));
 
             $.ajax({
                 url: listUrl,
-                //type: 'POST',
+                type: 'POST',
                 cache: false,
                 dataType: window.DEBUG_TEST_DATA ? 'json':'jsonp',
                 timeout: 8000,
@@ -176,6 +177,7 @@ define(function (require, exports, module) {
             if (_this.$('.video-menu').hasClass('curr')) {
                 return false;
             }else{
+                _this.loadVideo(_this.vType, 1, _this.pNum);
                 _this.$('.img-menu').removeClass('curr');
                 _this.$('.video-menu').addClass('curr');
             }
@@ -184,7 +186,6 @@ define(function (require, exports, module) {
             var _this = this,
                 listUrl = AppApi.album.findFiles;
 
-            _this.loadNum(_this.vType, $('.video-menu'));
             $.ajax({
                 url: listUrl,
                 type: 'POST',
@@ -221,27 +222,63 @@ define(function (require, exports, module) {
             _this.$('.album-box-bd').css('height',scrollH);
         },
         photoBox: function (){
-            $('.colorbox1').colorbox({
+            var _this = this;
+            _this.$('.colorbox1').colorbox({
+                inline:true,
                 rel: 'group2',
                 transition: "fade",
-                opacity: '0.6'
-                //onLoad: function(){
-                //    var _html = '<div class="album-other">' +
-                //        '<a href="" class="album-download"><i></i>下载</a>' +
-                //        '<span class="album-intro"><i></i>信息</span>' +
-                //        '<span class="album-del"><i></i>删除</span>' +
-                //        '</div>';
-                //    $('#cboxContent').append(_html);
-                //},
-                //onComplete: function(){
-                //    $('.album-del').on('click', function(){
-                //        alert("aa")
-                //    });
-                //    $('.album-download').on('click', function(){
-                //
-                //        alert(1)
-                //    });
-                //}
+                opacity: '0.6',
+                onLoad: function(){
+                    $('.img-more-infor').hide();
+                },
+                onComplete: function(){
+                    $(".album-del").on('click', function(e){
+                        e.preventDefault();
+                        var currFid = $(this).data('fid');
+                        console.log(currFid);
+                        var deleCurrItem = function(){
+                            $.ajax({
+                                url: AppApi.album.dele,
+                                type: 'POST',
+                                dataType: window.DEBUG_TEST_DATA ? 'json':'jsonp',
+                                timeout: 8000,
+                                cache: false,
+                                data: {
+                                    fids: currFid
+                                },
+                                success: function(res) {
+                                    if(res.code == 0 ){
+                                        console.log(res.msg);
+                                    }else if(res.code != 0){
+                                        console.log(res.msg);
+                                    }
+                                },
+                                error: function(err) {
+                                    console.log("error");
+                                }
+                            });
+
+                        };
+                        $.gxDialog({
+                            title: '提示',
+                            width: 400,
+                            info: '确定删除该照片吗？',
+                            ok: function(){
+                                deleCurrItem();
+                            },
+                            no: function(){
+
+                            }
+                        });
+
+                    });
+                    var $intro = $('#cboxWrapper').find(".album-intro");
+                    $intro.hover(function() {
+                        $intro.next().show();
+                    }, function() {
+                        $intro.next().hide();
+                    });
+                }
             });
         },
         videoBox: function (){
@@ -249,20 +286,58 @@ define(function (require, exports, module) {
                 inline:true,
                 height: "400",
                 transition:"fade",
-                opacity: '0.6'
-                //onLoad: function(){
-                //    var _html = '<div class="album-other">' +
-                //        '<a href="" class="album-download"><i></i>下载</a>' +
-                //        '<span class="album-intro"><i></i>信息</span>' +
-                //        '<span class="album-del"><i></i>删除</span>' +
-                //        '</div>';
-                //    $('#cboxContent').append(_html);
-                //},
-                //onComplete: function(){
-                //    $('.album-del').on('click', function(){
-                //        alert("aa")
-                //    });
-                //}
+                opacity: '0.6',
+                onLoad: function(){
+                    $('.img-more-infor').hide();
+                },
+                onComplete: function(){
+                    $(".album-del").on('click', function(e){
+                        e.preventDefault();
+                        var currFid = $(this).data('fid');
+                        console.log(currFid);
+                        var deleCurrItem = function(){
+                            $.ajax({
+                                url: AppApi.album.dele,
+                                type: 'POST',
+                                dataType: window.DEBUG_TEST_DATA ? 'json':'jsonp',
+                                timeout: 8000,
+                                cache: false,
+                                data: {
+                                    fids: currFid
+                                },
+                                success: function(res) {
+                                    if(res.code == 0 ){
+                                        console.log(res.msg);
+                                    }else if(res.code != 0){
+                                        console.log(res.msg);
+                                    }
+                                },
+                                error: function(err) {
+                                    console.log("error");
+                                }
+                            });
+
+                        };
+                        $.gxDialog({
+                            title: '提示',
+                            width: 400,
+                            info: '确定删除该视屏吗？',
+                            ok: function(){
+                                deleCurrItem();
+                            },
+                            no: function(){
+
+                            }
+                        });
+
+                    });
+                    var $intro = $('#cboxWrapper').find(".album-intro");
+                    $intro.hover(function() {
+                        $intro.next().show();
+                    }, function() {
+                        $intro.next().hide();
+                    });
+                }
             });
         },
         imgMore: function(e){
@@ -274,7 +349,7 @@ define(function (require, exports, module) {
             var listUrl = AppApi.album.findFiles;
             $.ajax({
                 url: listUrl,
-                //type: 'POST',
+                type: 'POST',
                 dataType: window.DEBUG_TEST_DATA ? 'json':'jsonp',
                 timeout: 8000,
                 cache: false,
@@ -324,7 +399,7 @@ define(function (require, exports, module) {
             var listUrl = AppApi.album.findFiles;
             $.ajax({
                 url: listUrl,
-                //type: 'POST',
+                type: 'POST',
                 dataType: window.DEBUG_TEST_DATA ? 'json':'jsonp',
                 timeout: 8000,
                 cache: false,
@@ -397,7 +472,7 @@ define(function (require, exports, module) {
                     cache: false,
                     data: dowloadDate,
                     success: function(res) {
-                        _this.downloadFile(imgName, res);
+                        _this.downloadFile(imgName, "http://172.16.16.59:8080/yfs/passport/1?fid=70a40f3d85314302894f055fe30c0d9e&1442646178675");
                     },
                     error: function(err) {
                         console.log("error");
@@ -454,7 +529,7 @@ define(function (require, exports, module) {
 
                 $.ajax({
                     url: delUrl,
-                    type: 'POST',
+                    //type: 'POST',
                     dataType: window.DEBUG_TEST_DATA ? 'json':'jsonp',
                     timeout: 8000,
                     cache: false,
@@ -503,20 +578,19 @@ define(function (require, exports, module) {
         },
         downloadFile: function(fileName, content){ //TODO
             var aLink = document.createElement('a'),
-                blob = new Blob([content]),
+                //blob = new Blob([content]),
                 evt = document.createEvent("MouseEvents");
                 //evt = document.createEvent("HTMLEvents");
 
             evt.initEvent("click",true,true);
             dispatchEvent(evt);
             aLink.download = fileName;
-            aLink.href = URL.createObjectURL(blob);
+            //aLink.href = URL.createObjectURL(blob);
+            aLink.href = content;
             aLink.dispatchEvent(evt);
         }
 
 });
-
-
 
     module.exports = AlbumView;
 });

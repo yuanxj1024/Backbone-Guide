@@ -130,7 +130,7 @@ define(function (require, exports, module) {
             var listUrl = AppApi.album.findFiles;
             $.ajax({
                 url: listUrl,
-                //type: 'POST',
+                type: 'POST',
                 dataType: window.DEBUG_TEST_DATA ? 'json':'jsonp',
                 timeout: 8000,
                 cache: false,
@@ -318,13 +318,15 @@ define(function (require, exports, module) {
         },
         downloadFile: function(fileName, content){
             var aLink = document.createElement('a'),
-                blob = new Blob([content]),
-                evt = document.createEvent("HTMLEvents");
+            //blob = new Blob([content]),
+                evt = document.createEvent("MouseEvents");
+            //evt = document.createEvent("HTMLEvents");
 
-            evt.initEvent("click");
-
+            evt.initEvent("click",true,true);
+            dispatchEvent(evt);
             aLink.download = fileName;
-            aLink.href = URL.createObjectURL(blob);
+            //aLink.href = URL.createObjectURL(blob);
+            aLink.href = content;
             aLink.dispatchEvent(evt);
         }
 

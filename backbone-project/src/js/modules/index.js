@@ -34,7 +34,7 @@ define(function(require, exports, module) {
       console.log(user);
       if(user && user.id){
         $('.yun-user').hide();
-        $('.user-name').text(user.name);
+        $('.user-name').text(user.name || user.phone);
       }
     },
     logout: function(){

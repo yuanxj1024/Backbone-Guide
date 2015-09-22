@@ -270,8 +270,7 @@ select {
  *  Known issue: inner spacing remains in IE 6.
  */
 button,
-html input[type="button"],
-input[type="reset"],
+html input[type="button"], input[type="reset"],
 input[type="submit"] {
   -webkit-appearance: button;
   /* 2 */
@@ -943,6 +942,7 @@ body {
 
 .yun-space span {
   display: inline-block; }
+
 .yun-space .space-progress {
   height: 10px;
   width: 60px;
@@ -980,10 +980,10 @@ body {
       display: block;
       padding-bottom: 62px;
       border-radius: 30px 30px 0 0;
-      -moz-transition: background .3s ease-out, color .3s ease-out;
-      -o-transition: background .3s ease-out, color .3s ease-out;
-      -webkit-transition: background .3s ease-out, color .3s ease-out;
-      transition: background .3s ease-out, color .3s ease-out; }
+      -moz-transition: background 0.3s ease-out, color 0.3s ease-out;
+      -o-transition: background 0.3s ease-out, color 0.3s ease-out;
+      -webkit-transition: background 0.3s ease-out, color 0.3s ease-out;
+      transition: background 0.3s ease-out, color 0.3s ease-out; }
     .man-nav li a:hover {
       background: url(../../img/nav_hover.png) repeat-x left bottom; }
     .man-nav li span {
@@ -1045,10 +1045,10 @@ body {
   background-color: #fff;
   width: 182px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
-  -moz-transition: background-color ease-in-out .15s, border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-  -o-transition: background-color ease-in-out .15s, border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-  -webkit-transition: background-color ease-in-out .15s, border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-  transition: background-color ease-in-out .15s, border-color ease-in-out .15s, box-shadow ease-in-out .15s; }
+  -moz-transition: background-color ease-in-out 0.15s, border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  -o-transition: background-color ease-in-out 0.15s, border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  -webkit-transition: background-color ease-in-out 0.15s, border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  transition: background-color ease-in-out 0.15s, border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s; }
 
 .gx-textbox:focus {
   border-color: #66afe9;
@@ -1115,10 +1115,10 @@ textarea.gx-textbox {
   font-weight: normal;
   line-height: 1.5;
   vertical-align: middle;
-  -moz-transition: background-color .3s ease-out, border-color .3s ease-out;
-  -o-transition: background-color .3s ease-out, border-color .3s ease-out;
-  -webkit-transition: background-color .3s ease-out, border-color .3s ease-out;
-  transition: background-color .3s ease-out, border-color .3s ease-out; }
+  -moz-transition: background-color 0.3s ease-out, border-color 0.3s ease-out;
+  -o-transition: background-color 0.3s ease-out, border-color 0.3s ease-out;
+  -webkit-transition: background-color 0.3s ease-out, border-color 0.3s ease-out;
+  transition: background-color 0.3s ease-out, border-color 0.3s ease-out; }
 
 .gx-button:hover,
 .gx-button:focus {
@@ -1444,9 +1444,9 @@ textarea.gx-textbox {
   top: -3px;
   left: 0; }
 
-.ui-checkbox input.cked:after, .ui-checkbox-s input.cked:after,
-.ui-checkbox input:checked:after,
-.ui-checkbox-s input:checked:after {
+.ui-checkbox input.cked:after,
+.ui-checkbox-s input.cked:after,
+.ui-checkbox input:checked:after, .ui-checkbox-s input:checked:after {
   background: url("../../img/pic-selected.png") no-repeat center;
   -webkit-background-size: contain;
   background-size: contain; }
@@ -1914,18 +1914,26 @@ textarea.gx-textbox {
       height: 20px;
       background: url(../img/heder-man.png) no-repeat;
       background-size: 100%; }
-    .call-record-list li div .record-list-incoming,
-    .call-record-list li div .record-list-exhale {
+    .call-record-list li div .record-icon-0,
+    .call-record-list li div .record-icon-1,
+    .call-record-list li div .record-icon-3,
+    .call-record-list li div .record-icon-2 {
       display: block;
       float: left;
       margin: 13px 0 0 15px;
       width: 14px;
-      height: 12px; }
-    .call-record-list li div .record-list-incoming {
-      background: url(../img/incoming.png) no-repeat;
+      height: 14px; }
+    .call-record-list li div .record-icon-0 {
+      background: url(../../img/call_02.png) no-repeat;
       background-size: 100%; }
-    .call-record-list li div .record-list-exhale {
-      background: url(../img/exhale.png) no-repeat;
+    .call-record-list li div .record-icon-1 {
+      background: url(../../img/call_04.png) no-repeat;
+      background-size: 100%; }
+    .call-record-list li div .record-icon-2 {
+      background: url(../../img/call_03.png) no-repeat;
+      background-size: 100%; }
+    .call-record-list li div .record-icon-3 {
+      background: url(../../img/call_01.png) no-repeat;
       background-size: 100%; }
   .call-record-list li .record-list-first {
     padding-left: 20px; }
@@ -2086,20 +2094,24 @@ textarea.gx-textbox {
 
 .message-menu ul {
   overflow: hidden; }
+
 .message-menu li {
   height: 40px;
   line-height: 40px; }
+
 .message-menu a {
   display: block;
   border-top: 1px solid #cacaca;
   padding-left: 30px;
-  -moz-transition: background-color .3s ease-out, border-color .3s ease-out;
-  -o-transition: background-color .3s ease-out, border-color .3s ease-out;
-  -webkit-transition: background-color .3s ease-out, border-color .3s ease-out;
-  transition: background-color .3s ease-out, border-color .3s ease-out; }
+  -moz-transition: background-color 0.3s ease-out, border-color 0.3s ease-out;
+  -o-transition: background-color 0.3s ease-out, border-color 0.3s ease-out;
+  -webkit-transition: background-color 0.3s ease-out, border-color 0.3s ease-out;
+  transition: background-color 0.3s ease-out, border-color 0.3s ease-out; }
+
 .message-menu a:hover {
   background: #b5b5b5;
   color: #000; }
+
 .message-menu .curr a {
   background: #b5b5b5;
   color: #000; }
@@ -2235,6 +2247,7 @@ textarea.gx-textbox {
 .album-setting button, .album-setting a {
   display: inline-block;
   margin-left: 16px; }
+
 .album-setting .album-all,
 .album-setting .album-undo {
   outline: none;
@@ -2247,6 +2260,7 @@ textarea.gx-textbox {
 .album-item ul {
   overflow: hidden;
   padding: 0 1%; }
+
 .album-item li {
   width: 14.667%;
   float: left;
@@ -2267,6 +2281,7 @@ textarea.gx-textbox {
     background-repeat: no-repeat;
     -webkit-background-size: cover;
     background-size: cover; }
+
 .album-item .ui-checkbox, .album-item .ui-checkbox-s {
   position: absolute;
   right: 5%;
@@ -2332,6 +2347,18 @@ textarea.gx-textbox {
   overflow: hidden;
   overflow-y: auto; }
 
+.img-more-infor {
+  width: 100%;
+  background: #000;
+  padding: 0 20px;
+  font-size: 12px;
+  line-height: 34px;
+  position: absolute;
+  bottom: -34px;
+  left: 0; }
+  .img-more-infor span {
+    display: inline-block; }
+
 .contact-form .fix-error-pos {
   position: relative;
   height: 37px;
@@ -2345,8 +2372,10 @@ textarea.gx-textbox {
 .detail-content .record-list .contact-list-data {
   overflow-y: scroll;
   padding-bottom: 55px; }
+
 .detail-content .record-list .group-letter-name li:hover {
   background-color: #CACACA; }
+
 .detail-content .record-list .page-wrap {
   background-color: #fff;
   position: fixed;
@@ -2361,9 +2390,6 @@ textarea.gx-textbox {
   background-color: #e3e3e3;
   color: #38a7e2; }
 
-<<<<<<< .mine
-/*# sourceMappingURL=app.css.map */
-=======
 .agreement-container {
   width: 1000px;
   background: #fff;
@@ -2409,4 +2435,4 @@ textarea.gx-textbox {
   .agreemnt .red {
     color: #f00; }
 
-/*# sourceMappingURL=maps/app.css.map */>>>>>>> .r355
+/*# sourceMappingURL=maps/app.css.map */

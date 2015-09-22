@@ -81,8 +81,8 @@ define(function (require, exports, module) {
                                 lock = false;
 
                             }else if(res.code != 0){
-                                console.log(res.msg);
-                                ok = false;
+                                showToast('服务器繁忙，号码校验超时');
+                                //ok = false;
                                 lock = true;
                             }
                         },
@@ -115,6 +115,7 @@ define(function (require, exports, module) {
                             flag = 2;
 
                         }else if(res.code != 0){
+                            showToast(res.msg);
                             console.log(res.msg);
                             flag = 0;
 
@@ -352,6 +353,15 @@ define(function (require, exports, module) {
         }
 
     });
-
+    function showToast(msg) {
+        $.gxDialog({
+            title:'提示',
+            width: 400,
+            info: msg,
+            oktext: '确定',
+            //ok:function(){},
+            timeout: 1300
+        });
+    }
     module.exports = PhoneResetPwdView;
 });

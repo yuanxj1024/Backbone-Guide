@@ -102,7 +102,7 @@
             <i class="record-list-man"></i>
             <strong style="width:50px;">{%=item.callName%}</strong>
             <span>{%=item.callPhone%}</span>
-            <i class="record-list-exhale"></i>
+            <i class="record-icon-{%=item.callInOut%}"></i>
         </div>
         <div class="record-list-two">
             <span>{%=new Date(item.ctime).format('yyyy-MM-dd')%}</span>

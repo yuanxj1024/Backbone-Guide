@@ -378,8 +378,12 @@ define(function (require, exports, module) {
                     data: formDate,
                     success: function(res) {
                         if (res.code == 0) {
+                            _this.login({
+                                phone: $('#userPhone').val(),
+                                pwd: $('#userPwd').val()
+                            });
                             console.log(res.msg);
-                            window.App.Views.go('/');
+                            //window.App.Views.go('/');
                         }else{
                             $.gxDialog({
                                 title: '',
@@ -393,9 +397,41 @@ define(function (require, exports, module) {
                     }
                 });
             }
+        },
+        login: function(user){
+            return $.ajax({
+                cache: false,
+                url: appApi.login.login,
+                data: user,
+                success: function(result) {
+                    if (typeof result === 'string') {
+                        result = JSON.parse(result);
+                    }
+                    if (result.code === 0) {
+                        auth.setUser(result.data);
+                        window.App.Views.go('/');
+                    } else {
+                        showAlert(result.msg || '登录失败，请重试');
+                    }
+                    return true;
+                },
+                error: function(err) {
+                    showAlert(result.msg || '登录失败，请重试');
+                }
+            });
         }
 
     });
+    function showAlert(msg) {
+        $.gxDialog({
+            title:'提示',
+            width: 400,
+            info: msg,
+            timeout: 2000
+            //oktext: '确定',
+            //ok:function(){}
+        });
+    }
 
     module.exports = RegisterView;
 });
