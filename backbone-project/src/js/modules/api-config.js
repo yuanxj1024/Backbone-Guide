@@ -84,6 +84,9 @@ define(function (require, exports, module) {
             findFiles: window.App.host + "/Files/findFiles",
             dele: window.App.host + "/Files/batchDelFiles",
             download: window.App.host + "/Files/passport"
+        },
+        files: {
+            fileSize: window.App.host + "/Files/getTotalFileSize"
         }
 
 

@@ -446,53 +446,157 @@ textarea.gx-textbox {
 
 // ui checkbox
 .ui-checkbox{
-  display: inline-block;
+  height: 20px;
+  overflow: hidden;
+
+  label {
+    display: inline;
+  }
 }
-.ui-checkbox input{
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  position: relative;
-  overflow: visible;
-  border: 0;
-  background: none;
-  -webkit-appearance: none;
-  outline: none;
-  vertical-align: middle;
-}
-.ui-checkbox input:before{
-  content: '';
-  position: absolute;
-  height: 12px;
-  width: 12px;
-  border: 1px solid #ccc;
-  top: 0;
-  left: 0;
-}
-.ui-checkbox input:after{
-  content: '';
-  position: absolute;
-  height: 16px;
-  width: 16px;
-  top: -3px;
-  left: 0;
-}
-.ui-checkbox input.cked:after,
-.ui-checkbox input:checked:after{
-  background: url("../../img/pic-selected.png") no-repeat center;
-  -webkit-background-size: contain;
-  background-size: contain;
-}
-.ui-checkbox-s{
-  @extend .ui-checkbox;
-}
-.ui-checkbox-s input:before{
-  content: "";
-}
-.ui-checkbox-s input:checked:before{
-  content: "";
+//.ui-checkbox input{
+//  display: inline-block;
+//  width: 14px;
+//  height: 14px;
+//  position: relative;
+//  overflow: visible;
+//  border: 0;
+//  background: none;
+//  -webkit-appearance: none;
+//  outline: none;
+//  vertical-align: middle;
+//}
+//.ui-checkbox input:before{
+//  content: '';
+//  position: absolute;
+//  height: 14px;
+//  width: 14px;
+//  border: 1px solid #ccc;
+//  top: 0;
+//  left: 0;
+//}
+//.ui-checkbox input:after{
+//  content: '';
+//  position: absolute;
+//  height: 16px;
+//  width: 16px;
+//  top: -3px;
+//  left: 0;
+//}
+//.ui-checkbox input.cked:after,
+//.ui-checkbox input:checked:after{
+//  background: url("../../img/pic-selected.png") no-repeat center;
+//  -webkit-background-size: contain;
+//  background-size: contain;
+//}
+//.ui-checkbox-s{
+//  @extend .ui-checkbox;
+//}
+//.ui-checkbox-s input:before{
+//  content: "";
+//}
+//.ui-checkbox-s input:checked:before{
+//  content: "";
+//}
+
+
+
+.regular-checkbox {
+  display: none;
 }
 
+.regular-checkbox + label {
+  background-color: #fafafa;
+  border: 1px solid #cacece;
+  box-shadow: 0 1px 2px rgba(0,0,0,.05), inset 0px -15px 10px -12px rgba(0,0,0,.05);
+  padding: 9px;
+  border-radius: 3px;
+  display: inline-block;
+  position: relative;
+}
+
+.regular-checkbox + label:active, .regular-checkbox:checked + label:active {
+  box-shadow: 0 1px 2px rgba(0,0,0,.05), inset 0px 1px 3px rgba(0,0,0,.1);
+}
+
+//.regular-checkbox:checked + label,
+label.cked{
+  background-color: #e9ecee;
+  border: 1px solid #adb8c0;
+  box-shadow: 0 1px 2px rgba(0,0,0,.05), inset 0px -15px 10px -12px rgba(0,0,0,.05), inset 15px 10px -12px rgba(255,255,255,.1);
+  color: #99a1a7;
+}
+//.regular-checkbox:checked + label:after,
+label.cked:after{
+  content: '\2714';
+  font-size: 14px;
+  position: absolute;
+  top: 0;
+  left: 3px;
+  color: #99a1a7;
+}
+
+.big-checkbox + label {
+  padding: 18px;
+}
+
+.big-checkbox:checked + label:after {
+  font-size: 28px;
+  left: 6px;
+}
+
+
+/* ui radio */
+
+.regular-radio {
+  display: none;
+}
+
+.regular-radio + label {
+  -webkit-appearance: none;
+  background-color: #fafafa;
+  border: 1px solid #cacece;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+  padding: 9px;
+  border-radius: 50px;
+  display: inline-block;
+  position: relative;
+}
+
+.regular-radio:checked + label:after {
+  content: ' ';
+  width: 12px;
+  height: 12px;
+  border-radius: 50px;
+  position: absolute;
+  top: 3px;
+  background: #99a1a7;
+  box-shadow: inset 0px 0px 10px rgba(0,0,0,0.3);
+  text-shadow: 0px;
+  left: 3px;
+  font-size: 32px;
+}
+
+.regular-radio:checked + label {
+  background-color: #e9ecee;
+  color: #99a1a7;
+  border: 1px solid #adb8c0;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1), inset 0px 0px 10px rgba(0,0,0,0.1);
+}
+
+.regular-radio + label:active, .regular-radio:checked + label:active {
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+}
+
+.big-radio + label {
+  padding: 16px;
+}
+
+.big-radio:checked + label:after {
+  width: 24px;
+  height: 24px;
+  left: 4px;
+  top: 4px;
+}
 
 
 

@@ -12,6 +12,7 @@ define(function (require, exports, module) {
         Backbone = require("backbone"),
         doT = require("doT"),
         gxdialog = require("gxdialog"),
+        auth = require('mod/auth'),
         appapi = require("mod/api-config");
 
     // 设置弹出层颜色
@@ -401,7 +402,7 @@ define(function (require, exports, module) {
         login: function(user){
             return $.ajax({
                 cache: false,
-                url: appApi.login.login,
+                url: AppApi.login.login,
                 data: user,
                 success: function(result) {
                     if (typeof result === 'string') {

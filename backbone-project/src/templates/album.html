@@ -68,52 +68,178 @@
     <div class="mainbar">
         <div class="detail-content">
             <div class="album-box">
-                <div class="album-box-hd clearfix">
-                    <span class="gx-left">选择1张照片</span>
-                    <div class="album-setting gx-right">
-                        <button class="album-all">全选</button>
-                        <button class="album-undo">取消</button>
+                <div class="item-iBox">
+                    <div class="album-box-hd clearfix">
+                        <!--<span class="gx-left">选择<i class="si-num">0</i>张照片</span>-->
+                        <div class="album-setting gx-right">
+                            <button class="album-all btn-all-i">全选</button>
+                            <button class="album-all btn-undo-i">取消</button>
+                        </div>
                     </div>
-                </div>
-                <div class="album-box-bd">
-
-                    <div id="img-view">
-                        <div class="img-list"></div>
+                    <div class="album-box-bd">
+                        <div id="img-view">
+                        </div>
                         <div class="loadingMore imgMore">
                             <a href="javascript:;" data-num="1">加载更多</a>
                         </div>
+
+                        <script id="img-tmpl" type="text/x-dot-template">
+                            {%if($data.length >0 ){%}
+                            {%
+                                var item = {};
+                                for (var i = 0, l = $data.length; i < l; i++){
+                                item = $data[i].newFilesModelList;
+                            %}
+                            <div class="item-group">
+                                <div class="album-time clearfix">
+                                    <span class="item-group-time gx-left">
+                                        {%= new Date($data[i].ctime).format('yyyy-MM-dd')%}
+                                    </span>
+                                    <div class="ui-checkbox gx-right">
+                                        <input type="checkbox" id="checkbox-img-item{%=i+1%}" class="regular-checkbox"/>
+                                        <label class="out-btn" for="checkbox-img-item{%=i+1%}"></label>
+                                    </div>
+                                </div>
+                                <div class="album-item">
+                                    <ul>
+                                        {%
+                                            var random = new Date().getTime();
+                                            for (var j = 0, il = item.length; j < il; j++){
+                                        %}
+                                        <li>
+                                            <a class="colorbox1" href="#inner-imgbox{%=j+1%}">
+                                                <span style="background-image: url(../img/300x300.png);">
+                                                    <img class="lazyload-img" data-name="{%!item[j].fileName%}" data-original="{%!item[j].path%}&{%!random%}" data-src="{%!item[j].path%}"/>
+                                                </span>
+                                            </a>
+                                            <div class="ui-checkbox">
+                                                <input type="checkbox" id="checkbox-img-{%=j+1%}" class="regular-checkbox" data-inner="inner" data-fid="{%!item[j].fid%}"/>
+                                                <label class="ck-box" for="checkbox-img-{%=j+1%}" data-fid="{%!item[j].fid%}"></label>
+                                            </div>
+                                            <div class="gx-hide">
+                                                <div id="inner-imgbox{%=j+1%}">
+                                                    <div class="dialog-img">
+                                                        <img src="{%!item[j].path%}"/>
+                                                    </div>
+                                                    <div class="album-other">
+                                                        <a href="{%!item[j].path%}" class="album-download" download="{%!item[j].fileName%}"><i></i>下载</a>
+                                                        <span class="album-intro"><i></i>信息</span>
+                                                        <div class="img-more-infor gx-hide">
+                                                            <!--<span>{%!item[j].fileCreatedTime%}</span>-->
+                                                            <!--<span>{%!item[j].fileCreatedLocation%}</span>-->
+                                                            <span>{%!item[j].fileName%}</span>
+                                                        </div>
+                                                        <span class="album-del" data-fid="{%!item[j].fid%}"><i></i>删除</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        {%}%}
+                                    </ul>
+                                </div>
+                            </div>
+                            {%}%}
+                            {% }else{ %}
+                            <div class="no-content">
+                                <p>暂无照片</p>
+                            </div>
+                            {%}%}
+                        </script>
+
+                        <script id="imgMore-tmpl" type="text/x-dot-template">
+                            {%
+                                for (var j = 0, l = $data.length; j < l; j++){
+                                var random = new Date().getTime();
+                            %}
+                            <li>
+                                <a class="colorbox1" href="#inner-imgMorebox{%=j+1%}">
+                                <span style="background-image: url(../img/300x300.png);">
+                                    <img class="lazyload-img" data-name="{%!$data[j].fileName%}" data-original="{%!$data[j].path%}&{%!random%}" data-src="{%!$data[j].path%}"/>
+                                </span>
+                                </a>
+                                <div class="ui-checkbox">
+                                    <input type="checkbox" id="checkbox-imgMore-{%=j+1%}" class="regular-checkbox" data-inner="inner" data-fid="{%!$data[j].fid%}"/>
+                                    <label class="ck-box" for="checkbox-imgMore-{%=j+1%}" data-fid="{%!i$dataj].fid%}"></label>
+                                </div>
+                                <div class="gx-hide">
+                                    <div id="inner-imgMorebox{%=j+1%}">
+                                        <div class="dialog-img">
+                                            <img src="{%!$data[j].path%}"/>
+                                        </div>
+                                        <div class="album-other">
+                                            <a href="{%!$data[j].path%}" class="album-download" download="{%!$data[j].fileName%}"><i></i>下载</a>
+                                            <span class="album-intro"><i></i>信息</span>
+                                            <div class="img-more-infor gx-hide">
+                                                <!--<span>{%!$data[j].fileCreatedTime%}</span>-->
+                                                <!--<span>{%!$data[j].fileCreatedLocation%}</span>-->
+                                                <span>{%!$data[j].fileName%}</span>
+                                            </div>
+                                            <span class="album-del" data-fid="{%!$data[j].fid%}"><i></i>删除</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            {%}%}
+                        </script>
                     </div>
-                    <script id="img-tmpl" type="text/x-dot-template">
-                        {%if($data.length >=0 ){%}
-                        {%for (var i = 0, l = $data.length; i < l; i++){%}
-                        <div class="item-group">
+                </div>
+                <div class="item-vBox gx-hide">
+                    <div class="album-box-hd clearfix">
+                        <!--<span class="gx-left">选择<i class="sv-num">0</i>个视屏</span>-->
+                        <div class="album-setting gx-right">
+                            <button class="album-all btn-all-v">全选</button>
+                            <button class="album-all btn-undo-v">取消</button>
+                        </div>
+                    </div>
+                    <div class="album-box-bd">
+                        <div id="video-view">
+                        </div>
+                        <div class="loadingMore videoMore">
+                            <a href="javascript:;" data-num="1">加载更多</a>
+                        </div>
+
+                        <script id="video-tmpl" type="text/x-dot-template">
+                            {%if($data.length >=0 ){%}
+                            {%for (var i = 0, l = $data.length; i < l; i++){%}
                             <div class="album-time clearfix">
-                                <span class="item-group-time gx-left">{%!$data[i].ctime%}</span>
-                                <label class="ui-checkbox gx-right">
-                                    <input type="checkbox" data-out="out"/>
-                                </label>
+                                <span class="item-group-time gx-left">
+                                    {%= new Date($data[i].ctime).format('yyyy-MM-dd')%}
+                                </span>
+                                <div class="ui-checkbox gx-right">
+                                    <input type="checkbox" id="checkbox-video-item{%=i+1%}" class="regular-checkbox"/>
+                                    <label class="out-btn" for="checkbox-video-item{%=i+1%}"></label>
+                                </div>
                             </div>
                             <div class="album-item">
                                 <ul>
                                     {%
-                                        var item = $data[i].newFilesModelList;
-                                        for (var j = 0, l = item.length; j < l; j++){
-                                        var random = new Date().getTime();
+                                    var item = $data[i].newFilesModelList;
+                                    for (var j = 0, il = item.length; j < il; j++){
+                                    var random = new Date().getTime();
                                     %}
                                     <li>
-                                        <!--<a class="colorbox1" href="{%!item[j].path%}&{%!random%}">-->
-                                        <a class="colorbox1" href="#inner-imgbox{%=j+1%}">
-                                            <span style="background-image: url(../img/300x300.png);">
-                                                <img class="lazyload-img" data-name="{%!item[j].fileName%}" data-original="{%!item[j].path%}&{%!random%}"/>
-                                            </span>
+                                        <a class="videobox1" href="#video_{%=j+1%}">
+                                        <span style="background-image: url(../img/300x300_v.png);">
+                                            <img src="../img/300x300_v.png" data-name="{%!item[j].fileName%}" data-src="{%!$data[j].path%}"/>
+                                        </span>
                                         </a>
-                                        <label class="ui-checkbox">
-                                            <input type="checkbox" data-inner="inner" data-fid="{%!item[j].fid%}"/>
-                                        </label>
+                                        <div class="ui-checkbox">
+                                            <input type="checkbox" id="checkbox-video-{%=j+1%}" class="regular-checkbox" data-inner="inner" data-fid="{%!item[j].fid%}"/>
+                                            <label class="ck-box" for="checkbox-video-{%=j+1%}" data-fid="{%!item[j].fid%}"></label>
+                                        </div>
                                         <div class="gx-hide">
-                                            <div id="inner-imgbox{%=j+1%}">
-                                                <div class="dialog-img">
-                                                    <img src="{%!item[j].path%}"/>
+                                            <div id="video_{%=j+1%}">
+                                                <div class="dialog-vidoe">
+                                                    <video class="video-js vjs-default-skin" controls preload="none" width="640" height="264"
+                                                           poster="../img/300x300_v.png"
+                                                           data-setup="{}">
+                                                        <source src="{%!item[j].path%}" type='video/mp4' />
+                                                        <source src="{%!item[j].path%}" type='video/webm' />
+                                                        <source src="{%!item[j].path%}" type='video/ogg' />
+                                                        <track kind="captions" src="{%!$data[j].path%}" srclang="en" label="English"><!-- Tracks need an ending tag thanks to IE9 -->
+                                                        <track kind="subtitles" src="{%!$data[j].path%}" srclang="en" label="English"><!-- Tracks need an ending tag thanks to IE9 -->
+                                                        <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+                                                    </video>
                                                 </div>
                                                 <div class="album-other">
                                                     <a href="{%!item[j].path%}" class="album-download" download="{%!item[j].fileName%}"><i></i>下载</a>
@@ -131,144 +257,60 @@
                                     {%}%}
                                 </ul>
                             </div>
-                        </div>
-                        {%}%}
-                        {% }else{ %}
-                        <div class="no-content">
-                            <p>暂无照片</p>
-                        </div>
-                        {%}%}
-                    </script>
-                    <script id="imgMore-tmpl" type="text/x-dot-template">
-                        {%
-                            for (var j = 0, l = $data.length; j < l; j++){
-                            var random = new Date().getTime();
-                        %}
-                        <li>
-                            <a class="colorbox1" href="{%!$data[j].path%}&{%!random%}">
-                                <span style="background-image: url(../img/300x300.png);">
-                                    <img class="lazyload-img" data-name="{%!item[j].fileName%}" data-original="{%!item[j].path%}&{%!random%}"/>
+                            {%}%}
+                            {% }else{ %}
+                            <div class="no-content">
+                                <p>暂无视屏</p>
+                            </div>
+                            {%}%}
+                        </script>
+                        <script id="videoMore-tmpl" type="text/x-dot-template">
+                            {%
+                                var random = new Date().getTime();
+                                for (var j = 0, l = $data.length; j < l; j++){
+                            %}
+                            <li>
+                                <a class="videobox1" href="#videoMore_{%=j+1%}">
+                                <span style="background-image: url(../img/300x300_v.png);">
+                                    <img src="../img/300x300_v.png" data-name="{%!$data[j].fileName%}" data-src="{%!$data[j].path%}"/>
                                 </span>
-                            </a>
-                            <label class="ui-checkbox">
-                                <input type="checkbox" data-inner="inner" data-fid="{%!$data[j].fid%}"/>
-                            </label>
-                        </li>
-                        {%}%}
-                    </script>
-
-                    <div id="video-view" class="gx-hide">
-                        <div class="video-list"></div>
-                        <div class="loadingMore videoMore">
-                            <a href="javascript:;" data-num="1">加载更多</a>
-                        </div>
-                    </div>
-                    <script id="video-tmpl" type="text/x-dot-template">
-                        {%if($data.length >=0 ){%}
-                        {%for (var i = 0, l = $data.length; i < l; i++){%}
-                        <div class="album-time clearfix">
-                            <span class="item-group-time gx-left">{%!$data[i].ctime%}</span>
-                            <label class="ui-checkbox gx-right">
-                                <input type="checkbox" data-out="out"/>
-                            </label>
-                        </div>
-                        <div class="album-item">
-                            <ul>
-                                {%
-                                    var item = $data[i].newFilesModelList;
-                                    for (var j = 0, l = item.length; j < l; j++){
-                                    var random = new Date().getTime();
-                                %}
-                                <li>
-                                    <a class="videobox1" href="#video_{%=j+1%}">
-                                        <span style="background-image: url(../img/300x300_v.png);">
-                                            <img src="../img/300x300_v.png" data-name="{%!item[j].fileName%}"/>
-                                        </span>
-                                    </a>
-                                    <label class="ui-checkbox">
-                                        <input type="checkbox" data-inner="inner" data-fid="{%!$data[j].fid%}"/>
-                                    </label>
-                                    <div class="gx-hide">
-                                        <div id="video_{%=j+1%}">
-                                            <div class="dialog-vidoe">
-                                                <video class="video-js vjs-default-skin" controls preload="none" width="640" height="264"
-                                                       poster="../img/300x300_v.png"
-                                                       data-setup="{}">
-                                                    <source src="{%!item[j].path%}" type='video/mp4' />
-                                                    <source src="{%!item[j].path%}" type='video/webm' />
-                                                    <source src="{%!item[j].path%}" type='video/ogg' />
-                                                    <track kind="captions" src="{%!$data[j].path%}" srclang="en" label="English"><!-- Tracks need an ending tag thanks to IE9 -->
-                                                    <track kind="subtitles" src="{%!$data[j].path%}" srclang="en" label="English"><!-- Tracks need an ending tag thanks to IE9 -->
-                                                    <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
-                                                </video>
-                                            </div>
-                                            <div class="album-other">
-                                                <a href="{%!item[j].path%}" class="album-download" download="{%!item[j].fileName%}"><i></i>下载</a>
-                                                <span class="album-intro"><i></i>信息</span>
-                                                <div class="img-more-infor gx-hide">
-                                                    <!--<span>{%!item[j].fileCreatedTime%}</span>-->
-                                                    <!--<span>{%!item[j].fileCreatedLocation%}</span>-->
-                                                    <span>{%!item[j].fileName%}</span>
-                                                </div>
-                                                <span class="album-del" data-fid="{%!item[j].fid%}"><i></i>删除</span>
-                                            </div>
+                                </a>
+                                <div class="ui-checkbox">
+                                    <input type="checkbox" id="checkbox-videoMore-{%=j+1%}" class="regular-checkbox" data-inner="inner" data-fid="{%!$data[j].fid%}"/>
+                                    <label class="ck-box" for="checkbox-videoMore-{%=j+1%}" data-fid="{%!$data[j].fid%}"></label>
+                                </div>
+                                <div class="gx-hide">
+                                    <div id="videoMore_{%=j+1%}">
+                                        <div class="dialog-vidoe">
+                                            <video class="video-js vjs-default-skin" controls preload="none" width="640" height="264"
+                                                   poster="../img/300x300_v.png"
+                                                   data-setup="{}">
+                                                <source src="{%!$data[j].path%}" type='video/mp4' />
+                                                <source src="{%!$data[j].path%}" type='video/webm' />
+                                                <source src="{%!$data[j].path%}" type='video/ogg' />
+                                                <track kind="captions" src="{%!$data[j].path%}" srclang="en" label="English"><!-- Tracks need an ending tag thanks to IE9 -->
+                                                <track kind="subtitles" src="{%!$data[j].path%}" srclang="en" label="English"><!-- Tracks need an ending tag thanks to IE9 -->
+                                                <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
+                                            </video>
                                         </div>
-                                    </div>
-                                </li>
-                                {%}%}
-                            </ul>
-                        </div>
-                        {%}%}
-                        {% }else{ %}
-                        <div class="no-content">
-                            <p>暂无视屏</p>
-                        </div>
-                        {%}%}
-                    </script>
-                    <script id="videoMore-tmpl" type="text/x-dot-template">
-                        {%
-                            for (var j = 0, l = $data.length; j < l; j++){
-                            var random = new Date().getTime();
-                        %}
-                        <li>
-                            <a class="videobox1" href="#videoMore_{%=j+1%}">
-                                    <span style="background-image: url(../img/300x300_v.png);">
-                                        <img src="../img/300x300_v.png" data-name="{%!$data[j].fileName%}"/>
-                                    </span>
-                            </a>
-                            <label class="ui-checkbox">
-                                <input type="checkbox" data-inner="inner" data-fid="{%!$data[j].fid%}"/>
-                            </label>
-                            <div class="gx-hide">
-                                <div id="videoMore_{%=j+1%}">
-                                    <div class="dialog-vidoe">
-                                        <video class="video-js vjs-default-skin" controls preload="none" width="640" height="264"
-                                               poster="../img/300x300_v.png"
-                                               data-setup="{}">
-                                            <source src="{%!$data[j].path%}" type='video/mp4' />
-                                            <source src="{%!$data[j].path%}" type='video/webm' />
-                                            <source src="{%!$data[j].path%}" type='video/ogg' />
-                                            <track kind="captions" src="{%!$data[j].path%}" srclang="en" label="English"><!-- Tracks need an ending tag thanks to IE9 -->
-                                            <track kind="subtitles" src="{%!$data[j].path%}" srclang="en" label="English"><!-- Tracks need an ending tag thanks to IE9 -->
-                                            <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
-                                        </video>
-                                    </div>
-                                    <div class="album-other">
-                                        <a href="{%!$data[j].path%}" class="album-download" download="{%!$data[j].fileName%}"><i></i>下载</a>
-                                        <span class="album-intro"><i></i>信息</span>
-                                        <div class="img-more-infor gx-hide">
-                                            <!--<span>{%!$data[j].fileCreatedTime%}</span>-->
-                                            <!--<span>{%!$data[j].fileCreatedLocation%}</span>-->
-                                            <span>{%!$data[j].fileName%}</span>
+                                        <div class="album-other">
+                                            <a href="{%!$data[j].path%}" class="album-download" download="{%!$data[j].fileName%}"><i></i>下载</a>
+                                            <span class="album-intro"><i></i>信息</span>
+                                            <div class="img-more-infor gx-hide">
+                                                <!--<span>{%!$data[j].fileCreatedTime%}</span>-->
+                                                <!--<span>{%!$data[j].fileCreatedLocation%}</span>-->
+                                                <span>{%!$data[j].fileName%}</span>
+                                            </div>
+                                            <span class="album-del" data-fid="{%!$data[j].fid%}"><i></i>删除</span>
                                         </div>
-                                        <span class="album-del" data-fid="{%!$data[j].fid%}"><i></i>删除</span>
                                     </div>
                                 </div>
-                            </div>
-                        </li>
-                        {%}%}
-                    </script>
+                            </li>
+                            {%}%}
+                        </script>
+                    </div>
                 </div>
+
             </div>
             <div class="album-btn">
                 <a class="download-btn" href="javascript:;">下载</a>

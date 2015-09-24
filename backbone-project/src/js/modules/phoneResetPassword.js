@@ -81,8 +81,7 @@ define(function (require, exports, module) {
                                 lock = false;
 
                             }else if(res.code != 0){
-                                showToast('服务器繁忙，号码校验超时');
-                                //ok = false;
+                                ok = false;
                                 lock = true;
                             }
                         },
@@ -115,7 +114,7 @@ define(function (require, exports, module) {
                             flag = 2;
 
                         }else if(res.code != 0){
-                            showToast(res.msg);
+                            //showToast(res.msg);
                             console.log(res.msg);
                             flag = 0;
 

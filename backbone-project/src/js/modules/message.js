@@ -15,6 +15,7 @@ define(function (require, exports, module) {
     var header = require('mod/inner-page-header').instance;
     require('gxdialog');
 
+    $.gxDialog.defaults.background = '#000';
     var MessageView = Backbone.View.extend({
         el: $('.MessageView'),
         events: {

@@ -19,7 +19,7 @@ define(function (require, exports, module) {
 
     //现实数据的状态， 所有，删除的
     var displayStatus = 0;
-
+    $.gxDialog.defaults.background = '#000';
     var PhoneBookView = Backbone.View.extend({
         el: $('.MessageView'),
         events: {
@@ -162,6 +162,23 @@ define(function (require, exports, module) {
                     },
                     unitEmail: {
                         email: true
+                    }
+                },
+                messages:{
+                    name:{
+                        required: "请输入正确的名字",
+                        minlength: "请输入正确的名字"
+                    },
+                    phone:{
+                        required: "请输入正确的手机号",
+                        minlength: "请输入正确的手机号",
+                        maxlength: "请输入正确的手机号"
+                    },
+                    homeEmail: {
+                        email: "请输入正确的邮箱地址"
+                    },
+                    unitEmail: {
+                        email: "请输入正确的邮箱地址"
                     }
                 }
             });
