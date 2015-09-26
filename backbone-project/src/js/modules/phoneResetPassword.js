@@ -114,7 +114,6 @@ define(function (require, exports, module) {
                             flag = 2;
 
                         }else if(res.code != 0){
-                            //showToast(res.msg);
                             console.log(res.msg);
                             flag = 0;
 
@@ -303,11 +302,11 @@ define(function (require, exports, module) {
                     success: function(res) {
                         if (res.code == 0) {
                             console.log(res.msg);
-
                             _this.$('.forgetPWD-content').hide();
                             _this.$('.settingPWD-content').show();
                         } else{
-                            console.log(res.msg);
+                            //console.log(res.msg);
+                            showToast(res.msg);
                         }
                     },
                     error: function(err) {

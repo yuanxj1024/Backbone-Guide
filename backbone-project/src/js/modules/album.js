@@ -69,6 +69,8 @@ define(function (require, exports, module) {
                 header.render();
                 _this.scrollBox();
                 _this.loadData(_this.iType,1,_this.pNum);
+                window.dropList();
+                window.signOut(_this.$('#sign-out'));
             });
 
         },
@@ -90,7 +92,7 @@ define(function (require, exports, module) {
 
             $.ajax({
                 url: numUrl,
-                //type: 'POST',
+                type: 'POST',
                 cache: false,
                 dataType: window.DEBUG_TEST_DATA ? 'json':'jsonp',
                 timeout: 8000,
@@ -123,7 +125,7 @@ define(function (require, exports, module) {
 
             $.ajax({
                 url: listUrl,
-                //type: 'POST',
+                type: 'POST',
                 cache: false,
                 dataType: window.DEBUG_TEST_DATA ? 'json':'jsonp',
                 timeout: 8000,
@@ -208,10 +210,12 @@ define(function (require, exports, module) {
             var _this = this;
             _this.$('.item-iBox').show();
             _this.$('.item-vBox').hide();
+            num = 1;
 
             if (_this.$('.img-menu').hasClass('curr')) {
                 return false;
             }else{
+                _this.loadData(_this.iType,1,_this.pNum);
                 _this.$('.video-menu').removeClass('curr');
                 _this.$('.img-menu').addClass('curr');
                 var $vcked= _this.$('#video-view').find('input[type=checkbox]');
@@ -223,6 +227,7 @@ define(function (require, exports, module) {
             var _this = this;
             _this.$('.item-iBox').hide();
             _this.$('.item-vBox').show();
+            num = 1;
 
             if (_this.$('.video-menu').hasClass('curr')) {
                 return false;
@@ -241,7 +246,7 @@ define(function (require, exports, module) {
 
             $.ajax({
                 url: listUrl,
-                //type: 'POST',
+                type: 'POST',
                 dataType: window.DEBUG_TEST_DATA ? 'json':'jsonp',
                 timeout: 8000,
                 cache: false,
@@ -281,6 +286,7 @@ define(function (require, exports, module) {
                 rel: 'group2',
                 transition: "fade",
                 opacity: '0.6',
+                width: 350,
                 onLoad: function(){
                     $('.img-more-infor').hide();
                 },
@@ -422,20 +428,37 @@ define(function (require, exports, module) {
                         return false;
                     }
                     var _el = $('#img-view').find('.album-time');
+                    var item, domTime, jsonTime;
                     $.each(_el, function(index, val){
                         var self = $(this);
-                        var domTime = self.find('.item-group-time').text();
+                        domTime = self.find('.item-group-time').text().replace(/\s+/g,"");
                         $.each(res, function(idx, v) {
-                            var item = v.newFilesModelList;
-                            var jsonTime = v.ctime
+                            item = v.newFilesModelList;
+                            jsonTime = new Date(v.ctime).format('yyyy-MM-dd').replace(/\s+/g,"");
                             if (jsonTime == domTime) {
                                 var tpl = $('#imgMore-tmpl').html();
                                 var tplFun = doT.template(tpl);
                                 self.next('.album-item').find('ul').append(tplFun(item));
                                 _this.photoBox();
+                                $('img.lazyload-img').lazyload({
+                                    effect : "fadeIn",
+                                    container: $(".album-box-bd")
+                                });
+                            }else{
+                                var _tpl = $('#img-tmpl').html();
+                                var _tplFun = doT.template(_tpl);
+                                $('#img-view').append(_tplFun(res));
+                                _this.photoBox();
+                                $('img.lazyload-img').lazyload({
+                                    effect : "fadeIn",
+                                    container: $(".album-box-bd")
+                                });
+                                return false;
                             }
                         });
+                        return false;
                     });
+
                 },
                 error: function(err) {
                     console.log("error");
@@ -452,7 +475,7 @@ define(function (require, exports, module) {
             var listUrl = AppApi.album.findFiles;
             $.ajax({
                 url: listUrl,
-                //type: 'POST',
+                type: 'POST',
                 dataType: window.DEBUG_TEST_DATA ? 'json':'jsonp',
                 timeout: 8000,
                 cache: false,
@@ -477,12 +500,10 @@ define(function (require, exports, module) {
                     $.each(_el, function(index, val){
                         var self = $(this);
                         domTime = Date.parse(self.find('.item-group-time').text());
+                        domTime = self.find('.item-group-time').text().replace(/\s+/g,"");
                         $.each(res, function(idx, v) {
                             item = v.newFilesModelList;
-                            jsonTime = v.ctime;
-console.log(domTime);
-                            console.log('aaaaaaaa');
-console.log(jsonTime);
+                            jsonTime = new Date(v.ctime).format('yyyy-MM-dd').replace(/\s+/g,"");
                             if (jsonTime == domTime) {
                                 var tpl = $('#videoMore-tmpl').html();
                                 var tplFun = doT.template(tpl);
@@ -493,8 +514,10 @@ console.log(jsonTime);
                                 var _tplFun = doT.template(_tpl);
                                 $('#video-view').append(_tplFun(res));
                                 _this.videoBox();
+                                return false;
                             }
                         });
+                        return false;
                     });
 
                 },

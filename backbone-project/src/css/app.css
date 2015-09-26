@@ -270,7 +270,8 @@ select {
  *  Known issue: inner spacing remains in IE 6.
  */
 button,
-html input[type="button"], input[type="reset"],
+html input[type="button"],
+input[type="reset"],
 input[type="submit"] {
   -webkit-appearance: button;
   /* 2 */
@@ -943,10 +944,8 @@ body {
 
 .yun-space span {
   display: inline-block; }
-
 .yun-space i {
   font-style: normal; }
-
 .yun-space .space-progress {
   height: 10px;
   width: 60px;
@@ -984,10 +983,10 @@ body {
       display: block;
       padding-bottom: 62px;
       border-radius: 30px 30px 0 0;
-      -moz-transition: background 0.3s ease-out, color 0.3s ease-out;
-      -o-transition: background 0.3s ease-out, color 0.3s ease-out;
-      -webkit-transition: background 0.3s ease-out, color 0.3s ease-out;
-      transition: background 0.3s ease-out, color 0.3s ease-out; }
+      -moz-transition: background .3s ease-out, color .3s ease-out;
+      -o-transition: background .3s ease-out, color .3s ease-out;
+      -webkit-transition: background .3s ease-out, color .3s ease-out;
+      transition: background .3s ease-out, color .3s ease-out; }
     .man-nav li a:hover {
       background: url(../../img/nav_hover.png) repeat-x left bottom; }
     .man-nav li span {
@@ -1013,11 +1012,11 @@ body {
   bottom: 0;
   left: 0; }
 
-.drop-list {
+.hd-drop-list {
   position: absolute;
   top: 36px;
-  right: -10px;
-  width: 70px;
+  right: 0;
+  min-width: 80px;
   padding: 0 0 5px;
   text-align: center;
   background-color: #eee;
@@ -1060,10 +1059,10 @@ body {
   background-color: #fff;
   width: 182px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
-  -moz-transition: background-color ease-in-out 0.15s, border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-  -o-transition: background-color ease-in-out 0.15s, border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-  -webkit-transition: background-color ease-in-out 0.15s, border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-  transition: background-color ease-in-out 0.15s, border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s; }
+  -moz-transition: background-color ease-in-out .15s, border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  -o-transition: background-color ease-in-out .15s, border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  -webkit-transition: background-color ease-in-out .15s, border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+  transition: background-color ease-in-out .15s, border-color ease-in-out .15s, box-shadow ease-in-out .15s; }
 
 .gx-textbox:focus {
   border-color: #66afe9;
@@ -1130,10 +1129,10 @@ textarea.gx-textbox {
   font-weight: normal;
   line-height: 1.5;
   vertical-align: middle;
-  -moz-transition: background-color 0.3s ease-out, border-color 0.3s ease-out;
-  -o-transition: background-color 0.3s ease-out, border-color 0.3s ease-out;
-  -webkit-transition: background-color 0.3s ease-out, border-color 0.3s ease-out;
-  transition: background-color 0.3s ease-out, border-color 0.3s ease-out; }
+  -moz-transition: background-color .3s ease-out, border-color .3s ease-out;
+  -o-transition: background-color .3s ease-out, border-color .3s ease-out;
+  -webkit-transition: background-color .3s ease-out, border-color .3s ease-out;
+  transition: background-color .3s ease-out, border-color .3s ease-out; }
 
 .gx-button:hover,
 .gx-button:focus {
@@ -1633,6 +1632,8 @@ label.cked:after {
   padding-left: 30px;
   background: #d5d5d5;
   cursor: pointer; }
+  .mail-list-left span {
+    pointer-events: none; }
 
 .mail-list-left.hover {
   background: #b5b5b5; }
@@ -1799,7 +1800,7 @@ label.cked:after {
 .letter-list {
   position: absolute;
   top: 10px;
-  right: 10px;
+  right: 15px;
   font-size: 12px;
   width: 12px;
   text-align: center;
@@ -1808,7 +1809,8 @@ label.cked:after {
   color: #3ab6ea; }
 
 .letter-list li {
-  cursor: pointer; }
+  cursor: pointer;
+  padding: 2px 10px; }
 
 /*右侧内容*/
 .right-sidebar {
@@ -1929,11 +1931,10 @@ label.cked:after {
   height: 40px;
   line-height: 40px;
   width: 100%;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   font-size: 14px;
   color: #38a7e2;
-  padding: 0 30px;
   background: #e3e3e3; }
 
 .contact-details-container-none {
@@ -2151,24 +2152,20 @@ label.cked:after {
 
 .message-menu ul {
   overflow: hidden; }
-
 .message-menu li {
   height: 40px;
   line-height: 40px; }
-
 .message-menu a {
   display: block;
   border-top: 1px solid #cacaca;
   padding-left: 30px;
-  -moz-transition: background-color 0.3s ease-out, border-color 0.3s ease-out;
-  -o-transition: background-color 0.3s ease-out, border-color 0.3s ease-out;
-  -webkit-transition: background-color 0.3s ease-out, border-color 0.3s ease-out;
-  transition: background-color 0.3s ease-out, border-color 0.3s ease-out; }
-
+  -moz-transition: background-color .3s ease-out, border-color .3s ease-out;
+  -o-transition: background-color .3s ease-out, border-color .3s ease-out;
+  -webkit-transition: background-color .3s ease-out, border-color .3s ease-out;
+  transition: background-color .3s ease-out, border-color .3s ease-out; }
 .message-menu a:hover {
   background: #b5b5b5;
   color: #000; }
-
 .message-menu .curr a {
   background: #b5b5b5;
   color: #000; }
@@ -2188,6 +2185,7 @@ label.cked:after {
     padding: 8px 5px 8px 15px;
     color: #717171;
     margin-bottom: 1px; }
+  .message-listbox dl.hover,
   .message-listbox dl:hover {
     background: #dfeef3;
     cursor: pointer; }
@@ -2304,7 +2302,6 @@ label.cked:after {
 .album-setting button, .album-setting a {
   display: inline-block;
   margin-left: 16px; }
-
 .album-setting .album-all,
 .album-setting .album-undo {
   outline: none;
@@ -2317,12 +2314,12 @@ label.cked:after {
 .album-item ul {
   overflow: hidden;
   padding: 0 1%; }
-
 .album-item li {
   width: 14.667%;
   float: left;
   position: relative;
-  margin: 0 1% 2% 1%; }
+  margin: 0 1% 2% 1%;
+  overflow: hidden; }
   .album-item li a {
     padding-top: 100%;
     display: block;
@@ -2338,7 +2335,6 @@ label.cked:after {
     background-repeat: no-repeat;
     -webkit-background-size: cover;
     background-size: cover; }
-
 .album-item .ui-checkbox {
   position: absolute;
   right: 5%;
@@ -2429,10 +2425,8 @@ label.cked:after {
 .detail-content .record-list .contact-list-data {
   overflow-y: scroll;
   padding-bottom: 55px; }
-
 .detail-content .record-list .group-letter-name li:hover {
   background-color: #CACACA; }
-
 .detail-content .record-list .page-wrap {
   background-color: #fff;
   position: fixed;
@@ -2446,6 +2440,21 @@ label.cked:after {
 .new-contact-footer {
   background-color: #e3e3e3;
   color: #38a7e2; }
+
+.phonebook-right-wrap .right-detail {
+  position: relative;
+  height: 100%;
+  overflow-y: scroll; }
+  .phonebook-right-wrap .right-detail .load-more {
+    cursor: pointer;
+    width: 100%;
+    position: absolute;
+    bottom: 36px;
+    background-color: #DFDFDF;
+    height: 40px;
+    text-align: center;
+    line-height: 40px;
+    color: #3ab6ea; }
 
 .agreement-container {
   width: 1000px;
@@ -2504,4 +2513,4 @@ label.cked:after {
   .agreemnt .red {
     color: #f00; }
 
-/*# sourceMappingURL=maps/app.css.map */
+/*# sourceMappingURL=app.css.map */

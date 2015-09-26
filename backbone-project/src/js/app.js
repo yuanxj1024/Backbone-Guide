@@ -17,7 +17,6 @@ define(function(require, exports, module) {
 
     });
 
-
     Date.prototype.format = function(format) {
         var date = {
             "M+": this.getMonth() + 1,
@@ -64,7 +63,39 @@ define(function(require, exports, module) {
         }
         return result;
     };
-    var num = window.num = 1,
-        lock = window.lock = false;
+    var num = window.num = 1;
+    var lock = window.lock = false;
+    window.dropList = function(){
+        $('.yun-user').hover(function() {
+            $('.hd-drop-list').show();
+        }, function() {
+            $('.hd-drop-list').hide();
+
+        });
+    };
+    window.signOut = function($elem){
+        $elem.on('click', function(e) {
+            e.preventDefault();
+            $.gxDialog({
+                title: '确认注销',
+                width: 400,
+                info: '确定注销云服务吗？',
+                ok: function(){
+                    $.when($.ajax({
+                        url: AppApi.account.logout
+                    })).then(function(){
+                        auth.setUser({});
+                        window.App.Views.go('login');
+                    }).fail(function(){
+                        auth.setUser({});
+                        window.App.Views.go('login');
+                    });
+                },
+                no: function(){
+                }
+
+            });
+        });
+    };
 
 });

@@ -97,7 +97,7 @@
         </div>
     </div>
     <!--右侧-->
-    <div class="mainbar">
+    <div class="mainbar phonebook-right-wrap">
         <div class="detail-content">
             <!--通讯录-->
             <div class="right-detail">
@@ -158,10 +158,11 @@
                         <li>Y</li>
                         <li>Z</li>
                     </ul>
-                    <div class="page-wrap tcdPageCode">
-
-                    </div>
+                    <!--<div class="page-wrap tcdPageCode">-->
+<!---->
+                    <!--</div>-->
                 </div>
+                <div id="load-more" class="load-more">点击加载更多</div>
             </div>
             <!--右侧内容-->
             <div class="right-sidebar">
@@ -184,7 +185,7 @@
                                 <input type="text" id="contact-nickname" class="gx-textbox" placeholder="请输入昵称" name="appellation"/>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="gx-textbox" placeholder="请输入手机号码" name="phone"/>
+                                <input type="text" id="contact-phone" class="gx-textbox" placeholder="请输入手机号码" name="phone"/>
                             </div>
                             <div class="group-contact">
                                 <!--删除状态-->
@@ -208,7 +209,7 @@
                                 <!--</div>-->
                                 <div class="group-contact-text form-group gx-textbox  fix-error-pos">
                                     <div class="contact-select">
-                                        <span class="replace-item drop-list-area">单位电话</span>
+                                        <span id="phone-type" class="replace-item drop-list-area">单位电话</span>
                                         <i class="contact-select-icon drop-list-area"></i>
                                         <div class="contact-select-pop hide drop-list float-menu">
                                             <div class="contact-select-list">
@@ -221,13 +222,14 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <!--<input type="text" id="contact-mobile" class="select-text input-phone" placeholder="请输入电话" name="mobile"/>-->
                                     <input type="text" class="select-text input-phone input-unitMobile" placeholder="请输入固定电话" name="unitMobile"/>
                                     <input type="text" class="select-text hide input-phone input-homeMobile" placeholder="请输入家庭电话" name="homeMobile"/>
                                     <!--<div class="add-icon"></div>-->
                                 </div>
                                 <div class="group-contact-text form-group gx-textbox fix-error-pos">
                                     <div class="contact-select">
-                                        <span class="replace-item drop-list-area">个人邮箱</span>
+                                        <span id="email-type" class="replace-item drop-list-area">个人邮箱</span>
                                         <i class="contact-select-icon drop-list-area"></i>
                                         <div class="contact-select-pop hide drop-list float-menu">
                                             <div class="contact-select-list">
@@ -244,10 +246,10 @@
                                     <!--<div class="add-icon"></div>-->
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="gx-textbox" placeholder="请输入公司" name="company"/>
+                                    <input type="text" id="contact-company" class="gx-textbox" placeholder="请输入公司" name="company"/>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text" class="gx-textbox" placeholder="请输入职务" name="position"/>
+                                    <input type="text" id="contact-position" class="gx-textbox" placeholder="请输入职务" name="position"/>
                                 </div>
                                 <div class="form-group">
                                     <input id="edit-contact-id" type="hidden" name="id" value=""/>
@@ -263,9 +265,9 @@
                 </div>
 
                 <div class="mainbar-bottom">
-                    <div class="new-contact">
+                    <div class="new-contact clearfix">
                         <!--<div class="edit-contact-ok gx-left">下载</div>-->
-                        <div class="edit-contact-del gx-right btn-contact-delete">删除</div>
+                        <div class="edit-contact-del btn-contact-delete">删除</div>
                     </div>
                 </div>
                 </div>

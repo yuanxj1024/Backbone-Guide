@@ -18,7 +18,7 @@ define(function (require, exports, module) {
 
 
     var CalllogView = Backbone.View.extend({
-        el: $('.MessageView'),
+        el: $('.CalllogView'),
         events: {
             'mouseover .menu-hover': function() {
                 $('.menu-layer').show();
@@ -45,6 +45,8 @@ define(function (require, exports, module) {
                 header.render();
                 self.groupList();
                 self.showList();
+                window.dropList();
+                window.signOut(self.$('#sign-out'));
             });
             return self;
         },
@@ -95,6 +97,7 @@ define(function (require, exports, module) {
 
         },
         groupItemClickHandler: function(e){
+            e.preventDefault();
             $('.group-item').removeClass('hover');
             var el = $(e.target);
             el.addClass('hover');

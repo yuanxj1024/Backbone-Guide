@@ -21,9 +21,9 @@ define(function (require, exports, module) {
     var displayStatus = 0;
     $.gxDialog.defaults.background = '#000';
     var PhoneBookView = Backbone.View.extend({
-        el: $('.MessageView'),
+        el: $('.PhoneBookView'),
         events: {
-            'click .menu-hover': function() {
+            'mouseover .menu-hover': function() {
                 $('.menu-layer').show();
                 return false;
             },
@@ -57,14 +57,14 @@ define(function (require, exports, module) {
             },
             'click .drop-list li': function(e){
                 var tar = $(e.target),
-                  block = tar.parents('.drop-list');
+                    block = tar.parents('.drop-list');
                 block.hide();
                 block.prevAll('span').text(tar.text());
 
-                if(tar.attr('tag')){
-                    $('.'+tar.attr('tag')).hide();
-                    $('.'+ tar.attr('for')).show();
-                }
+                //if(tar.attr('tag')){
+                //    $('.'+tar.attr('tag')).hide();
+                //    $('.'+ tar.attr('for')).show();
+                //}
             },
             'click .contact-item-detail': 'editContactHandler',
             'click .cloud-container':function(){
@@ -81,25 +81,33 @@ define(function (require, exports, module) {
                     currentPage: 1
                 });
                 return false;
-            }
+            },
+            'click .letter-list li': function(e){
+                this.firstLetter = $(e.target).text();
+                if(this.firstLetter =='#'){
+                    this.firstLetter = '';
+                }
+                this.searchHandler();
+                return false;
+            },
+            'click #load-more': 'nextPageList'
         },
         initialize: function() {
             this.user = auth.getUser();
             this.contactItems = [];
             this.render();
         },
-        register:function(e){
-            e.preventDefault();
-            return this;
-        },
         render: function(){
             var self = this;
+            this.currentPage = 1;
             doT.static('/templates/phoneBook.html', function(html) {
                 self.$el.html(html);
                 self.$el.show();
                 header.render();
                 self.initForm();
                 self.renderList();
+                window.dropList();
+                window.signOut(self.$('#sign-out'));
             });
             return self;
         },
@@ -109,7 +117,7 @@ define(function (require, exports, module) {
             arg = $.extend({
                 deleteStatus: displayStatus ||0,
                 currentPage:1,
-                pageSize:15
+                pageSize:12
             }, arg);
 
             $.ajax({
@@ -128,14 +136,13 @@ define(function (require, exports, module) {
                         }else if(displayStatus == 1){
                             $('#del-total').text(result.totalCount);
                         }
-                        if(!self.pagination){
-                            self.initPaginaton({
-                                pageCount: Math.ceil(result.totalCount *1.0 / arg.pageSize * 1.0),
-                                current: arg.currentPage
-                            });
+                        if(result.data){
+                            self.contactItems = result.data || [];
+                            $('.contact-list-data').html(tplFun(self.contactItems));
+                        }else{
+                            self.currentPage -= 1;
+                            showAlert('没有更多数据了', 1000);
                         }
-                        self.contactItems = result.data || [];
-                        $('.contact-list-data').html(tplFun(self.contactItems));
                     }
                 }
             });
@@ -185,7 +192,7 @@ define(function (require, exports, module) {
 
             $('#creatorId').val(auth.getUser().id);
 
-        } ,
+        },
         //添加联系人
         saveContact: function() {
             var self = this;
@@ -193,10 +200,11 @@ define(function (require, exports, module) {
             var isUpdate = !!$('#edit-contact-id').val();
 
             $('input[name="creatorId"]').val(this.user.id);
+
             if(isValid){
                 $.when($.ajax({
                     url: isUpdate ? appapi.phoneBook.update: appapi.phoneBook.add,
-                    method: 'POST',
+                    method: 'get',
                     data: this.form.serialize()
                 })).done(function(result){
                     if(typeof result == 'string'){
@@ -237,8 +245,9 @@ define(function (require, exports, module) {
             $('#edit-contact-id').val(item.id);
             $('#contact-name').val(item.name);
             $('[name="phone"]').val(item.phone);
+            $('[name="mobile"]').val(item.mobile);
             $('#contact-nickname').val(item.appellation);
-            $('[name="homeEmail"]').val(item.homeEmail);
+            $('[name="email"]').val(item.email);
             $('[name="company"]').val(item.company);
             $('[name="position"]').val(item.position);
 
@@ -273,11 +282,25 @@ define(function (require, exports, module) {
             }
         },
         searchHandler: function(){
-            var val = $('#input-contact-search');
+            this.currentPage = 1;
+            var search  ={
+                name: $('#input-contact-search').val(),
+                firstLetter: this.firstLetter || '',
+                currentPage: this.currentPage
+            };
+
             //TODO search
-            this.renderList({
-                name: val
-            });
+            this.renderList(search);
+        },
+        nextPageList: function() {
+            this.currentPage += 1;
+            var search  ={
+                name: $('#input-contact-search').val(),
+                firstLetter: this.firstLetter || '',
+                currentPage: this.currentPage
+            };
+            this.renderList(search);
+
         },
         initPaginaton: function(arg){
             var self = this;
@@ -297,13 +320,14 @@ define(function (require, exports, module) {
         }
     });
 
-    function showAlert(msg) {
+    function showAlert(msg,timeout) {
         $.gxDialog({
             title:'提示',
             width: 400,
             info: msg,
             oktext: '确定',
-            ok:function(){}
+            ok:function(){},
+            timeout: timeout
         });
     }
 

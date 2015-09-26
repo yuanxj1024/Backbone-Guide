@@ -86,9 +86,8 @@
                         <script id="img-tmpl" type="text/x-dot-template">
                             {%if($data.length >0 ){%}
                             {%
-                                var item = {};
                                 for (var i = 0, l = $data.length; i < l; i++){
-                                item = $data[i].newFilesModelList;
+                                var item = $data[i].newFilesModelList;
                             %}
                             <div class="item-group">
                                 <div class="album-time clearfix">
@@ -159,7 +158,7 @@
                                 </a>
                                 <div class="ui-checkbox">
                                     <input type="checkbox" id="checkbox-imgMore-{%=j+1%}" class="regular-checkbox" data-inner="inner" data-fid="{%!$data[j].fid%}"/>
-                                    <label class="ck-box" for="checkbox-imgMore-{%=j+1%}" data-fid="{%!i$dataj].fid%}"></label>
+                                    <label class="ck-box" for="checkbox-imgMore-{%=j+1%}" data-fid="{%!$data[j].fid%}"></label>
                                 </div>
                                 <div class="gx-hide">
                                     <div id="inner-imgMorebox{%=j+1%}">
@@ -200,7 +199,10 @@
 
                         <script id="video-tmpl" type="text/x-dot-template">
                             {%if($data.length >=0 ){%}
-                            {%for (var i = 0, l = $data.length; i < l; i++){%}
+                            {%
+                                for (var i = 0, l = $data.length; i < l; i++){
+                                var item = $data[i].newFilesModelList;
+                            %}
                             <div class="album-time clearfix">
                                 <span class="item-group-time gx-left">
                                     {%= new Date($data[i].ctime).format('yyyy-MM-dd')%}
@@ -213,14 +215,13 @@
                             <div class="album-item">
                                 <ul>
                                     {%
-                                    var item = $data[i].newFilesModelList;
-                                    for (var j = 0, il = item.length; j < il; j++){
-                                    var random = new Date().getTime();
+                                        var random = new Date().getTime();
+                                        for (var j = 0, vl = item.length; j < vl; j++){
                                     %}
                                     <li>
                                         <a class="videobox1" href="#video_{%=j+1%}">
                                         <span style="background-image: url(../img/300x300_v.png);">
-                                            <img src="../img/300x300_v.png" data-name="{%!item[j].fileName%}" data-src="{%!$data[j].path%}"/>
+                                            <img src="../img/300x300_v.png" data-name="{%!item[j].fileName%}" data-src="{%!item[j].path%}"/>
                                         </span>
                                         </a>
                                         <div class="ui-checkbox">
@@ -229,15 +230,15 @@
                                         </div>
                                         <div class="gx-hide">
                                             <div id="video_{%=j+1%}">
-                                                <div class="dialog-vidoe">
+                                                <div class="dialog-video">
                                                     <video class="video-js vjs-default-skin" controls preload="none" width="640" height="264"
                                                            poster="../img/300x300_v.png"
                                                            data-setup="{}">
                                                         <source src="{%!item[j].path%}" type='video/mp4' />
                                                         <source src="{%!item[j].path%}" type='video/webm' />
                                                         <source src="{%!item[j].path%}" type='video/ogg' />
-                                                        <track kind="captions" src="{%!$data[j].path%}" srclang="en" label="English"><!-- Tracks need an ending tag thanks to IE9 -->
-                                                        <track kind="subtitles" src="{%!$data[j].path%}" srclang="en" label="English"><!-- Tracks need an ending tag thanks to IE9 -->
+                                                        <track kind="captions" src="{%!item[j].path%}" srclang="en" label="English"><!-- Tracks need an ending tag thanks to IE9 -->
+                                                        <track kind="subtitles" src="{%!item[j].path%}" srclang="en" label="English"><!-- Tracks need an ending tag thanks to IE9 -->
                                                         <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
                                                     </video>
                                                 </div>
@@ -281,7 +282,7 @@
                                 </div>
                                 <div class="gx-hide">
                                     <div id="videoMore_{%=j+1%}">
-                                        <div class="dialog-vidoe">
+                                        <div class="dialog-video">
                                             <video class="video-js vjs-default-skin" controls preload="none" width="640" height="264"
                                                    poster="../img/300x300_v.png"
                                                    data-setup="{}">

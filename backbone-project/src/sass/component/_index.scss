@@ -164,11 +164,11 @@
   left: 0;
 }
 
-.drop-list{
+.hd-drop-list{
   position: absolute;
   top: 36px;
-  right: -10px;
-  width: 70px;
+  right:0;
+  min-width: 80px;
   padding: 0 0 5px;
   text-align: center;
   background-color: #eee;

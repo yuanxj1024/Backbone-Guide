@@ -31,7 +31,7 @@ define(function(require, exports, module) {
     },
     setHeaderInfo: function(){
       var user = auth.getUser();
-      console.log(user);
+      //console.log(user);
       if(user && user.id){
         $('.yun-user').hide();
         $('.user-name').text(user.name || user.phone);
@@ -59,8 +59,12 @@ define(function(require, exports, module) {
       });
 
     },
+    percentage: function(num, total) {
+      return (Math.round(num / total * 10000) / 100.00 + "%");
+    },
     fileSize: function(){
-      var fileSizeUrl = AppApi.files.fileSize;
+      var fileSizeUrl = AppApi.files.fileSize,
+          _this = this;
       $.ajax({
         url: fileSizeUrl,
         type: 'POST',
@@ -70,15 +74,13 @@ define(function(require, exports, module) {
         data: {},
         success: function(res) {
           if(res.code == 0 ){
-            var userCount = 5,
-                currCount = Math.round(res.data/1024/1024/1024),
-                currCountMB = Math.round(res.data/1024/1024),
-                proportion = "";
-            var percentage = function(num, total) {
-               return (Math.round(num / total * 10000) / 100.00 + "%");
+            var userCount = 5*1024,
+                currSize = res.data,
+                //currCount = Math.round(currSize/1024/1024/1024),
+                currCount = currSize/1024/1024/1024,
+                currCountMB = Math.round(currSize/1024/1024),
+                proportion = _this.percentage(currCount, userCount);
 
-            }
-            proportion = percentage(currCount,userCount);
             $('#progress-num').animate({
               width: proportion},
             300, function() {});

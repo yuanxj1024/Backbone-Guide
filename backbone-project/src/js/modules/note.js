@@ -45,6 +45,8 @@ define(function (require, exports, module) {
                 self.$el.html(html);
                 self.$el.show();
                 header.render();
+                window.dropList();
+                window.signOut(self.$('#sign-out'));
                 self.renderNodeList({
                     pageEnable: self.Yes,
                     currentPage: 1,

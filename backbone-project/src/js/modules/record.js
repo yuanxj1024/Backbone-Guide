@@ -31,17 +31,7 @@ define(function (require, exports, module) {
             },
             'click .loadingMore': 'loadingMore',
             'click .download-btn': 'download',
-            'click .del-btn': 'dele',
-            'click .record-item': function(e){
-                var _self = $(e.target).parent();
-
-                if (_self.hasClass('curr')) {
-                    _self.removeClass('curr');
-                }else{
-                    _self.addClass('curr');
-                }
-            }
-
+            'click .del-btn': 'dele'
         },
         initialize: function() {
             this.render();
@@ -53,17 +43,19 @@ define(function (require, exports, module) {
                 _this.$el.html(html);
                 _this.$el.show();
                 header.render();
+                window.dropList();
+                window.signOut(_this.$('#sign-out'));
                 _this.loadData(_this.rType, 1, _this.pNum);
                 _this.loadNum();
                 _this.scrollBox();
+
             });
 
             return _this;
         },
         loadData:function(type, currPage, pageNum){
-            var _this = this;
+            var _this = this,
             listUrl = AppApi.record.findFiles;
-
 
             $.ajax({
                 url: listUrl,
@@ -80,7 +72,7 @@ define(function (require, exports, module) {
                     var tpl = $('#record-tmpl').html();
                     var tplFun = doT.template(tpl);
                     $('.record-list').append(tplFun(res));
-
+                    _this.selectItem();
                     //}else if(res.code != 0){
                     //    console.log("失败");
                     //}
@@ -109,7 +101,6 @@ define(function (require, exports, module) {
                         var tpl = $('#num-tmpl').html();
                         var tplFun = doT.template(tpl);
                         _this.$('#record-num').find('span').html(tplFun(res));
-
                     }else if(res.code == 1){
                         console.log("账户不存在");
                     }else{
@@ -172,9 +163,21 @@ define(function (require, exports, module) {
                             }
                         });
                     });
+                    _this.selectItem();
                 },
                 error: function(err) {
                     console.log("error");
+                }
+            });
+        },
+        selectItem: function(){
+            var _this = this;
+            _this.$('.record-item').on('click', function(e){
+                var _self = $(this);
+                if (_self.hasClass('curr')) {
+                    _self.removeClass('curr');
+                }else{
+                    _self.addClass('curr');
                 }
             });
         },
@@ -330,11 +333,7 @@ define(function (require, exports, module) {
             aLink.dispatchEvent(evt);
         }
 
-
-
-
     });
-
 
     module.exports = RecordView;
 });

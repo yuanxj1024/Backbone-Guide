@@ -37,6 +37,8 @@ define(function (require, exports, module) {
                 _this.$el.show();
                 header.render();
                 _this.loadData();
+                window.dropList();
+                window.signOut(_this.$('#sign-out'));
             });
 
             return _this;
@@ -44,7 +46,7 @@ define(function (require, exports, module) {
 
         loadData: function() {
             $.ajax({
-                method: 'GET',
+                method: 'POST',
                 url: appapi.message.group,
                 success: function(result){
                     if(typeof result == 'string'){
@@ -53,6 +55,7 @@ define(function (require, exports, module) {
                     var tpl = $('#msg-list-tpl').html();
                     var tplFun = doT.template(tpl);
                     $('.message-listbox').html(tplFun(result.data));
+                    $('.msg-num').text(result.totalCount);
                 },
                 error: function(err){
                     $('.message-listbox').html(tplFun([]));
@@ -64,7 +67,9 @@ define(function (require, exports, module) {
             $('.menu-layer').show();
         },
         msgItemClickHandler: function(e){
+            e.preventDefault();
             var el = $(e.target).parents('.message-item');
+            el.addClass('hover').siblings().removeClass('hover');
             this.currentContactor = {
                 phone: el.attr('data-phone'),
                 name: el.attr('data-name')
@@ -85,6 +90,7 @@ define(function (require, exports, module) {
             }, args);
 
             $.when($.ajax({
+                method: 'POST',
                 url: appapi.message.dialog,
                 data: arg
             })).done(function(result){

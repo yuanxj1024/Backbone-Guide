@@ -122,6 +122,10 @@
   padding-left: 30px;
   background: #d5d5d5;
   cursor: pointer;
+
+  span{
+    pointer-events: none;
+  }
 }
 .mail-list-left.hover{
   background: #b5b5b5;
@@ -288,7 +292,7 @@
 .letter-list{
   position: absolute;
   top: 10px;
-  right: 10px;
+  right: 15px;
   font-size: 12px;
   width: 12px;
   text-align: center;
@@ -298,6 +302,7 @@
 }
 .letter-list li{
   cursor: pointer;
+  padding: 2px 10px;
 }
 /*右侧内容*/
 .right-sidebar{
@@ -430,11 +435,11 @@
   height: 40px;
   line-height: 40px;
   width: 100%;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   font-size: 14px;
   color: #38a7e2;
-  padding: 0 30px;
+  //padding: 0 30px;
   background: #e3e3e3;
 }
 .contact-details-container-none{
