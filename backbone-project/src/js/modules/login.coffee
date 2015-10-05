@@ -16,6 +16,9 @@ define (require, exports, module)->
     el: $ '.LoginView'
     events:
       'click #btn-login':'login'
+      'keypress #userPWD':  (e)->
+        if e.charCode is 13
+          this.login()
     initialize: ->
       @render()
       @

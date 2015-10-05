@@ -77,7 +77,7 @@
   padding: 10px 50px 0 15px;
   cursor: pointer;
   b{
-    width: 65px;
+    width: 68px;
     display: block;
   }
 }
@@ -218,17 +218,17 @@
   background: #fff;
   position: relative;
   min-width: 680px;
-  min-height: 640px;
+  min-height: 600px;
   height: 100%;
   margin-left: 280px;
 }
 .right-detail{
   background: #f3f3f3;
-  width: 30%;
+  width: 32%;
   position: absolute;
   left: 0;
   top: 0;
-  bottom: 0;
+  //bottom: 0;
 }
 .search-back{
   width: 100%;
@@ -292,9 +292,8 @@
 .letter-list{
   position: absolute;
   top: 10px;
-  right: 15px;
+  right: 9px;
   font-size: 12px;
-  width: 12px;
   text-align: center;
   line-height: 16px;
   font-weight: bold;
@@ -302,11 +301,11 @@
 }
 .letter-list li{
   cursor: pointer;
-  padding: 2px 10px;
+  padding: 2px;
 }
 /*右侧内容*/
 .right-sidebar{
-  width: 70%;
+  width: 68%;
   height: 100%;
   min-width: 450px;
   position: absolute;
@@ -478,7 +477,7 @@
         margin: 10px 5px 0 0;
         width: 20px;
         height: 20px;
-        background: url(../img/heder-man.png) no-repeat;
+        background: url(../../img/heder-man.png) no-repeat;
         background-size: 100%;
       }
       .record-icon-0,
@@ -605,8 +604,9 @@
   .note-col-word{
       padding: 20px 10px;
     p{
-      min-height: 80px;
+      height: 75px;
       word-break:break-all;
+      overflow: hidden;
     }
   }
 }
@@ -629,11 +629,13 @@
   .note-list-detail-word{
     padding: 20px 10px;
     color: #666;
-    height: 330px;
-    overflow-y: scroll;
+    max-height: 330px;
+    overflow-y: auto;
     p{
       line-height: 18px;
       text-indent: 2em;
+      word-break: break-all;
+      text-align: left;
     }
   }
   .note-list-detail-bottom{
@@ -678,6 +680,10 @@
 }
 
 .of-y{
+  overflow: hidden;
+  overflow-y: auto;
+}
+.note-list-group{
   overflow: hidden;
   overflow-y: auto;
 }

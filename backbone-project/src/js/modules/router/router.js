@@ -42,6 +42,8 @@ define(function (require, exports, module) {
             'phoneBook': 'showPhoneBook',
             'calllog': 'showCalllog',
             'record': 'showRecord',
+            'user/service': 'BYService',
+            'privacy/service': 'showPrivacy',
             'list/:name': 'list',
             '*router': 'other'
         },
@@ -114,6 +116,18 @@ define(function (require, exports, module) {
                     self.loadView(new view());
                 });
             }
+        },
+        BYService: function(){
+            var self = this;
+            require.async('mod/agreement', function(view) {
+                self.loadView(new view());
+            });
+        },
+        showPrivacy: function(){
+            var self = this;
+            require.async('mod/privacy.js', function(view) {
+                self.loadView(new view());
+            });
         }
     });
 

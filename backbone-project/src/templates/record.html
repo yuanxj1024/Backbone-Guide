@@ -62,6 +62,9 @@
         <div class="detail-content">
             <div id="record-view" class="of-y">
                 <div class="record-list"></div>
+                <div class="loadingMore">
+                    <a href="javascript:;" data-num="1">加载更多</a>
+                </div>
             </div>
             <script id="record-tmpl" type="text/x-dot-template">
                 {%if($data.length >=0 ){%}
@@ -70,7 +73,7 @@
                     <ul>
                         {%
                         var item = $data[i].newFilesModelList;
-                        for (var j = 0, l = item.length; j < l; j++){
+                        for (var j = 0, il = item.length; j < il; j++){
                         %}
                         <li class="record-item" data-fid="{%!item[j].fid%}" data-path="{%!item[j].path%}" data-name="{%!item[j].fileName%}">
                             <div class="call-record-sound-first">
@@ -78,17 +81,12 @@
                                 <span>{%!item[j].fileName%}</span>
                             </div>
                             <div class="call-record-sound-two">
-                                <span class="record-time">{%!$data[i].ctime%}</span>
-                                <!--<span>01:12:12</span>-->
+                                <span class="record-time">{%=new Date($data[i].ctime).format('yyyy-MM-dd hh:mm:ss')%}</span>
+                                <!--<span>{%=new Date($data[i].ctime).format('hh:mm:ss')%}</span>-->
                             </div>
                         </li>
                         {%}%}
                     </ul>
-                </div>
-                {%}%}
-                {%if($data.length >=20 ){%}
-                <div class="loadingMore">
-                    <a href="javascript:;" data-num="1">加载更多</a>
                 </div>
                 {%}%}
                 {% }else{ %}
@@ -97,6 +95,7 @@
                 </div>
                 {%}%}
             </script>
+
             <div class="album-btn">
                 <a class="download-btn" href="javascript:;">下载</a>
                 <a class="del-btn" href="javascript:;">删除</a>

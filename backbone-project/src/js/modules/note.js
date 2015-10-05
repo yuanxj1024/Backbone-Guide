@@ -47,6 +47,7 @@ define(function (require, exports, module) {
                 header.render();
                 window.dropList();
                 window.signOut(self.$('#sign-out'));
+                window.scrollHeight(self.$('.note-list-group'), 36);
                 self.renderNodeList({
                     pageEnable: self.Yes,
                     currentPage: 1,

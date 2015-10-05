@@ -27,6 +27,13 @@ body {
   &.RegisterView{
     overflow-y: auto;
   }
+  &.agreementView{
+    overflow-y: auto;
+  }
+  &.privacyView{
+    overflow-y: auto;
+  }
+
 }
 .loading-layer {
   display: none;

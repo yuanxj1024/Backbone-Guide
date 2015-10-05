@@ -108,6 +108,8 @@ define(function (require, exports, module) {
                 self.renderList();
                 window.dropList();
                 window.signOut(self.$('#sign-out'));
+                window.scrollHeight(self.$('.contact-form-wrap'), 76);
+                window.scrollHeight(self.$('.record-list'), 167);
             });
             return self;
         },
@@ -117,7 +119,7 @@ define(function (require, exports, module) {
             arg = $.extend({
                 deleteStatus: displayStatus ||0,
                 currentPage:1,
-                pageSize:12
+                pageSize:14
             }, arg);
 
             $.ajax({
@@ -138,7 +140,7 @@ define(function (require, exports, module) {
                         }
                         if(result.data){
                             self.contactItems = result.data || [];
-                            $('.contact-list-data').html(tplFun(self.contactItems));
+                            $('.contact-list-data').append(tplFun(self.contactItems));
                         }else{
                             self.currentPage -= 1;
                             showAlert('没有更多数据了', 1000);
@@ -241,16 +243,24 @@ define(function (require, exports, module) {
         },
         bindFormForEdit: function(item){
             this.form[0].reset();
+            if(item.phones && typeof item.phones == 'string'){
+                item.phones = JSON.parse(item.phones);
+            }
+            //console.log(item);
             $('.contact-form-wrap').show();
             $('#edit-contact-id').val(item.id);
             $('#contact-name').val(item.name);
-            $('[name="phone"]').val(item.phone);
-            $('[name="mobile"]').val(item.mobile);
+            $('[name="phone"]').val(item.phones[0]['phoneNumber']);
+            //$('[name="mobile"]').val(item.phones[1]['phoneNumber']);
+            if(item.phones.length >1 && item.phones[1]['phoneNumber'] ){
+                $('#phone-type').text(item.phones[1]['']);
+              $('[name="unitMobile"]').val(item.phones[1]['phoneNumber'])
+            }
+
             $('#contact-nickname').val(item.appellation);
             $('[name="email"]').val(item.email);
             $('[name="company"]').val(item.company);
             $('[name="position"]').val(item.position);
-
         },
         deleteContactHanler: function(){
             var id = $('#edit-contact-id').val();
@@ -283,6 +293,7 @@ define(function (require, exports, module) {
         },
         searchHandler: function(){
             this.currentPage = 1;
+            $('.contact-list-data').children().remove();
             var search  ={
                 name: $('#input-contact-search').val(),
                 firstLetter: this.firstLetter || '',

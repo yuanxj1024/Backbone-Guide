@@ -16,7 +16,12 @@ define(function(require, exports, module) {
   exports = Backbone.View.extend({
     el: $('.LoginView'),
     events: {
-      'click #btn-login': 'login'
+      'click #btn-login': 'login',
+      'keypress #userPWD': function(e) {
+        if (e.charCode === 13) {
+          return this.login();
+        }
+      }
     },
     initialize: function() {
       this.render();

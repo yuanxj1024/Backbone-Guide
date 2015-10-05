@@ -97,5 +97,13 @@ define(function(require, exports, module) {
             });
         });
     };
-
+    window.scrollHeight = function($elem, num){
+        var wrapHeight = $(window).height(),
+            scrollHeight = wrapHeight - num;
+        $elem.css({
+            'height': scrollHeight,
+            'overflow': 'hidden',
+            'overflow-y': 'auto'
+        });
+    };
 });

@@ -112,8 +112,6 @@
   text-align: center;
   padding: 10px 0;
 }
-.msg-record-infor{
-}
 .msg-list-icon{
   position: absolute;
   display: block;
@@ -126,6 +124,7 @@
 }
 .msg-record-infor{
   overflow: hidden;
+  overflow-y: auto;
   li{
     margin: 5px 0;
   }

@@ -286,7 +286,7 @@ define(function (require, exports, module) {
                 rel: 'group2',
                 transition: "fade",
                 opacity: '0.6',
-                width: 350,
+                width: 500,
                 onLoad: function(){
                     $('.img-more-infor').hide();
                 },
@@ -408,7 +408,7 @@ define(function (require, exports, module) {
             var listUrl = AppApi.album.findFiles;
             $.ajax({
                 url: listUrl,
-                type: 'POST',
+                //type: 'POST',
                 dataType: window.DEBUG_TEST_DATA ? 'json':'jsonp',
                 timeout: 8000,
                 cache: false,
@@ -435,15 +435,17 @@ define(function (require, exports, module) {
                         $.each(res, function(idx, v) {
                             item = v.newFilesModelList;
                             jsonTime = new Date(v.ctime).format('yyyy-MM-dd').replace(/\s+/g,"");
+                            
                             if (jsonTime == domTime) {
                                 var tpl = $('#imgMore-tmpl').html();
                                 var tplFun = doT.template(tpl);
-                                self.next('.album-item').find('ul').append(tplFun(item));
+                                self.next('.album-item').find('ul').append(tplFun(res));
                                 _this.photoBox();
                                 $('img.lazyload-img').lazyload({
                                     effect : "fadeIn",
                                     container: $(".album-box-bd")
                                 });
+                                return false;
                             }else{
                                 var _tpl = $('#img-tmpl').html();
                                 var _tplFun = doT.template(_tpl);
@@ -455,6 +457,7 @@ define(function (require, exports, module) {
                                 });
                                 return false;
                             }
+
                         });
                         return false;
                     });
@@ -499,7 +502,6 @@ define(function (require, exports, module) {
 
                     $.each(_el, function(index, val){
                         var self = $(this);
-                        domTime = Date.parse(self.find('.item-group-time').text());
                         domTime = self.find('.item-group-time').text().replace(/\s+/g,"");
                         $.each(res, function(idx, v) {
                             item = v.newFilesModelList;
@@ -507,8 +509,9 @@ define(function (require, exports, module) {
                             if (jsonTime == domTime) {
                                 var tpl = $('#videoMore-tmpl').html();
                                 var tplFun = doT.template(tpl);
-                                self.next('.album-item').find('ul').append(tplFun(item));
+                                self.next('.album-item').find('ul').append(tplFun(res));
                                 _this.videoBox();
+                                return false;
                             }else{
                                 var _tpl = $('#video-tmpl').html();
                                 var _tplFun = doT.template(_tpl);
@@ -516,6 +519,7 @@ define(function (require, exports, module) {
                                 _this.videoBox();
                                 return false;
                             }
+
                         });
                         return false;
                     });
@@ -534,7 +538,8 @@ define(function (require, exports, module) {
                 _ck = _this.$('.ck-box'),
                 imgName = '',
                 srcData = '',
-                ckArr = [];
+                ckArr = [],
+                srcArr = [];
 
             $.each(_ck, function(idx, val) {
                 var self = $(this);
@@ -663,20 +668,21 @@ define(function (require, exports, module) {
             }
         },
         downloadFile: function(fileName, content){ //TODO
-            var aLink = document.createElement('a'),
-                //blob = new Blob([content]),
-                evt = document.createEvent("MouseEvents");
-                //evt = document.createEvent("HTMLEvents");
-
-            evt.initEvent("click",true,true);
-            dispatchEvent(evt);
+            
+            var aLink = document.createElement('a');
             aLink.download = fileName;
-            //aLink.href = URL.createObjectURL(blob);
             aLink.href = content;
-            aLink.dispatchEvent(evt);
+
+            if (document.createEvent) {
+                var evt = document.createEvent("MouseEvents");
+                //var evt = document.createEvent("HTMLEvents");
+                evt.initEvent("click", true, true);
+                aLink.dispatchEvent(evt);
+                return true;
+            }
         }
 
-});
+    });
 
     module.exports = AlbumView;
 });

@@ -47,6 +47,7 @@ define(function (require, exports, module) {
                 self.showList();
                 window.dropList();
                 window.signOut(self.$('#sign-out'));
+                window.scrollHeight(self.$('.call-record-list'), 36);
             });
             return self;
         },

@@ -270,8 +270,7 @@ select {
  *  Known issue: inner spacing remains in IE 6.
  */
 button,
-html input[type="button"],
-input[type="reset"],
+html input[type="button"], input[type="reset"],
 input[type="submit"] {
   -webkit-appearance: button;
   /* 2 */
@@ -839,6 +838,10 @@ body {
   overflow: hidden; }
   .gx-wrapper > div.RegisterView {
     overflow-y: auto; }
+  .gx-wrapper > div.agreementView {
+    overflow-y: auto; }
+  .gx-wrapper > div.privacyView {
+    overflow-y: auto; }
 
 .loading-layer {
   display: none;
@@ -944,8 +947,10 @@ body {
 
 .yun-space span {
   display: inline-block; }
+
 .yun-space i {
   font-style: normal; }
+
 .yun-space .space-progress {
   height: 10px;
   width: 60px;
@@ -983,10 +988,10 @@ body {
       display: block;
       padding-bottom: 62px;
       border-radius: 30px 30px 0 0;
-      -moz-transition: background .3s ease-out, color .3s ease-out;
-      -o-transition: background .3s ease-out, color .3s ease-out;
-      -webkit-transition: background .3s ease-out, color .3s ease-out;
-      transition: background .3s ease-out, color .3s ease-out; }
+      -moz-transition: background 0.3s ease-out, color 0.3s ease-out;
+      -o-transition: background 0.3s ease-out, color 0.3s ease-out;
+      -webkit-transition: background 0.3s ease-out, color 0.3s ease-out;
+      transition: background 0.3s ease-out, color 0.3s ease-out; }
     .man-nav li a:hover {
       background: url(../../img/nav_hover.png) repeat-x left bottom; }
     .man-nav li span {
@@ -1059,10 +1064,10 @@ body {
   background-color: #fff;
   width: 182px;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
-  -moz-transition: background-color ease-in-out .15s, border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-  -o-transition: background-color ease-in-out .15s, border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-  -webkit-transition: background-color ease-in-out .15s, border-color ease-in-out .15s, box-shadow ease-in-out .15s;
-  transition: background-color ease-in-out .15s, border-color ease-in-out .15s, box-shadow ease-in-out .15s; }
+  -moz-transition: background-color ease-in-out 0.15s, border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  -o-transition: background-color ease-in-out 0.15s, border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  -webkit-transition: background-color ease-in-out 0.15s, border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  transition: background-color ease-in-out 0.15s, border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s; }
 
 .gx-textbox:focus {
   border-color: #66afe9;
@@ -1129,10 +1134,10 @@ textarea.gx-textbox {
   font-weight: normal;
   line-height: 1.5;
   vertical-align: middle;
-  -moz-transition: background-color .3s ease-out, border-color .3s ease-out;
-  -o-transition: background-color .3s ease-out, border-color .3s ease-out;
-  -webkit-transition: background-color .3s ease-out, border-color .3s ease-out;
-  transition: background-color .3s ease-out, border-color .3s ease-out; }
+  -moz-transition: background-color 0.3s ease-out, border-color 0.3s ease-out;
+  -o-transition: background-color 0.3s ease-out, border-color 0.3s ease-out;
+  -webkit-transition: background-color 0.3s ease-out, border-color 0.3s ease-out;
+  transition: background-color 0.3s ease-out, border-color 0.3s ease-out; }
 
 .gx-button:hover,
 .gx-button:focus {
@@ -1589,7 +1594,7 @@ label.cked:after {
   padding: 10px 50px 0 15px;
   cursor: pointer; }
   .header-nav-word b {
-    width: 65px;
+    width: 68px;
     display: block; }
 
 /*弹窗*/
@@ -1726,17 +1731,16 @@ label.cked:after {
   background: #fff;
   position: relative;
   min-width: 680px;
-  min-height: 640px;
+  min-height: 600px;
   height: 100%;
   margin-left: 280px; }
 
 .right-detail {
   background: #f3f3f3;
-  width: 30%;
+  width: 32%;
   position: absolute;
   left: 0;
-  top: 0;
-  bottom: 0; }
+  top: 0; }
 
 .search-back {
   width: 100%;
@@ -1800,9 +1804,8 @@ label.cked:after {
 .letter-list {
   position: absolute;
   top: 10px;
-  right: 15px;
+  right: 9px;
   font-size: 12px;
-  width: 12px;
   text-align: center;
   line-height: 16px;
   font-weight: bold;
@@ -1810,11 +1813,11 @@ label.cked:after {
 
 .letter-list li {
   cursor: pointer;
-  padding: 2px 10px; }
+  padding: 2px; }
 
 /*右侧内容*/
 .right-sidebar {
-  width: 70%;
+  width: 68%;
   height: 100%;
   min-width: 450px;
   position: absolute;
@@ -1970,7 +1973,7 @@ label.cked:after {
       margin: 10px 5px 0 0;
       width: 20px;
       height: 20px;
-      background: url(../img/heder-man.png) no-repeat;
+      background: url(../../img/heder-man.png) no-repeat;
       background-size: 100%; }
     .call-record-list li div .record-icon-0,
     .call-record-list li div .record-icon-1,
@@ -2074,8 +2077,9 @@ label.cked:after {
   .note-list-col .note-col-word {
     padding: 20px 10px; }
     .note-list-col .note-col-word p {
-      min-height: 80px;
-      word-break: break-all; }
+      height: 75px;
+      word-break: break-all;
+      overflow: hidden; }
 
 /*弹窗*/
 .note-list-detail {
@@ -2094,11 +2098,13 @@ label.cked:after {
   .note-list-detail .note-list-detail-word {
     padding: 20px 10px;
     color: #666;
-    height: 330px;
-    overflow-y: scroll; }
+    max-height: 330px;
+    overflow-y: auto; }
     .note-list-detail .note-list-detail-word p {
       line-height: 18px;
-      text-indent: 2em; }
+      text-indent: 2em;
+      word-break: break-all;
+      text-align: left; }
   .note-list-detail .note-list-detail-bottom {
     position: absolute;
     bottom: 0;
@@ -2136,6 +2142,10 @@ label.cked:after {
   overflow: hidden;
   overflow-y: auto; }
 
+.note-list-group {
+  overflow: hidden;
+  overflow-y: auto; }
+
 .col-left {
   width: 30%;
   position: absolute;
@@ -2152,20 +2162,24 @@ label.cked:after {
 
 .message-menu ul {
   overflow: hidden; }
+
 .message-menu li {
   height: 40px;
   line-height: 40px; }
+
 .message-menu a {
   display: block;
   border-top: 1px solid #cacaca;
   padding-left: 30px;
-  -moz-transition: background-color .3s ease-out, border-color .3s ease-out;
-  -o-transition: background-color .3s ease-out, border-color .3s ease-out;
-  -webkit-transition: background-color .3s ease-out, border-color .3s ease-out;
-  transition: background-color .3s ease-out, border-color .3s ease-out; }
+  -moz-transition: background-color 0.3s ease-out, border-color 0.3s ease-out;
+  -o-transition: background-color 0.3s ease-out, border-color 0.3s ease-out;
+  -webkit-transition: background-color 0.3s ease-out, border-color 0.3s ease-out;
+  transition: background-color 0.3s ease-out, border-color 0.3s ease-out; }
+
 .message-menu a:hover {
   background: #b5b5b5;
   color: #000; }
+
 .message-menu .curr a {
   background: #b5b5b5;
   color: #000; }
@@ -2240,7 +2254,8 @@ label.cked:after {
   background-size: contain; }
 
 .msg-record-infor {
-  overflow: hidden; }
+  overflow: hidden;
+  overflow-y: auto; }
   .msg-record-infor li {
     margin: 5px 0; }
 
@@ -2302,6 +2317,7 @@ label.cked:after {
 .album-setting button, .album-setting a {
   display: inline-block;
   margin-left: 16px; }
+
 .album-setting .album-all,
 .album-setting .album-undo {
   outline: none;
@@ -2314,6 +2330,7 @@ label.cked:after {
 .album-item ul {
   overflow: hidden;
   padding: 0 1%; }
+
 .album-item li {
   width: 14.667%;
   float: left;
@@ -2335,6 +2352,7 @@ label.cked:after {
     background-repeat: no-repeat;
     -webkit-background-size: cover;
     background-size: cover; }
+
 .album-item .ui-checkbox {
   position: absolute;
   right: 5%;
@@ -2422,11 +2440,9 @@ label.cked:after {
     bottom: -20px;
     font-size: 12px; }
 
-.detail-content .record-list .contact-list-data {
-  overflow-y: scroll;
-  padding-bottom: 55px; }
 .detail-content .record-list .group-letter-name li:hover {
   background-color: #CACACA; }
+
 .detail-content .record-list .page-wrap {
   background-color: #fff;
   position: fixed;
@@ -2441,20 +2457,23 @@ label.cked:after {
   background-color: #e3e3e3;
   color: #38a7e2; }
 
-.phonebook-right-wrap .right-detail {
-  position: relative;
-  height: 100%;
-  overflow-y: scroll; }
-  .phonebook-right-wrap .right-detail .load-more {
-    cursor: pointer;
-    width: 100%;
-    position: absolute;
-    bottom: 36px;
-    background-color: #DFDFDF;
-    height: 40px;
-    text-align: center;
-    line-height: 40px;
-    color: #3ab6ea; }
+.phonebook-right-wrap .right-detail .load-more {
+  cursor: pointer;
+  width: 100%;
+  position: absolute;
+  bottom: -40px;
+  left: 0;
+  background-color: #DFDFDF;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  color: #3ab6ea;
+  z-index: 9999; }
+
+.form-tac {
+  text-align: center; }
+  .form-tac .gx-button {
+    margin: 0 20px; }
 
 .agreement-container {
   width: 1000px;
@@ -2513,4 +2532,4 @@ label.cked:after {
   .agreemnt .red {
     color: #f00; }
 
-/*# sourceMappingURL=app.css.map */
+/*# sourceMappingURL=maps/app.css.map */

@@ -17,11 +17,9 @@
 .detail-content {
   .record-list{
     .contact-list-data{
-      //max-height: 500px;
-      //overflow: hidden;
-      overflow-y: scroll;
-      padding-bottom: 55px;
-      //height:655px ;
+      //overflow-y: scroll;
+      //padding-bottom: 55px;
+      //height: 590px;
     }
     .group-letter-name{
       li{
@@ -53,20 +51,28 @@
 .phonebook-right-wrap{
   .right-detail{
     //overflow: hidden;
-    position: relative;
-    height: 100%;
-    overflow-y: scroll;
+    //position: relative;
+    //height: 100%;
+    //overflow-y: scroll;
     .load-more{
       cursor: pointer;
       width: 100%;
       position: absolute;
-      bottom: 36px;
+      bottom: -40px;
+      left: 0;
       background-color: #DFDFDF;
       height: 40px;
       text-align: center;
       line-height: 40px;
       color:#3ab6ea;
+      z-index: 9999;
     }
 
+  }
+}
+.form-tac{
+  text-align: center;
+  .gx-button{
+    margin: 0 20px;
   }
 }

@@ -21,7 +21,7 @@ define(function (require, exports, module) {
     var RecordView = Backbone.View.extend({
         el: $('.RecordView'),
         rType: 3,
-        pNum: 5,
+        pNum: 16,
         events: {
             'mouseover .menu-hover': function() {
                 $('.menu-layer').show();
@@ -31,7 +31,8 @@ define(function (require, exports, module) {
             },
             'click .loadingMore': 'loadingMore',
             'click .download-btn': 'download',
-            'click .del-btn': 'dele'
+            'click .del-btn': 'dele',
+            'click .record-item': 'selectItem'
         },
         initialize: function() {
             this.render();
@@ -71,8 +72,8 @@ define(function (require, exports, module) {
                     //if(res.code == 0 ){
                     var tpl = $('#record-tmpl').html();
                     var tplFun = doT.template(tpl);
-                    $('.record-list').append(tplFun(res));
-                    _this.selectItem();
+                    $('.record-list').html(tplFun(res));
+                    //_this.selectItem();
                     //}else if(res.code != 0){
                     //    console.log("失败");
                     //}
@@ -141,45 +142,54 @@ define(function (require, exports, module) {
                         return false;
                     }
                     var _el = $('.record-list').find('.record-time');
+                    var item, domTime, jsonTime;
                     $.each(_el, function(index, val){
                         var self = $(this);
-                        var domTime = self.find('.item-group-time').text();
+                            domTime = self.text().replace(/\s+/g,"");
                         $.each(res, function(idx, v) {
-                            var item = v.newFilesModelList;
-                            var jsonTime = v.ctime
+                            item = v.newFilesModelList;
+                            jsonTime = new Date(v.ctime).format('yyyy-MM-dd hh:mm:ss').replace(/\s+/g,"");
                             if (jsonTime == domTime) {
                                 $.each(item, function(i, iv) {
-                                    var _html = '<li class="record-item" data-fid="{%!item[j].fid%}" data-path="{%!item[j].path%}">'
-                                            +'<div class="call-record-sound-first">'
+                                    var _html = '<li class="record-item" data-fid="'+iv.fid+'" data-path="'+iv.path+'">'
+                                        +'<div class="call-record-sound-first">'
                                         +'<i class="call-record-sound-icon"></i>'
                                         +'<span>'+iv.fileName+'</span>'
                                         +'</div>'
                                         +'<div class="call-record-sound-two">'
-                                        +'<span class="record-time">'+iv.ctime+'</span>'
+                                        +'<span class="record-time">'+new Date(v.ctime).format('yyyy-MM-dd hh:mm:ss')+'</span>'
                                         +'</div>'
                                         +'</li>';
-                                    self.next('.call-record-sound').find('ul').append(_html);
+                                    self.parents('.call-record-sound').find('ul').append(_html);
+                                    //_this.selectItem();
                                 });
+                            }else{
+                                var _tpl = $('#record-tmpl').html();
+                                var _tplFun = doT.template(_tpl);
+                                $('.record-list').append(_tplFun(res));
+                                //_this.selectItem();
+                                return false;
                             }
                         });
+                        return false;
                     });
-                    _this.selectItem();
+
                 },
                 error: function(err) {
                     console.log("error");
                 }
             });
         },
-        selectItem: function(){
-            var _this = this;
-            _this.$('.record-item').on('click', function(e){
-                var _self = $(this);
-                if (_self.hasClass('curr')) {
-                    _self.removeClass('curr');
-                }else{
-                    _self.addClass('curr');
-                }
-            });
+        selectItem: function(e){
+            e.preventDefault();
+            var _self = $(e.target),
+                _this = this;
+
+            if (_self.parents('.record-item').hasClass('curr')) {
+                _self.parents('.record-item').removeClass('curr');
+            }else{
+                _self.parents('.record-item').addClass('curr');
+            }
         },
         scrollBox: function(){
             var _this = this,

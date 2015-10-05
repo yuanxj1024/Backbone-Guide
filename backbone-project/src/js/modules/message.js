@@ -39,6 +39,7 @@ define(function (require, exports, module) {
                 _this.loadData();
                 window.dropList();
                 window.signOut(_this.$('#sign-out'));
+
             });
 
             return _this;
@@ -108,6 +109,7 @@ define(function (require, exports, module) {
                         list: []
                     }));
                 }
+                window.scrollHeight(self.$('.msg-record-infor'), 155);
             }).fail(function(err){
                 //showAlert('数据加载失败，请稍后重试!');
                 var html = tplFun({
