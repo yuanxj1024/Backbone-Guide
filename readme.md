@@ -1,18 +1,22 @@
 #Backbone
 
+使用backbone做了几个小项目，几番折腾下来，学习了不少东西，backbone提供了很灵活的扩展性，后面慢慢整理一下所学。
+
+
+
 
 **学习资源**
 
-*	[叶小钗的blog](http://www.cnblogs.com/yexiaochai/tag/Backbone/)要好好看看
+*	[叶小钗的blog Backbone系列](http://www.cnblogs.com/yexiaochai/tag/Backbone/)要好好看看
 *	
 
 
 
-**对Backbone的扩展**
+**对Backbone的扩展方案**
 
 *	基于Backbone的框架[Marionette](http://marionettejs.com/)
 *	icepy对backbone的扩展，[项目地址](https://github.com/sapling-team/base-extend-backbone)
-*
+*	[Backbone,RequireJS, React方案](https://www.phodal.com/blog/requirejs-react-backbone-build-application/)
 
 
 **backbone周边**
