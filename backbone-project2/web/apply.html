@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>直播申请登记表</title>
+    <link rel="stylesheet" href="/web/lib/bootstrap/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/web/css/index/index.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/web/css/topbar.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/web/css/homepage.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/web/css/footer.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/web/css/loginbox.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/web/css/signup/index.css" media="screen" title="no title" charset="utf-8">
+    <script type="text/javascript" src="component/tools.js"></script>
+    <script type="text/javascript" src="component/url.js"></script>
+    <script type="text/javascript" src="component/AjaxForm.js"></script>
+    <script type="text/javascript" src="component/UploadFile.js"></script>
+    <script src="/web/lib/require.js"></script>
+    <script src="/web/js/require-config.js"></script>
+</head>
+<body>
+<div class="top-header" id="top-header"></div>
+<!--表单区域开始-->
+<div class="form-wrap">
+    <div class="sign-up-container apply-container">
+        <header class="apple-header">
+            <h2>直播申请登记表</h2>
+        </header>
+        <form name="apply-form" class="apply-form" action="">
+            <ul class="form-item">
+                <li>
+                    <label class="form-title"><span class="must-tips">*</span> 姓名：</label>
+                    <div class="form-input">
+                        <input type="text" class="form-input-bor input-text-normal" placeholder="请填写真实姓名" name="realName" maxlength="20" required>
+                    </div>
+                </li>
+                <li>
+                    <label class="form-title"><span class="must-tips">*</span> 真实性别：</label>
+                    <div class="form-input">
+                        <div class="fi_radio">
+                            <input type="radio" name="gender" id="radio1" value="female" required/><label class="form-radio-text" for="radio1">女</label>
+                            <input type="radio" name="gender" id="radio2" value="male" required/><label class="form-radio-text" for="radio2">男</label>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <label class="form-title"><span class="must-tips">*</span> 生日选择：</label>
+                    <div class="form-input">
+                        <select class="form-select sel_year" name="sel_year" required>
+                            <option value="">请选择</option>
+                        </select>
+                        年
+                        <select class="form-select sel_month" name="sel_month" required>
+                            <option value="">请选择</option>
+                        </select>
+                        月
+                        <select class="form-select sel_day" name="sel_day" required>
+                            <option value="">请选择</option>
+                        </select>
+                        日
+                        <input type="text" name="birthday" class="hide birthday">
+                    </div>
+                    <div class="form-tips"></div>
+                </li>
+                <li>
+                    <label class="form-title"><span class="must-tips">*</span> 星座：</label>
+                    <div class="form-input">
+                        <input type="text" class="form-input-bor input-text-normal sel-constellation" disabled name="constellation">
+                    </div>
+                </li>
+                <li>
+                    <label class="form-title"><span class="must-tips">*</span> 身份证号码：</label>
+                    <div class="form-input">
+                        <input type="text" class="form-input-bor input-text-normal" placeholder="请填写" name="isIdCardNo" required>
+                    </div>
+                </li>
+                <li>
+                    <label class="form-title"><span class="must-tips">*</span> 身份证正面照：</label>
+                    <div class="form-long">
+                        <a href="javascript:void(0)" class="up-btn photo-up"><span>点击上传</span><input type="text" name="identityImgURL" class="identityImgURL"></a>
+                        <span class="up-tips">支持JPG格式、PNG格式，大小不超过5M</span>
+                    </div>
+                </li>
+                <li>
+                    <label class="form-title"><span class="must-tips">*</span> 平时直播时间段：</label>
+                    <div class="form-input">
+                        <input type="text" class="form-input-bor input-text-normal" placeholder="（填写平时的直播时间，例：12点-18点）" name="liveTime" maxlength="7" required>
+                    </div>
+                </li>
+                <li>
+                    <label class="form-title"><span class="must-tips">*</span> 手机号码：</label>
+                    <div class="form-input">
+                        <input type="text" class="form-input-bor input-text-normal" placeholder="请填写手机号码" name="mobile" required>
+                    </div>
+                </li>
+                <li>
+                    <label class="form-title"><span class="must-tips">*</span> 常用QQ：</label>
+                    <div class="form-input">
+                        <input type="text" class="form-input-bor input-text-normal" placeholder="请填写QQ" name="qq" required>
+                    </div>
+                </li>
+                <li>
+                    <label class="form-title"><span class="must-tips">*</span> 详细居住地址：</label>
+                    <div class="form-long">
+                        <select class="form-select" name="addrProv" id="addrProv" required>
+                            <option value="">请选择</option>
+                        </select>
+                        <select class="form-select" name="addrCity" id="addrCity" required>
+                            <option value="">请选择</option>
+                        </select>
+                        <select class="form-select" name="addrCountry" id="addrCountry" required>
+                            <option value="">请选择</option>
+                        </select>
+                    </div>
+                    <div class="form-tips ft-dq"></div>
+                </li>
+                <li>
+                    <label class="form-title"></label>
+                    <div class="form-input">
+                        <input type="text" class="form-input-bor input-text-normal" placeholder="详细居住地址" name="addrStreet" maxlength="100" required>
+                    </div>
+                </li>
+                <li>
+                    <label class="form-title">经纪人ID：</label>
+                    <div class="form-input">
+                        <input type="text" class="form-input-bor input-text-normal" placeholder="如无经纪人请留空" name="agentUserId" maxlength="20">
+                    </div>
+                </li>
+                <li class="form-line"></li>
+                <li>
+                    <h6 class="form-title">财 务 信 息</h6>
+                    <p class="submit-tips">请谨慎填写您的银行信息，资料错误将可能导致您的款项缺失</p>
+                </li>
+                <li>
+                    <label class="form-title"><span class="must-tips">*</span> 开户银行：</label>
+                    <div class="form-input">
+                        <input type="text" class="form-input-bor input-text-normal" placeholder="请填写" name="bankName" required maxlength="50">
+                    </div>
+                </li>
+                <li>
+                    <label class="form-title"><span class="must-tips">*</span> 开户支行：</label>
+                    <div class="form-input">
+                        <input type="text" class="form-input-bor input-text-normal" placeholder="请填写" name="bankBranch" required maxlength="50">
+                    </div>
+                </li>
+                <li>
+                    <label class="form-title"><span class="must-tips">*</span> 银行卡号：</label>
+                    <div class="form-input">
+                        <input type="text" class="form-input-bor input-text-normal" placeholder="请填写" number="true" name="bankNo" required maxlength="20">
+                    </div>
+                </li>
+                <li>
+                    <label class="form-title"><span class="must-tips">*</span> 开户人姓名：</label>
+                    <div class="form-input">
+                        <input type="text" class="form-input-bor input-text-normal" placeholder="请填写" name="bankUser" required maxlength="20">
+                    </div>
+                </li>
+                <li class="form-line"></li>
+                <li>
+                    <h6 class="form-title">照 片 信 息</h6>
+                </li>
+                <li>
+                    <label class="form-title"><span class="must-tips">*</span> 主播封面展示图：</label>
+                    <div class="form-long">
+                        <a href="javascript:void(0)" class="up-btn photo-up"><span>点击上传</span><input type="text" name="liveImgURL" class="liveImgURL" required></a>
+                        <span class="up-tips">支持JPG格式、PNG格式，大小不超过5M</span>
+                    </div>
+                </li>
+                <li>
+                    <label class="form-title">写真照片：</label>
+                    <div class="form-long">
+                        <a href="javascript:void(0)" class="up-btn photo-up"><span>点击上传</span><input type="text" name="portrayImgURL" class="portrayImgURL"></a>
+                        <span class="up-tips">照片尽可能清晰，不允许相差太大的照片</span>
+                    </div>
+                </li>
+                <li>
+                    <input type="submit" value="提交" class="input-submit-normal">
+                </li>
+                <li class="form-agreement">
+                    <p class="form-agree"><input type="checkbox" class="agreement" name="agreement" id="checkbox" required/> <label for="checkbox" class="form-radio-text">我已阅读并同意 《 <a href="http://yapi.beta.admin.yinyuetai.com/web/agreement/agreement" target="_blank">直播签约协议</a> 》</label></p>
+                </li>
+            </ul>
+        </form>
+        <div class="success-tips">
+            恭喜您，已申请成功!<br>如您通过审核我们将在15个工作日内与您联系
+        </div>
+    </div>
+    <form id="userAvatarForm" style="display: none"></form>
+</div>
+<div class="footer" id="footer"></div>
+<!--/表单区域结束-->
+<script>
+    require(['apply/app']);
+</script>
+</body>
+</html>

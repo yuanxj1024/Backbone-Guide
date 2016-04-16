@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>互动直播间</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="/web/lib/bootstrap/css/bootstrap.min.css" media="screen" title="no title">
+    <link rel="stylesheet" href="/web/css/live.css">
+    <!--<link rel="stylesheet" href="/web/lib/easyDialog/easydialog.css" charset="utf-8">-->
+    <script src="/web/lib/require.js"></script>
+    <script src="/web/js/require-config.js"></script>
+</head>
+<body>
+<OBJECT style="display: none;" ID="qavSdk" CLASSID="CLSID:DE40BADD-2131-4E8B-93CC-B5062F70B97B"
+        codebase="/web/lib/AVWeb/qavsdk.cab#version=1,2,0,0" width="0" height="0"></OBJECT>
+
+<!---->
+<div class="top-header" id="top-header">
+
+</div>
+
+<script id="userwrap-tpl" type="text/template">
+    <a href="javascript:void(0)" id="userWrap">
+        <span id="headImg">
+            <img src="{%=$data.headImgUrl%}" alt="{%=$data.authName%}">
+        </span>
+        <span id="userName">{%=$data.authName%}</span>
+    </a>
+    <div id="extendWrap">
+        <div id="extendbox">
+            <span class="icon-out">
+                <span class="icon-in"></span>
+            </span>
+            <p class="ex-p ex-yuandou">
+                <span class="front">元豆:</span><span class="num" title="">{%=$data.credits%}</span>
+            </p>
+            <p class="ex-p ex-tangyuan">
+                <span class="front">汤圆:</span><span class="num" title="">{%=$data.income%}</span>
+            </p>
+            <!--<a href="javascript:void(0)" class="ex-a">充值</a>-->
+            <a href="/web/pay.html" class="ex-a">充值</a>
+            <a href="javascript:void(0)" class="ex-a" id="quitBtn">退出</a>
+        </div>
+    </div>
+</script>
+<!---->
+<div class="live-wrap" id="liveRoom">
+    <header class="live-top">
+        <div class="anchor-wrap left">
+            <img id="anchorAvatar" class="user-avatar img-circle" src="/web/img/avatar.jpg" alt="">
+            <span id="artistName" class="name white"></span>
+            <div id="userLevel" class="badge white">lv0</div>
+        </div>
+        <div class="live-info-block left">
+            粉丝: <span class="white">234234</span>
+            <i class="split">|</i>
+            在线人数: <span class="white">23423</span>
+        </div>
+        <div class="share-wrap right gray" id="shareBlock">
+            <!--<span>分享:</span>-->
+            <!--<a href="#" class="s-item qq"></a>-->
+            <!--<a href="#" class="s-item wechat"></a>-->
+            <!--<a href="#" class="s-item weibo"></a>-->
+            <!--<a href="#" class="s-item zone"></a>-->
+        </div>
+        <div class="clear"></div>
+    </header>
+    <section class="live-body" id="videoSection">
+        <div class="viedo-wrap left">
+            <div id="chooseDeviceTab" class="viedo-prepare-block" style="display: block;">
+                <div class="form-inline device-info">
+                    <div class="form-group">
+                        <label for="exampleInputName2" class="white">视频设备:</label>
+                        <input type="text" class="form-control" id="exampleInputName2" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail2" class="white">麦克风设备:</label>
+                        <input type="text" class="form-control" id="exampleInputEmail2"
+                               placeholder="">
+                    </div>
+                </div>
+                <div class="form-inline btn-wrap">
+                    <button id="btnStartLive" class="btn btn-purple btn-lg">开始直播</button>
+                </div>
+            </div>
+            <!-- 视频-->
+            <div id="videoTab" class="viedo-block" style="display: none;">
+                视频直播
+            </div>
+        </div>
+        <div class="side-wrap right" id="chatSilde">
+            <div class="gift-wrap">
+                <!--礼物-->
+                <div>
+                    <!---->
+                    <div class="gift-item">
+                        <img src="/web/img/avatar.jpg" alt="" class="avatar img-circle">
+                        <div class="msg-wrap">
+                            <div class="name">MHDU</div>
+                            <div class="msg">
+                                <span>送一个么么哒</span>
+                                <div class="gift"><img class="gift-img" src="/web/img/live_gift_1.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!---->
+                    <div class="gift-item">
+                        <img src="/web/img/avatar.jpg" alt="" class="avatar img-circle">
+                        <div class="msg-wrap">
+                            <div class="name">MHDU</div>
+                            <div class="msg">
+                                <span>送一个么么哒</span>
+                                <div class="gift"><img class="gift-img" src="/web/img/live_gift_1.png" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!---->
+                </div>
+            </div>
+            <div class="chat-wrap" id="chatBlock">
+                <!--聊天-->
+                <div>
+                    <!---->
+                    <div class="chat-item">
+                        <div class="system-msg">
+                            <div class="send-user">sdfasf <span class="badge">lv22</span> 来了</div>
+                        </div>
+                    </div>
+                    <!---->
+                    <div class="chat-item">
+                        <img class="send-avatar img-circle pull-left" src="/web/img/avatar.jpg" alt="">
+                        <div class="content-wrap pull-left">
+                            <div class="flag"></div>
+                            <div class="send-user">sdfas <span class="badge">lv21</span></div>
+                            <div class="msg">是法是否爽肤水是否撒旦法是否爽肤水</div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="chat-item">
+                        <img class="send-avatar img-circle pull-left" src="/web/img/avatar.jpg" alt="">
+                        <div class="content-wrap pull-left">
+                            <div class="flag"></div>
+                            <div class="send-user">sdfas <span class="badge">lv21</span></div>
+                            <div class="msg">是否撒旦法是否爽肤水是否撒旦法是否爽肤水是否撒旦法是否爽肤水是否撒旦法是否爽肤水是否撒旦法是否爽肤水</div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <!---->
+                    <div class="chat-item sender">
+                        <img class="send-avatar img-circle" src="/web/img/avatar.jpg" alt="">
+                        <div class="content-wrap">
+                            <div class="flag"></div>
+                            <!--<div class="send-user">sdfas <span class="badge">lv21</span></div>-->
+                            <div class="msg">是否撒旦法是否爽肤水是否撒旦法是否爽肤水是否撒旦法是否爽肤水是否撒旦法是否爽肤水是否撒旦法是否爽肤水</div>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </section>
+    <footer class="live-footer">
+        <div class="control-wrap gray">
+            本场直播收益汤圆为: <span id="score" class="white total">0</span>
+            <div class="right btn-wrap">
+                <button id="btnEndLive" class="btn btn-purple">结束直播</button>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="send-msg-wrap right">
+            <div class="form-inline">
+                <div class="form-group">
+                    <!--<label for="inputPassword2" class="sr-only">Password</label>-->
+                    <input type="text" class="form-control txt-msg" placeholder="跟大家Say Hi吧">
+                </div>
+                <button class="btn btn-purple">发送</button>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </footer>
+</div>
+
+<!---->
+<div class="footer" id="footer">
+</div>
+<!---->
+
+
+<script src="./lib/jquery.min.js" charset="utf-8"></script>
+<script src="./lib/bootstrap/js/bootstrap.min.js" charset="utf-8"></script>
+<script type="text/javascript">
+    require(['live/main']);
+</script>
+</body>
+</html>

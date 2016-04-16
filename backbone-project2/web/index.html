@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="/web/lib/bootstrap/css/bootstrap.min.css" media="screen" title="no title"
+          charset="utf-8">
+    <link rel="stylesheet" href="/web/css/index/index.css" media="screen" title="no title" charset="utf-8">
+    <!--<link rel="stylesheet" href="/web/css/topbar.css" media="screen" title="no title" charset="utf-8">-->
+    <link rel="stylesheet" href="/web/css/homepage.css" media="screen" title="no title" charset="utf-8">
+    <!--<link rel="stylesheet" href="/web/css/footer.css" media="screen" title="no title" charset="utf-8">-->
+    <!--<link rel="stylesheet" href="/web/css/loginbox.css" media="screen" title="no title" charset="utf-8">-->
+
+    <script src="/web/lib/require.js"></script>
+    <script src="/web/js/require-config.js"></script>
+</head>
+<body>
+<div class="top-header" id="top-header">
+</div>
+<script id="userwrap-tpl" type="text/template">
+    <a href="javascript:void(0)" id="userWrap">
+        <span id="headImg">
+            <img src="{%=$data.headImgUrl%}" alt="{%=$data.username%}">
+        </span>
+        <span id="userName">{%=$data.username%}</span>
+    </a>
+    <div id="extendWrap">
+        <div id="extendbox">
+            <span class="icon-out">
+                <span class="icon-in"></span>
+            </span>
+            <p class="ex-p ex-yuandou">
+                <span class="front">元豆:</span><span class="num" title="">{%=$data.credits%}</span>
+            </p>
+            <p class="ex-p ex-tangyuan">
+                <span class="front">汤圆:</span><span class="num" title="">{%=$data.income%}</span>
+            </p>
+            <a href="/web/pay.html" class="ex-a">充值</a>
+            <a href="javascript:void(0)" class="ex-a" id="quitBtn">退出</a>
+        </div>
+    </div>
+</script>
+
+<div class="index-main">
+    <div class="banner">
+        <div class="banner-mian">
+            <button type="button" id="b_applyBtn" class="applyButton">申请直播</button>
+            <button type="button" class="btn btn-primary appDown" id="androidDownBtn"></button>
+            <button type="button" class="btn btn-primary appDown" id="iosDownBtn"></button>
+            <span class="ercode">
+                <img src="http://img4.yytcdn.com/user/photo/160401/2841251/-M-b244e5fe3642cc4a108adfe03153da82_0x0.png"/>
+                <i>扫描二维码下载</i>
+            </span>
+        </div>
+    </div>
+    <div class="howPlay">
+        <div class="container"></div>
+    </div>
+    <div class="videopart">
+        <div class="container">
+            <div class="v-header">
+                <p>元TV直播自媒体</p>
+                <i>邀你向世界播出最好的自己</i>
+                <button class="applyBtn applyButton" type="button">申请直播</button>
+            </div>
+            <div class="v-body">
+                <video src="http://www.w3school.com.cn/example/html5/mov_bbb.mp4" controls="controls">
+                </video>
+            </div>
+        </div>
+    </div>
+    <div class="tickets">
+        <div class="container">
+            <button type="button" class="applyButton">申请直播</button>
+        </div>
+    </div>
+</div>
+
+<div class="footer" id="footer">
+</div>
+<script src="./lib/jquery.min.js" charset="utf-8"></script>
+<!--<script src="./lib/underscore-min.js" charset="utf-8"></script>-->
+<script src="./lib/bootstrap/js/bootstrap.min.js" charset="utf-8"></script>
+<!--<script src="./js/index/index.js" charset="utf-8"></script>-->
+
+<script type="text/javascript">
+    require(['index/app'], function (AppView) {
+        new AppView();
+    });
+</script>
+</body>
+</html>

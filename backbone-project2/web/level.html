@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link rel="stylesheet" href="/web/css/reset.css" charset="utf-8">
+    <link rel="stylesheet" href="/web/css/level/index.css" charset="utf-8">
+    <title>等级</title>
+    <script src="/web/lib/require.js"></script>
+    <script src="/web/js/require-config.js"></script>
+</head>
+
+<body>
+<!--用户等级信息-->
+<div id="level-follow">
+    <dl class="level-info user_riches">
+        <dt>
+            <div class="circle">
+                <div class="pie_left"><div class="left"></div></div>
+                <div class="pie_right"><div class="right"></div></div>
+                <div class="mask">
+                    <p class="level-num">1</p>
+                </div>
+            </div>
+            <p class="level-experience"><span class="le-self">1</span>/<span class="le-total">1</span></p>
+        </dt>
+        <dd>
+            <span class="level-text">LV1</span>
+            <strong>财富等级</strong>
+            <p>用户通过消费元豆增长相应的财富值，1元豆=1财富值。</p>
+        </dd>
+    </dl>
+    <dl class="level-info user_active">
+        <dt>
+            <div class="circle">
+                <div class="pie_left"><div class="left"></div></div>
+                <div class="pie_right"><div class="right"></div></div>
+                <div class="mask">
+                    <p class="level-num">1</p>
+                </div>
+            </div>
+            <p class="level-experience"><span class="le-self">1</span>/<span class="le-total">1</span></p>
+        </dt>
+        <dd>
+            <span class="level-text">LV1</span>
+            <strong>活跃等级</strong>
+            <p>用户通过送出的免费礼物增长人气值，一个免费礼物=50点人气值</p>
+        </dd>
+    </dl>
+</div>
+<!--主播等级信息-->
+<div id="level-artist">
+    <dl class="level-info user_riches">
+        <dt>
+            <div class="circle">
+                <div class="pie_left"><div class="left"></div></div>
+                <div class="pie_right"><div class="right"></div></div>
+                <div class="mask">
+                    <p class="level-num">1</p>
+                </div>
+            </div>
+            <p class="level-experience"><span class="le-self">1</span>/<span class="le-total">1</span></p>
+        </dt>
+        <dd>
+            <span class="level-text">LV1</span>
+            <strong>财富等级</strong>
+            <p>艺人通过收到汤圆增长相应的财富值，1汤圆=1财富值。</p>
+        </dd>
+    </dl>
+    <dl class="level-info user_hot">
+        <dt>
+            <div class="circle">
+                <div class="pie_left"><div class="left"></div></div>
+                <div class="pie_right"><div class="right"></div></div>
+                <div class="mask">
+                    <p class="level-num">1</p>
+                </div>
+            </div>
+            <p class="level-experience"><span class="le-self">1</span>/<span class="le-total">1</span></p>
+        </dt>
+        <dd>
+            <span class="level-text">LV1</span>
+            <strong>人气等级</strong>
+            <p>艺人通过收到的免费礼物增长人气值，一个免费礼物=50点人气值</p>
+        </dd>
+    </dl>
+</div>
+<div class="level-article">
+    <h4>用户如何获得免费礼物？</h4>
+    根据用户累计在线时长，获取相应的礼物，每5分钟会送出1份免费礼物，最高上限为12个，不累计。
+</div>
+<script src="/web/js/require-config.js"></script>
+<script>
+    require(['/web/js/share/index.js', 'level/app'], function(app,UserLogin) {
+        app.resetREM();
+        UserLogin.checkLogin();
+    });
+</script>
+</body>
+</html>

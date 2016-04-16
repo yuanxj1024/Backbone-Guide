@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+    <meta content="telephone=no" name="format-detection" />
+    <link rel="stylesheet" href="/web/css/reset.css" charset="utf-8">
+    <link rel="stylesheet" href="/web/css/share/index.css" charset="utf-8">
+    <title>元TV直播</title>
+    <script src="/web/lib/require.js"></script>
+    <script src="/web/js/require-config.js"></script>
+</head>
+<body>
+<div class="top-bar">
+    <a href="#" class="logo"></a>
+    <p class="top-slogan">元TV<br>邀你向世界播出最好的自己</p>
+    <a href="#" class="top-down">立即下载</a>
+</div>
+<div class="anchor-video">
+    <video src="" width="100%" controls id="video"></video>
+</div>
+<div class="anchor-msg">
+    <div class="anchor-link">
+        <span class="anchor-avatar"><img src="" alt=""></span>
+        <span class="anchor-name"></span>
+    </div>
+    <span class="anchor-level"></span>
+</div>
+<div class="column-bar">
+    <h5 class="column-title">为你推荐</h5>
+    <ul class="recommend-anchor"></ul>
+</div>
+</body>
+<script>
+    require(['/web/js/share/index.js','/web/js/share/app.js'], function(reset,app) {
+        reset.resetREM();
+        app.init();
+    });
+</script>
+</html>

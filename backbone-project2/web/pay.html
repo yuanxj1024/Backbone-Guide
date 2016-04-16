@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="./lib/bootstrap/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="./css/pay.css" media="screen" title="no title" charset="utf-8">
+
+    <script src="/web/lib/require.js"></script>
+    <script src="/web/js/require-config.js"></script>
+</head>
+<body>
+<!--head part start-->
+<div class="top-header" id="top-header"></div>
+<script id="userwrap-tpl" type="text/template">
+    <a href="javascript:void(0)" id="userWrap">
+        <span id="headImg">
+            <img src="{%=$data.headImgUrl%}" alt="{%=$data.username%}">
+        </span>
+        <span id="userName">{%=$data.username%}</span>
+    </a>
+    <div id="extendWrap">
+        <div id="extendbox">
+            <span class="icon-out">
+                <span class="icon-in"></span>
+            </span>
+            <p class="ex-p ex-yuandou">
+                <span class="front">元豆:</span><span class="num" title="">{%=$data.credits%}</span>
+            </p>
+            <p class="ex-p ex-tangyuan">
+                <span class="front">汤圆:</span><span class="num" title="">{%=$data.income%}</span>
+            </p>
+            <!--<a href="javascript:void(0)" class="ex-a">充值</a>-->
+            <a href="/web/pay.html" class="ex-a">充值</a>
+            <a href="javascript:void(0)" class="ex-a" id="quitBtn">退出</a>
+        </div>
+    </div>
+</script>
+<!--head part end-->
+
+<!--mainpart start-->
+<div class="pay-main" id="pay-main">
+    <div class="container">
+        <h2>充值元豆</h2>
+        <p class="accmsg">
+            <span>账户:</span>
+            <span id="p_accName"></span>
+            <span id="p_accNo"></span>
+            <span class="pull-right balance"></span>
+        </p>
+        <div class="payWay clearfix">
+            <div class="leftpart">支付方式:</div>
+            <div class="rightpart">
+                <ul id="payway" class="clearfix">
+                    <li id="weixin" class="pay-wx"></li>
+                    <li id="zhifubao" class="pay-ali"></li>
+                </ul>
+            </div>
+        </div>
+        <div class="payAmt clearfix">
+            <div class="leftpart">充值金额:</div>
+            <div class="rightpart">
+                <ul id="payamt" class="clearfix">
+                </ul>
+            </div>
+        </div>
+        <button type="button" class="btn-purple pullBtn">去充值</button>
+    </div>
+</div>
+<div class="pop-confirm" id="pop-confirm">
+    <div class="pc-head">
+        温馨提示
+        <i class="glyphicon glyphicon-remove pull-right" id="con-close-btn"></i>
+    </div>
+    <div class="pc-body">
+        是否确定给
+        <span id="name"></span>
+        (<span id="No"></span>)
+        账户充值
+        <span id="num"></span>
+        元豆?
+    </div>
+    <div class="pc-foot">
+        <a href="javascript:void(0)" id="cancleBtn">取消</a>
+        <a href="javascript:void(0)" id="toPayBtn">确认</a>
+    </div>
+</div>
+<div class="pop-result" id="pop-result">
+    <div class="pr-body">
+        完成付款后根据您的情况点击相应按钮
+    </div>
+    <div class="pr-foot">
+        <a href="/web" id="successBtn">支付完成</a>
+        <a href="javascript:history.go(0)" id="failBtn">支付失败</a>
+    </div>
+</div>
+<!--mainpart end-->
+
+<!--footer start-->
+<div class="footer" id="footer"></div>
+<!--footer end-->
+
+<script src="./lib/jquery.min.js" charset="utf-8"></script>
+<script src="./lib/bootstrap/js/bootstrap.min.js" charset="utf-8"></script>
+
+<script type="text/javascript">
+    require(['pay/index'], function (payView) {
+        new payView();
+    });
+</script>
+
+<!--<script src="./lib/jquery.min.js" charset="utf-8"></script>-->
+<!--<script src="./lib/underscore-min.js" charset="utf-8"></script>-->
+<!--<script src="./lib/bootstrap/js/bootstrap.min.js" charset="utf-7"></script>-->
+<!--<script src="./js/pay/index.js" charset="utf-8"></script>-->
+<!--<script src="./js/pay/success.js" charset="utf-8"></script>-->
+
+</body>
+</html>

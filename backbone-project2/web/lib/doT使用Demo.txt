@@ -1,0 +1,39 @@
+doT使用Demo
+
+
+
+/*
+模板定义
+ */
+
+
+{%
+    var status=["","未生效","已生效","已关闭","已删除"];
+    for(var i=0,j=$data.length; i < j; i++) {
+  var item = $data[i];
+%}
+<ul class="detailitem boderRadAll_2">
+    <li class="item-name">
+        <div class="rborder">{%=(item.OrderCode)?item.OrderCode:"--"%}</div>
+    </li>
+    <li class="item-company">
+        <div class="rborder">{%=(!!item.Contact&&item.Contact.Company)?item.Contact.Company.CompanyName:"--"%}</div>
+    </li>
+    <li class="item-money">
+        <div class="rborder">￥{%=item.Amount%}</div>
+    </li>
+</ul>
+{% } %}
+
+
+
+/*
+js使用
+ */
+
+doT.exec('/Template/Order/order-list.html', function (templateFun) {
+                    var innerText = templateFun(data.items);
+                    innerText = $(innerText);
+
+                    $("#order-list").append(innerText);
+});

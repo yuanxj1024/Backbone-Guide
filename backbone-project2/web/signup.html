@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>“元TV”直播报名页</title>
+    <link rel="stylesheet" href="/web/lib/bootstrap/css/bootstrap.min.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/web/css/index/index.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/web/css/topbar.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/web/css/homepage.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/web/css/footer.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/web/css/loginbox.css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="/web/css/signup/index.css" media="screen" title="no title" charset="utf-8">
+    <script type="text/javascript" src="component/tools.js"></script>
+    <script type="text/javascript" src="component/url.js"></script>
+    <script type="text/javascript" src="component/AjaxForm.js"></script>
+    <script type="text/javascript" src="component/UploadFile.js"></script>
+    <script src="/web/lib/require.js"></script>
+    <script src="/web/js/require-config.js"></script>
+</head>
+<body>
+<div class="top-header" id="top-header"></div>
+<!--表单区域开始-->
+<div class="form-wrap">
+    <div class="sign-up-container">
+        <div class="sign-up-header">
+            <h2>“元TV”直播报名页</h2>
+        </div>
+        <form name="sign-up-form" class="sign-up-form">
+            <ul class="form-item">
+                <li>
+                    <label class="form-title"><span class="must-tips">*</span> 姓名：</label>
+                    <div class="form-input">
+                        <input type="text" class="form-input-bor input-text-normal" placeholder="请填写真实姓名" name="realName" maxlength="20" required>
+                    </div>
+                    <div class="form-input-tips"></div>
+                </li>
+                <li>
+                    <label class="form-title"><span class="must-tips">*</span> 所在院校：</label>
+                    <div class="form-input">
+                        <input type="text" class="form-input-bor input-text-normal" placeholder="请填写" name="school" maxlength="50" required>
+                    </div>
+                    <div class="form-input-tips"></div>
+                </li>
+                <li>
+                    <label class="form-title"><span class="must-tips">*</span> 手机号码：</label>
+                    <div class="form-input">
+                        <input type="text" class="form-input-bor input-text-normal" placeholder="请填写" name="mobile" required>
+                    </div>
+                    <div class="form-input-tips"></div>
+                </li>
+                <li>
+                    <label class="form-title"><span class="must-tips">*</span> QQ号：</label>
+                    <div class="form-input">
+                        <input type="text" class="form-input-bor input-text-normal" placeholder="请填写" name="qq" required>
+                    </div>
+                    <div class="form-input-tips"></div>
+                </li>
+                <li>
+                    <label class="form-title"><span class="must-tips">*</span> 上传照片：</label>
+                    <div class="form-long">
+                        <a href="javascript:void(0)" class="up-btn photo-up"><span>点击上传</span><input type="text" name="portrayImgURL" class="portrayImgURL"></a>
+                        <span class="up-tips">支持JPG格式、PNG格式，大小不超过5M</span>
+                    </div>
+                </li>
+                <li>
+                    <label class="form-title"><span class="must-tips">*</span> 上传视频：</label>
+                    <div class="form-long">
+                        <a href="javascript:void(0)" class="up-btn video-up"><span>点击上传</span><input type="text" name="videoURL" class="videoURL"></a>
+                        <span class="up-tips">视频支持.flv、.mp4、.mkv、.wmv、.avi格式，100M以内</span>
+                    </div>
+                    <div class="form-input-tips"></div>
+                </li>
+                <li>
+                    <label class="form-title"><span class="must-tips">*</span> 个人简介：</label>
+                    <div class="form-input">
+                        <textarea id="textarea" cols="45" rows="5" class="form-input-bor input-text-normal" placeholder="荣誉称号/重要经历/1000字以内" name="brief" maxlength="1000" required></textarea>
+                    </div>
+                    <div class="form-input-tips"></div>
+                </li>
+                <li>
+                    <input type="submit" value="提交" class="input-submit-normal">
+                    <p class="submit-tips">如您通过审核我们将在15个工作日内与您联系</p>
+                </li>
+            </ul>
+        </form>
+        <div class="success-tips">
+            恭喜您，已报名成功!<br>如您通过审核我们将在15个工作日内与您联系
+        </div>
+    </div>
+    <form id="userAvatarForm" style="display: none"></form>
+</div>
+<div class="footer" id="footer"></div>
+<script>
+    require(['signup/app']);
+</script>
+</body>
+</html>
