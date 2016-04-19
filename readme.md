@@ -8,7 +8,7 @@
 **学习资源**
 
 *	[叶小钗的blog Backbone系列](http://www.cnblogs.com/yexiaochai/tag/Backbone/)要好好看看
-*	
+*	[Backbone源码分析](http://www.cnblogs.com/nuysoft/archive/2012/03/19/2404274.html)
 
 
 
