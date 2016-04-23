@@ -1,0 +1,34 @@
+.footer {
+    margin: 0 auto;
+    padding: 40px 0;
+    min-width: 1000px;
+    color: #999;
+    line-height: 22px;
+    text-align: center;
+    background-color: #191919;
+
+    .footer_link {
+        font-size: 14px;
+        padding: 35px 0 20px;
+        color: #666;
+
+        a {
+            color: #666;
+            text-decoration: none;
+        }
+        .ico_line {
+            width: 2px;
+            height: 10px;
+            margin: 0 8px;
+            display: inline-block;
+            overflow: hidden;
+            background: url(/web/img/firstpageicon0413.png) no-repeat 0 -359px;
+        }
+    }
+    .footer_copy {
+        a {
+            color: #999;
+            text-decoration: none;
+        }
+    }
+}

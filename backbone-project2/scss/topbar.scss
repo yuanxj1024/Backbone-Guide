@@ -1,0 +1,163 @@
+.top-header {
+    background-color: #7071c1;
+    font-size: 16px;
+    clear: both;
+
+    a, i {
+        color: #fff;
+        line-height: 33px;
+    }
+    a:hover {
+        text-decoration: none;
+        color: #fff;
+    }
+    .container {
+        width: 1013px;
+        margin: 0 auto;
+        padding: 6px 0;
+
+        .mainLink {
+            float: left;
+            width: 85px;
+            height: 33px;
+            background: url(/web/img/yuantv_logo.png) no-repeat;
+        }
+        #applyBtn {
+            display: inline-block;
+            margin-top: 3px;
+            float: right;
+            font-size: 14px;
+            color: #5e5fa7;
+            background-color: #ffff42;
+            border: none;
+            border-radius: 3px;
+            box-shadow: 0 3px #c6c751;
+            width: 68px;
+            height: 25px;
+            text-align: center;
+            line-height: 25px;
+        }
+        #loginBox {
+            position: relative;
+            float: right;
+            padding: 0 50px 0 30px;
+            height: 33px;
+            #userWrap {
+                #headImg {
+                    display: inline-block;
+                    width: 29px;
+                    height: 29px;
+                    border-radius: 100%;
+                    overflow: hidden;
+                    vertical-align: top;
+                    border: #a3a3ac 1px solid;
+
+                    img {
+                        width: 100%;
+                        vertical-align: top;
+                    }
+                }
+                #userName {
+                    display: inline-block;
+                    max-width: 130px;
+                    font-size: 18px;
+                    color: #fff;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                }
+            }
+            #extendWrap {
+                position: absolute;
+                width: 17px;
+                height: 9px;
+                cursor: pointer;
+                border-top: 9px solid #b2b2b2;
+                border-left: 9px solid transparent;
+                border-right: 9px solid transparent;
+                border-bottom: none;
+                right: 27px;
+                top: 14px;
+
+                #extendbox {
+                    position: absolute;
+                    display: none;
+                    width: 145px;
+                    font-size: 18px;
+                    color: #fff;
+                    background-color: #706fc3;
+                    border: 1px #cecece solid;
+                    border-radius: 3px;
+                    top: 19px;
+                    left: -69px;
+                    padding-top: 8px;
+
+                    .icon-out {
+                        position: absolute;
+                        top: -8px;
+                        left: 60px;
+                        display: inline-block;
+                        border-bottom: #cecece 8px solid;
+                        border-left: 8px solid transparent;
+                        border-right: 8px solid transparent;
+                    }
+                    .icon-in {
+                        left: -8px;
+                        top: 1px;
+                        position: absolute;
+                        display: inline-block;
+                        border-bottom: #706fc3 8px solid;
+                        border-left: 8px solid transparent;
+                        border-right: 8px solid transparent;
+                    }
+
+                    .ex-p {
+                        line-height: 27px;
+                        width: 120px;
+                        margin: 0 auto;
+
+                        .front {
+                            display: inline-block;
+                            width: 45px;
+                            vertical-align: top;
+                        }
+                        .num {
+                            display: inline-block;
+                            width: 75px;
+                            overflow: hidden;
+                            white-space: nowrap;
+                            text-overflow: ellipsis;
+                        }
+                    }
+                    .ex-a {
+                        display: block;
+                        width: 108px;
+                        height: 25px;
+                        text-align: center;
+                        background-color: #ffff42;
+                        color: #706fc3;
+                        line-height: 25px;
+                        border-radius: 2px;
+                        margin: 11px auto;
+                    }
+                    #quitBtn {
+                        background-color: #ffffff;
+                    }
+
+                }
+            }
+        }
+        #loginBox:hover {
+            #extendWrap {
+                border-bottom: 9px solid #b2b2b2;
+                border-top: none;
+                #extendbox {
+                    display: block;
+                }
+            }
+        }
+        .operate {
+            float: right;
+        }
+    }
+}
