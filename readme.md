@@ -7,7 +7,7 @@
 *	plan.md - 未来计划，准备分享的内容或者题材
 
 *	/standard  -  团队规范
-*	/growth	-  分享的资料
+*	/share	-  分享的资料
 
 
 
@@ -16,4 +16,8 @@
 
 
 
-###growth
+###share
+
+
+
+###skill
