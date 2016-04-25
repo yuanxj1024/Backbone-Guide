@@ -5,9 +5,10 @@
 *	jQuery
 *	Backbone
 *	flexbox
+*	Require.js
 *	
 
-###知识点
+###准备分享的内容
 
 *	如何模块化
 *	MVC基础
