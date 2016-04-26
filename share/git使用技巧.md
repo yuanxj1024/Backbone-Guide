@@ -27,3 +27,4 @@
 *	[Git教程 - 廖雪峰](http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000)
 *	[使用 git rebase 避免無謂的 merge](https://ihower.tw/blog/archives/3843)
 *	[Git Community Book 中文版](http://gitbook.liuhui998.com/)
+*	[git-flow 备忘清单](http://danielkummer.github.io/git-flow-cheatsheet/index.zh_CN.html)
