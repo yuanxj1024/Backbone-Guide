@@ -19,7 +19,7 @@
 
 	*	git init 
 	
-	创建一个 Git 仓库
+		创建一个 Git 仓库
 	
 	*	git clone [url]
 	
@@ -62,13 +62,50 @@
 	
 		
 *	版本回退
+	*	git log
+	*	回退到上一版本
+	
+		git reset --hard HEAD^
+
+*	撤销
+	*	未commit
+	
+		git checkout [file]			
+		
+	*	已经commit
+	
+		git reset HEAD file
+		
 *	冲突解决
+	
+	*	合并分支
+		
+		git merge [BranchName]
+		
+		把BranchName 合并到当前分支
+	*		
+	
 *	设置忽略
+	
+	修改`.gitignore`文件
+	
+*	stash(栈)
+
+	*	git stash
+		
+		备份当前的工作区的内容
+	*	git stash pop
+	
+		从Git栈中读取最近一次保存的内容，恢复工作区的相关内容。	
+	*	git stash clear
+		清空git栈
 
 `技巧`
 
 *	删除远端分支
+	*	git remote rm [remote-name]		
 
+	*	git push [remote_repo] :[remote_branch] (注意远程分支前有个":")
 
 
 ##扩展
