@@ -6,7 +6,14 @@
 *	Backbone
 *	flexbox
 *	Require.js
-*	
+
+`未来目标技术栈`
+
+*	React.js
+*	React Native
+*	Node.js
+
+
 
 ###准备分享的内容
 
@@ -14,5 +21,5 @@
 *	MVC基础
 *	jQuery使用技巧，源码解析
 *	Backebone使用技巧
-*	git使用
+*	git使用 - (准备中)
 *	

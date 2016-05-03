@@ -8,7 +8,24 @@
 *	[工作流指南](http://blog.jobbole.com/76867/)
 
 ##Git 常用命令
+*	基本命令
+	*	git pull <Branch Name>
+	
+	* 	git push <Branch Name>
+	
+	*	git add .
+	
+	*	git rm --cached <files>
+		
+		撤销追加变换的文件
+	*	git reset .
+	
+		撤销所有追加变化的文件
+	*	git commit -m 'message'
+	
 
+	
+		
 *	版本回退
 *	冲突解决
 *	设置忽略
